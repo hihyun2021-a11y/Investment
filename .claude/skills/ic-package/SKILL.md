@@ -1,0 +1,34 @@
+---
+name: ic-package
+description: 투자심의(IC) 패키지를 일괄 생성한다. 데이터 검증 → 재무 분석 → 법률 요약 → 투심 PPT/Word·발표 스크립트 → 결의안 순서로 에이전트 파이프라인을 실행. "투심 자료 만들어줘", "/ic-package <코드명>"에 사용.
+---
+
+# 투자심의 패키지 파이프라인
+
+인자: `<코드명>` (필수), 투심 일자(선택). 아래 순서는 **의존관계가 있으므로 순차 실행**하되, 2단계의 finance-ir와 legal-counsel은 병렬 가능.
+
+## 0. 사전 점검
+- `projects/<코드명>/00_input/raw/`에 렌트롤·감정평가·IM 중 하나도 없으면 중단하고 사용자에게 필요 자료를 안내한다.
+- 미등록 원본이 있으면 먼저 data-steward에게 접수 처리를 시킨다.
+
+## 1. data-steward
+최신 정제 데이터 검증, 버전 간 불일치·이상치 목록 산출. 결과에 "투심 자료 사용 가능 데이터 목록(파일·버전)"을 포함하게 한다.
+
+## 2. 병렬
+- **finance-ir**: `ASSUMPTIONS.md` 확정, `models/`에 수익률·민감도 표 작성, 심의위원 예상 질문 Top 10 답변을 `QA_BANK.md`에 추가.
+- **legal-counsel**: 검토 완료 문서 기준 "법률 검토 요약" (심각도 高 이슈, 대응, 외부 확인 필요 사항)을 `02_legal/opinions/YYYYMMDD_투심용_법률요약_v01.md`로 작성.
+
+## 3. research-analyst
+1·2단계 산출물을 인용해:
+- `03_research/ic_deck/YYYYMMDD_투심자료_<코드명>_outline.md` 슬라이드 개요 (표준 11개 섹션)
+- 사용자 승인 후 pptx 스킬로 `.pptx` 생성, docx 스킬로 투심 보고서 `.docx` 생성
+- `03_research/scripts/`에 발표 스크립트 (시간 배분 포함)
+
+## 4. decision-advisor
+`06_decision/memos/YYYYMMDD_의사결정보고_투심결의안_v01.md` 작성: 요청 결의사항, 권고안, 옵션 비교, Go/No-go 조건, 반대 논거.
+
+## 5. pmo-scheduler
+투심 일자·자료 제출 마감·후속 마일스톤을 TIMELINE.md에 반영, 액션아이템 등록.
+
+## 6. 마무리
+PROJECT.md 핵심 지표·상태 표 갱신. 사용자에게 생성 파일 목록과 "데이터 미비로 `[데이터 대기]` 처리된 항목"을 보고한다.

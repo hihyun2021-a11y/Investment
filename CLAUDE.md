@@ -1,0 +1,42 @@
+# 부동산 투자 프로젝트 플랫폼
+
+부동산 자산운용사 투자팀(운용역)의 딜 검토·투자심의·계약·클로징 전 과정을 6개 전문 서브에이전트가 분담하는 작업 플랫폼. 언어는 한국어를 기본으로 한다.
+
+## 구조
+```
+.claude/agents/      6개 서브에이전트 정의
+.claude/skills/      /new-project · /project-status · /ic-package
+platform/templates/  신규 프로젝트 표준 폴더 템플릿
+platform/scripts/    new_project.sh · list_projects.sh · validate_project.sh
+platform/standards/  명명 규칙, 단위·지표, 보고 스타일, 법률 체크리스트
+projects/<코드명>/    프로젝트별 작업 공간 (REGISTRY.md에 자동 등록)
+shared/              시장자료, 과거 딜 선례, 투자 전략 기준(strategy.md)
+```
+
+## 에이전트 라우팅 (요청이 오면 아래 담당에게 위임)
+| 요청 성격 | 에이전트 | 산출 폴더 |
+|---|---|---|
+| 원본 자료 접수·정리, 버전 비교, 추이·이상치 분석 | `data-steward` | `00_input`, `01_data` |
+| 계약서·약정서 검토, 협상 조건, 법률 의견서 | `legal-counsel` | `02_legal` |
+| 보고서, 투심 PPT/Word, 1-pager, 발표 스크립트 | `research-analyst` | `03_research` |
+| 일정 수립·조율, 회의록, 액션아이템 | `pmo-scheduler` | `04_schedule` |
+| 수익률·민감도, 투자자·심의위원 Q&A 답변 | `finance-ir` | `05_finance_qa` |
+| 의사결정 아젠다, 옵션 비교, 전략 근거, 결의안 | `decision-advisor` | `06_decision` |
+
+여러 영역에 걸친 요청은 의존관계 순으로 실행한다: 데이터 → (재무 ∥ 법률) → 리서치 → 의사결정 → 일정 반영. 독립적인 작업은 한 메시지에서 병렬로 실행한다.
+
+## 자동 작동 규칙
+1. **세션 시작**: SessionStart 훅이 `list_projects.sh`로 전체 프로젝트 현황을 출력한다. 미등록 원본 자료 경고가 있으면 사용자에게 알리고 접수 처리를 제안한다.
+2. **신규 프로젝트**: 사용자가 새 딜을 언급하면 `/new-project`를 실행한다. 스크립트가 폴더·레지스트리를 만들고, 6개 에이전트가 킥오프 과업을 병렬 수행한다.
+3. **자료 접수**: `projects/<코드명>/00_input/raw/`에 새 파일이 보이면 항상 data-steward를 먼저 실행한다. 다른 에이전트는 data-steward가 만든 `01_data/processed/` 값만 인용한다.
+4. **상태 동기화**: 에이전트가 산출물을 만들면 해당 프로젝트 `PROJECT.md`의 "현재 상태 요약" 표 해당 행을 갱신한다. 단계가 바뀌면 `projects/REGISTRY.md`도 갱신한다.
+5. **전파**: 에이전트 결과의 "전파 필요 사항"은 지정된 에이전트에게 후속 작업으로 넘긴다 (예: 임대료 변경 → finance-ir Q&A 갱신, 계약 기한 → pmo-scheduler 일정 등록).
+
+## 공통 원칙
+- 원본(`00_input/raw/`)은 절대 수정하지 않는다. 정제·분석은 새 파일로 만든다.
+- 모든 수치에는 출처 파일·버전을 붙인다. 추정치는 `[추정]`, 미접수는 `[미접수]`, 데이터 대기는 `[데이터 대기]`.
+- 파일명 규칙 `YYYYMMDD_<유형>_<제목>_v##.<ext>` (`platform/standards/naming.md`).
+- 단위·지표 정의는 `platform/standards/units_and_metrics.md`를 따른다.
+- 법률 검토는 내부 검토이며 외부 법무법인 확인이 필요함을 항상 명시한다.
+- 수익 확약성 표현("보장", "확정")을 쓰지 않는다.
+- 에이전트를 호출할 때는 프로젝트 코드명, 관련 파일 경로, 사용자의 원래 요청을 그대로 전달한다.

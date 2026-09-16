@@ -1,0 +1,10 @@
+# Office 임시 파일
+~$*
+*.tmp
+.~lock.*
+# OS
+.DS_Store
+Thumbs.db
+# 로컬 설정
+.claude/settings.local.json
+# 대용량 원본은 필요 시 여기서 예외 처리 (기본은 git 관리)
