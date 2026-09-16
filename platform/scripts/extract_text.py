@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-"""원본(raw) 파일의 텍스트를 00_원본자료/text/ 에 추출한다 (PDF/DOCX/PPTX/XLSX/XLSM).
+"""프로젝트 내 모든 원본 파일의 텍스트를 00_원본자료/text/ 에 추출한다 (PDF/DOCX/PPTX/XLSX/XLSM).
 사용법: python3 platform/scripts/extract_text.py <코드명>
+- `00_원본자료/raw/`(접수 대기함)와 분류 완료된 업무 폴더(01~08)를 모두 훑는다.
 - 원본은 수정하지 않는다. 이미 추출된 파일은 원본이 더 새로울 때만 다시 추출한다.
 - Bash가 없는 에이전트도 Read 도구로 원본 내용을 읽을 수 있게 하는 캐시다."""
 import sys, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 code = sys.argv[1] if len(sys.argv) > 1 else sys.exit("사용법: extract_text.py <코드명>")
-raw = ROOT / "projects" / code / "00_원본자료" / "raw"
-out = ROOT / "projects" / code / "00_원본자료" / "text"
+proj = ROOT / "projects" / code
+if not proj.is_dir():
+    sys.exit(f"프로젝트 없음: {proj}")
+out = proj / "00_원본자료" / "text"
 out.mkdir(parents=True, exist_ok=True)
 
 def pdf(p):
@@ -48,14 +51,22 @@ def xlsx(p):
     return "\n".join(lines)
 
 H = {".pdf": pdf, ".docx": docx_, ".pptx": pptx_, ".xlsx": xlsx, ".xlsm": xlsx}
-n = 0
-for f in sorted(raw.iterdir()):
-    if f.name.startswith(".") or f.suffix.lower() not in H: continue
+n = skipped = 0
+seen = {}
+for f in sorted(proj.rglob("*")):
+    if not f.is_file() or f.name.startswith(".") or f.suffix.lower() not in H: continue
+    if out in f.parents or (proj / "00_원본자료" / "processed") in f.parents: continue
+    rel = f.relative_to(proj)
+    if f.name in seen:
+        print(f"중복 파일명 건너뜀: {rel} (이미 {seen[f.name]})"); continue
+    seen[f.name] = rel
     t = out / (f.name + ".txt")
-    if t.exists() and t.stat().st_mtime >= f.stat().st_mtime: continue
+    if t.exists() and t.stat().st_mtime >= f.stat().st_mtime: skipped += 1; continue
     try:
-        t.write_text(f"# 텍스트 추출본 (원본: raw/{f.name}) — 인용 시 원본 페이지를 확인할 것\n" + H[f.suffix.lower()](f), encoding="utf-8")
-        print(f"추출: {f.name} → text/{t.name} ({t.stat().st_size//1024} KB)"); n += 1
+        t.write_text(f"# 텍스트 추출본 (원본: {rel}) — 인용 시 원본 파일명·페이지를 확인할 것\n" + H[f.suffix.lower()](f), encoding="utf-8")
+        size = t.stat().st_size
+        tag = " [스캔-OCR필요: 텍스트 없음]" if size < 400 else ""
+        print(f"추출: {rel} → text/{t.name} ({size//1024} KB){tag}"); n += 1
     except Exception as e:
-        print(f"실패: {f.name}: {e}")
-print(f"완료: {n}건 추출")
+        print(f"실패: {rel}: {e}")
+print(f"완료: {n}건 추출, {skipped}건 최신(건너뜀)")

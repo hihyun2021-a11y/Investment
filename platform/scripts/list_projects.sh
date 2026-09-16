@@ -19,11 +19,15 @@ for d in "${dirs[@]}"; do
   stage="$(grep -m1 '^| 현재 단계' "$pm" | awk -F'|' '{gsub(/^ +| +$/,"",$3); print $3}')"
   status="$(grep -m1 '^| 상태' "$pm" | awk -F'|' '{gsub(/^ +| +$/,"",$3); print $3}')"
   raw_n="$(find "$d/00_원본자료/raw" -type f ! -name .gitkeep 2>/dev/null | wc -l)"
+  src_n="$(find "$d" -type f \( -name '*.pdf' -o -name '*.docx' -o -name '*.xlsx' -o -name '*.xlsm' -o -name '*.pptx' -o -name '*.hwp' \) -not -path "*/text/*" 2>/dev/null | wc -l)"
   idx_n="$(grep -c '^| [0-9]' "$d/00_원본자료/INDEX.md" 2>/dev/null)"; idx_n="${idx_n:-0}"
   open_ai="$(grep -E '^\| A-[0-9]+' "$d/07_일정_회의록/ACTION_ITEMS.md" 2>/dev/null | grep -vc '완료')"; open_ai="${open_ai:-0}"
-  echo "- $code ($name) | $stage | $status | 원본 ${raw_n}건(인덱스 ${idx_n}건) | 미완료 액션 ${open_ai}건"
-  if [[ "$raw_n" -gt "$idx_n" ]]; then
-    echo "    ⚠ 미등록 원본 자료 $((raw_n - idx_n))건 → data-steward 접수 처리 필요"
+  echo "- $code ($name) | $stage | $status | 원본 ${src_n}건(인덱스 ${idx_n}건) | 미완료 액션 ${open_ai}건"
+  if [[ "$raw_n" -gt 0 ]]; then
+    echo "    ⚠ 미분류 접수 자료 ${raw_n}건 (00_원본자료/raw) → data-steward 접수·분류 필요"
+  fi
+  if [[ "$src_n" -gt "$idx_n" ]]; then
+    echo "    ⚠ 인덱스 미등록 원본 $((src_n - idx_n))건 → INDEX.md 등록 필요"
   fi
 done
 echo "명령: /new-project (신규) · /project-status <코드명> (현황) · /ic-package <코드명> (투심 패키지)"
