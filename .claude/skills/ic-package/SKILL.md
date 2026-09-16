@@ -21,7 +21,7 @@ description: 투자심의(IC) 패키지를 일괄 생성한다. 데이터 검증
 ## 3. research-analyst
 1·2단계 산출물을 인용해:
 - `03_IM_투자심의/투심자료/YYYYMMDD_투심자료_<코드명>_outline.md` 슬라이드 개요 (표준 11개 섹션)
-- 사용자 승인 후 pptx 스킬로 `.pptx` 생성, docx 스킬로 투심 보고서 `.docx` 생성
+- `platform/standards/ic_deck_style.md`의 사내 표준 양식으로 `platform/scripts/ic_deck.py`를 써서 `.pptx` 생성 (임의 디자인 금지), docx 스킬로 투심 보고서 `.docx` 생성
 - `03_IM_투자심의/발표스크립트/`에 발표 스크립트 (시간 배분 포함)
 
 ## 4. decision-advisor

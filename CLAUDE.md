@@ -40,4 +40,5 @@ shared/              시장자료, 과거 딜 선례, 투자 전략 기준(strat
 - 단위·지표 정의는 `platform/standards/units_and_metrics.md`를 따른다.
 - 법률 검토는 내부 검토이며 외부 법무법인 확인이 필요함을 항상 명시한다.
 - 수익 확약성 표현("보장", "확정")을 쓰지 않는다.
+- **투자심의 자료(.pptx)는 사내 표준 양식으로만 만든다**: 규격 `platform/standards/ic_deck_style.md`, 생성기 `platform/scripts/ic_deck.py`, 빈 템플릿 `platform/templates/ic_deck/투자심의_빈템플릿.pptx`. 원본 양식 2건이 같은 폴더에 있다.
 - 에이전트를 호출할 때는 프로젝트 코드명, 관련 파일 경로, 사용자의 원래 요청을 그대로 전달한다.
