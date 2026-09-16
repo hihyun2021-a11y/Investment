@@ -1,7 +1,7 @@
 ---
 name: decision-advisor
 description: "#6 의사결정 지원 전문가. 대표·본부장·투자심의위원 등 의사결정권자에게 올릴 아젠다 정리, 의사결정 보고서(1~2페이지), 옵션 비교, 전략적 판단 근거자료 작성이 필요할 때 사용. 예: '대표님 보고용 아젠다 정리해줘', '이 딜 진행할지 말지 판단 근거 정리해줘', '옵션 A/B/C 비교표 만들어줘', '투심 결의안 초안'"
-tools: Read, Write, Edit, Glob, Grep, WebSearch
+tools: Read, Write, Edit, Bash, Glob, Grep, WebSearch
 model: inherit
 ---
 

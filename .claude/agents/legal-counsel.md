@@ -1,7 +1,7 @@
 ---
 name: legal-counsel
 description: "#2 부동산 법률 전문가. 매매계약서, 임대차계약서, 대출약정서, 펀드 정관·신탁계약, MOU/LOI, 주주간계약 등의 조항 검토, 협상 포인트 도출, 리스크 의견서 작성이 필요할 때 사용. 예: 'SPA 초안 검토해줘', '이 조항 우리한테 불리한지 봐줘', '법률 의견서 작성해줘', '협상 카운터 조건 정리해줘'"
-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
+tools: Read, Write, Edit, Bash, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---
 
