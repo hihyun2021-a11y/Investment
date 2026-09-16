@@ -21,7 +21,7 @@
 platform/scripts/new_project.sh GNG-TOWER "강남 G타워" 오피스 매입 홍길동
 
 # 2) 원본 자료를 넣고
-cp ~/Downloads/렌트롤.xlsx projects/GNG-TOWER/00_input/raw/20260916_렌트롤_매도자제공.xlsx
+cp ~/Downloads/렌트롤.xlsx projects/GNG-TOWER/00_원본자료/raw/20260916_렌트롤_매도자제공_v01.xlsx
 
 # 3) Claude에게
 "GNG-TOWER 새 자료 접수 처리해줘"        → data-steward
@@ -36,13 +36,14 @@ cp ~/Downloads/렌트롤.xlsx projects/GNG-TOWER/00_input/raw/20260916_렌트롤
 ```
 projects/<코드명>/
 ├── PROJECT.md          프로젝트 메타·상태 요약·핵심 지표
-├── 00_input/raw/       원본 (수정 금지) + INDEX.md
-├── 01_data/            정제 데이터(processed), 히스토리, CHANGELOG, DATA_DICTIONARY
-├── 02_legal/           contracts, opinions, negotiation, ISSUE_LOG
-├── 03_research/        reports, ic_deck, scripts
-├── 04_schedule/        TIMELINE, ACTION_ITEMS, minutes
-├── 05_finance_qa/      QA_BANK, ASSUMPTIONS, qa_log, models
-└── 06_decision/        agendas, memos, DECISION_LOG
+├── 00_원본자료/         raw(접수 원본, 수정 금지) · processed · history · INDEX · CHANGELOG
+├── 01_설립_인허가/      설립서류 · 인허가 · 정관_약정 · CHECKLIST
+├── 02_실사보고서/       법률 · 시장 · 재무 · 물리 · 감정 · DD_ISSUE_LOG
+├── 03_IM_투자심의/      IM · 투심자료 · 발표스크립트
+├── 04_Equity투자자/     투자자별 · models · qa_log · QA_BANK · ASSUMPTIONS · INVESTORS
+├── 05_대출업무/         텀싯 · 약정서 · 대주QA · LENDERS · COVENANTS
+├── 06_사내보고/         아젠다 · 의사결정보고 · DECISION_LOG
+└── 07_일정_회의록/      TIMELINE · ACTION_ITEMS · minutes
 ```
 
 ## 설정 파일

@@ -60,12 +60,12 @@ cat <<MSG
 ✅ 프로젝트 생성 완료: projects/$CODE  ($NAME / $ASSET_TYPE / $DEAL_TYPE / 담당 $OWNER)
 
 다음 단계 (킥오프 — Claude가 자동 수행):
-  1. data-steward     : 00_input/raw/ 자료 접수 → INDEX.md 등록, 정제
+  1. data-steward     : 00_원본자료/raw/ 자료 접수 → INDEX.md 등록, 정제
   2. pmo-scheduler    : TIMELINE.md 역산 일정 수립, ACTION_ITEMS 갱신
   3. finance-ir       : ASSUMPTIONS.md 초기 가정, QA_BANK 시드 질문
   4. legal-counsel    : 검토 대상 계약 목록화, ISSUE_LOG 초기화
   5. research-analyst : 1-pager 초안 골격
   6. decision-advisor : 첫 의사결정 아젠다 (진행 여부 Go/No-go 조건)
 
-원본 자료를 projects/$CODE/00_input/raw/ 에 넣고 "새 자료 접수 처리해줘"라고 요청하세요.
+원본 자료를 projects/$CODE/00_원본자료/raw/ 에 넣고 "새 자료 접수 처리해줘"라고 요청하세요.
 MSG
