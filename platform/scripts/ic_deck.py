@@ -147,11 +147,11 @@ class ICDeck:
         _run(tf.paragraphs[0], DISCLAIMER, size=7, color=GRAY)
         return s
 
-    def contents_slide(self, items: list[str]):
-        """목차."""
+    def contents_slide(self, items: list[str], title: str | None = None):
+        """목차. title을 주면 좌상단 머리 문구를 바꾼다 (예: 별첨 목차)."""
         s = self._slide("표지")
-        _, tf = self._box(s, 0.47, 2.27, 5.0, 0.29)
-        _run(tf.paragraphs[0], self.meeting, font=F_MEDIUM, size=11, color=NAVY)
+        _, tf = self._box(s, 0.47, 2.27, 6.5, 0.29)
+        _run(tf.paragraphs[0], title or self.meeting, font=F_MEDIUM, size=11, color=NAVY)
         ln = s.shapes.add_connector(1, Inches(2.50), Inches(2.40), Inches(11.20), Inches(2.40))
         ln.line.color.rgb = LINE
         ln.line.width = Pt(0.75)

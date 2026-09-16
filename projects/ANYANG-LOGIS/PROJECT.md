@@ -26,7 +26,7 @@
 | 00 원본자료 | data-steward | 2026-09-16 | 원본 4건 접수·정제 완료 (IM v01, 재무DD v01, 법률DD v01, 재무모델 v01). processed 4건 생성. 미접수 7건(감정평가서·시장·물리실사·렌트롤 원본·임대차계약·텀시트·인수확약서) |
 | 01 설립·인허가 | legal-counsel | - | 미착수 |
 | 02 실사보고서 | data-steward / legal-counsel / finance-ir | - | 실사 미착수 |
-| 03 IM·투자심의 | research-analyst | - | 작성 문서 없음 |
+| 03 IM·투자심의 | research-analyst | 2026-09-16 | 본 투자심의 자료 v01 작성 완료 (35장, 사내 표준 양식). 안건 3건: 매매계약·주주간계약 체결, KLI 매입확약서 날인 |
 | 04 Equity 투자자 | finance-ir | - | 가정 미설정 |
 | 05 대출업무 | finance-ir / legal-counsel | - | 미착수 |
 | 06 사내보고 | decision-advisor | - | 결정 안건 없음 |
