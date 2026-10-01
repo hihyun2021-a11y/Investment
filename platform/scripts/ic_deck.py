@@ -29,7 +29,7 @@ import sys
 
 from pptx import Presentation
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
+from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 from pptx.util import Emu, Inches, Pt
 
 ROOT = pathlib.Path(__file__).resolve().parents[1].parent
@@ -122,6 +122,7 @@ class ICDeck:
         tf = tb.text_frame
         tf.word_wrap = word_wrap
         tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+        tf.vertical_anchor = MSO_ANCHOR.MIDDLE      # 표준: 모든 글씨 세로 '중간' 정렬
         return tb, tf
 
     # ── 슬라이드 유형 ────────────────────────────────────────────────────
@@ -208,6 +209,7 @@ class ICDeck:
         tf = sh.text_frame
         tf.margin_left = Inches(0.12)
         tf.margin_top = tf.margin_bottom = 0
+        tf.vertical_anchor = MSO_ANCHOR.MIDDLE
         _run(tf.paragraphs[0], label, font=F_BOLD, size=10, color=WHITE)
         return sh
 
@@ -228,6 +230,7 @@ class ICDeck:
                 cell = tbl.cell(ri, ci)
                 cell.margin_left = cell.margin_right = Inches(0.06)
                 cell.margin_top = cell.margin_bottom = 0
+                cell.vertical_anchor = MSO_ANCHOR.MIDDLE
                 cell.fill.solid()
                 if header and ri == 0:
                     cell.fill.fore_color.rgb = TH_BG
