@@ -33,3 +33,4 @@
 | 2026-10-01 | KLI 투심자료 draft V2 (19장) | draft V2 | 접수(INDEX #34). 17p 추진일정을 기준 일정으로 변경(TIMELINE.md·PROJECT.md). 보완본 v03 작성: 2~5p 계약조건·일정, 지분구성표 표, 예상수익률(Sell-down 탭), 14p 표 서식, 15p 법률검토·수권절차(`20261001_투심자료_KLI_법률검토_수권절차_정리_v01.md`), 16p 점도표 차트화 | research-analyst / legal-counsel / pmo-scheduler |
 | 2026-10-01 | KLI 투심자료 v04 (운용역 수정본) | v04 | 접수·분류(INDEX #35), 최신본으로 지정. v03 대비 14p 재원조달계획(36% 매각)·16p 차트 제목/리드 문구 수정 | data-steward |
 | 2026-10-02 | 투심자료 v08(취합본)·재무모델 260930·매매계약서 BKL v11·주주간계약서 BKL v30 markup | 각 | 접수·분류(INDEX #36~39). 기준 재무모델 v03(260930)·기준 주주간계약 v30으로 교체. 투심자료 v09 작성(목차·단위·개요 최신화·재무수치 갱신), 개요 검토메모 `03_IM_투자심의/투심자료/20261002_검토메모_투심개요_계약최신화_v01.md` | data-steward / legal-counsel / research-analyst |
+| 2026-10-02 | 주주간계약서 BKL v30.5 markup(최종)·투자자 송부 메일 | v30.5 | 접수·분류(INDEX #40·41), 기준 주주간계약 v30.5로 교체, TIMELINE 일정 갱신(투심위 10/14·체결 10/16·납입 10/20). 투심자료 v10 작성(안건개요 표·도식 재구성) | data-steward / research-analyst / pmo-scheduler |
