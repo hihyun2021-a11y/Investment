@@ -21,7 +21,7 @@ description: 투자심의(IC) 패키지를 일괄 생성한다. 데이터 검증
 ## 3. research-analyst
 1·2단계 산출물을 인용해:
 - `03_IM_투자심의/투심자료/YYYYMMDD_투심자료_<코드명>_outline.md` 슬라이드 개요 (표준 11개 섹션)
-- `platform/standards/ic_deck_style.md`의 사내 표준 양식으로 `platform/scripts/ic_deck.py`를 써서 `.pptx` 생성 (임의 디자인 금지; 투자심의위원회 개요 섹션은 §8 구성 — 기준 예시 ANYANG-LOGIS 투심자료 v12, 표는 실제 표 객체), docx 스킬로 투심 보고서 `.docx` 생성
+- `platform/standards/ic_deck_style.md`의 사내 표준 양식으로 `platform/scripts/ic_deck.py`를 써서 `.pptx` 생성 (임의 디자인 금지; 투자심의위원회 개요 섹션은 §8 구성 — 기준 예시 ANYANG-LOGIS 투심자료 v12, 표는 실제 표 객체). 투심 상정 시 재무모델 A&R 사내 표준양식 탭(§9)을 필수 첨부로 함께 준비, docx 스킬로 투심 보고서 `.docx` 생성
 - `03_IM_투자심의/발표스크립트/`에 발표 스크립트 (시간 배분 포함)
 
 ## 4. decision-advisor
