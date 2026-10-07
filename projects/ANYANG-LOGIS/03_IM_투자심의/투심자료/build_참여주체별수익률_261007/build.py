@@ -205,6 +205,76 @@ fill(T_sub, {1: 'Equity 소계 (3종 제외 888억 기준 수익률)', 5: '988',
 last = tbl.findall(A + 'tr')[-1]
 fill(last, {5: '2,989'})
 
+# ---------- 서식 통일 (편집성) ----------
+# 양식 예시 서식(빨간 수치·회색 금액·큰 기관명 등)이 남지 않도록 데이터 셀(기관~부수용역 열)을
+# 같은 열의 대주 행(키움캐피탈) 서식으로 통일. 붉은색은 작성요령 규칙대로 출자·용역 겸업 셀만 유지.
+DARK, RED = '262626', 'C00000'
+ref = {}
+for ci, tc in enumerate(TC(r6)):
+    r0 = tc.find('.//' + A + 'r')
+    if r0 is not None and r0.find(A + 'rPr') is not None:
+        ref[ci] = copy.deepcopy(r0.find(A + 'rPr'))
+
+
+def recolor(rpr, val):
+    for sf in rpr.findall(A + 'solidFill'):
+        rpr.remove(sf)
+    sf = etree.Element(A + 'solidFill'); c = etree.SubElement(sf, A + 'srgbClr'); c.set('val', val)
+    ln = rpr.find(A + 'ln')
+    (ln.addnext(sf) if ln is not None else rpr.insert(0, sf))
+    rpr.attrib.pop('dirty', None)
+    return rpr
+
+
+data_rows = [r2, r6, r7, r7b, r8] + E
+red_cells = {(id(E[4]), 2), (id(E[4]), 9), (id(E[4]), 10)}
+for tr in data_rows:
+    for ci, tc in enumerate(TC(tr)):
+        if ci < 2 or ci not in ref:
+            continue
+        col = RED if (id(tr), ci) in red_cells else DARK
+        for r in tc.iter(A + 'r'):
+            old = r.find(A + 'rPr')
+            new = recolor(copy.deepcopy(ref[ci]), col)
+            if old is not None:
+                new.set('lang', old.get('lang', 'ko-KR'))
+                r.replace(old, new)
+            else:
+                r.insert(0, new)
+# 소계·합계 행, 라벨 열은 양식 서식 유지하되 색만 기본색으로(빨간 예시값 제거)
+for tr in (r9, T_sub, tbl.findall(A + 'tr')[-1]):
+    for ci, tc in enumerate(TC(tr)):
+        for r in tc.iter(A + 'r'):
+            rp = r.find(A + 'rPr')
+            if rp is not None and rp.find(A + 'solidFill') is not None:
+                v = rp.find(A + 'solidFill')[0].get('val')
+                if v in ('C00000', 'FF0000', 'A6A6A6', '808080', '7F7F7F', 'BFBFBF'):
+                    recolor(rp, DARK)
+for tr in data_rows:
+    for ci, tc in enumerate(TC(tr)[:2]):
+        for r in tc.iter(A + 'r'):
+            rp = r.find(A + 'rPr')
+            if rp is not None and rp.find(A + 'solidFill') is not None and rp.find(A + 'solidFill')[0].get('val') in ('A6A6A6', '808080', '7F7F7F', 'BFBFBF', 'C00000'):
+                recolor(rp, '595959')
+# 빈 run 제거, 모든 문단에 endParaRPr(입력 시 같은 서식 유지), dirty 속성 제거
+for txb in s.shapes._spTree.iter(A + 'txBody', '{http://schemas.openxmlformats.org/presentationml/2006/main}txBody'):
+    for p in txb.findall(A + 'p'):
+        runs = p.findall(A + 'r')
+        for r in runs:
+            t = r.find(A + 't')
+            if (t is None or not (t.text or '')) and len(runs) > 1:
+                p.remove(r)
+        runs = p.findall(A + 'r')
+        if p.find(A + 'endParaRPr') is None and runs and runs[-1].find(A + 'rPr') is not None:
+            e = copy.deepcopy(runs[-1].find(A + 'rPr')); e.tag = A + 'endParaRPr'; p.append(e)
+for el in s.shapes._spTree.iter():
+    if 'dirty' in el.attrib:
+        del el.attrib['dirty']
+# 표 스타일: 기본 스타일 영향 차단(서식은 셀에 직접 지정됨)
+tblPr = tbl.find(A + 'tblPr')
+if tblPr.find(A + 'tableStyleId') is None:
+    sid = etree.SubElement(tblPr, A + 'tableStyleId'); sid.text = '{2D5ABB26-0587-4C30-8999-92F81FD0307C}'
+
 # 표 높이·주석 위치
 total_h = sum(int(r.get('h')) for r in tbl.findall(A + 'tr'))
 tshape.height = total_h
