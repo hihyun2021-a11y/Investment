@@ -16,9 +16,13 @@ SPECS = [
     ("f3_loc_equity", "인수확약서(증권사)", "서식_03인수확약서_증권사_종류주식_강의용Clean_v01.docx"),
     ("f4_loc_loan", "인수확약서(대출)", "서식_04인수확약서_대출_금융확약서_강의용Clean_v01.docx"),
     ("f5_lease", "임대차계약서(가상)", "서식_05임대차계약서_가상_강의용Clean_v01.docx"),
+    ("f6_mou", "양해각서(MOU)", "서식_06양해각서MOU_강의용Clean_v01.docx"),
 ]
+ONLY = sys.argv[1:]  # 예) python3 build_all.py f6_mou
 
 for mod, title, fname in SPECS:
+    if ONLY and mod not in ONLY:
+        continue
     m = importlib.import_module(mod)
     path = os.path.join(OUT, f"{DATE}_{fname}")
     render(m.B, path, title)
