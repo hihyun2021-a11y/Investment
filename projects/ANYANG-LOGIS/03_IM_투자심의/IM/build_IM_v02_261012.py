@@ -91,12 +91,26 @@ for sh in toc.shapes:
             anchor.addnext(el)
             anchor = el
 
+# ---------------------------------------------------------------- 2-1) 본문 정정 (v5.1 원문 오기, 접수검토 2026-10-12)
+#  · p.33 본건 거래시점 Q3/2026 → Q4/2026 (거래종결 기준일정 2026-10-22)
+#  · 에큐온캐피탈 → 애큐온캐피탈 (법인명)
+FIXES = [("Q3/2026 (예정)", "Q4/2026 (예정)"), ("에큐온", "애큐온")]
+for i in KEEP:
+    for sh in slides[i - 1].shapes:
+        if sh.has_text_frame:
+            replace_in_runs(sh.text_frame, FIXES)
+        elif sh.has_table:
+            for row in sh.table.rows:
+                for cell in row.cells:
+                    replace_in_runs(cell.text_frame, FIXES)
+
 # ---------------------------------------------------------------- 3) 마스터 꼬리말 · 레이아웃 머리말
 for master in prs.slide_masters:
     for sh in master.shapes:
         if sh.has_text_frame and "투자심의위원회 설명자료" in sh.text_frame.text:
             replace_in_runs(sh.text_frame, [("안양물류센터 매입 프로젝트", "안양물류센터"),
-                                            ("본 투자심의위원회 설명자료", "Information Memorandum")])
+                                            ("본 투자심의위원회 설명자료", "Information Memorandum"),
+                                            (" I  Information", " I Information")])
 FLOOR_LAYOUT = None
 for lay in prs.slide_layouts:
     for sh in lay.shapes:
@@ -109,15 +123,7 @@ for lay in prs.slide_layouts:
             FLOOR_LAYOUT = lay
 assert FLOOR_LAYOUT is not None, "시설현황용 레이아웃을 찾지 못함"
 
-# ---------------------------------------------------------------- 4) 슬라이드 삭제
-sldIdLst = prs.slides._sldIdLst
-for idx in range(len(slides), 0, -1):
-    if idx not in KEEP:
-        sld = sldIdLst[idx - 1]
-        prs.part.drop_rel(sld.rId)
-        sldIdLst.remove(sld)
-
-# ---------------------------------------------------------------- 5) Ⅴ 시설현황 추가 (종료 장 앞)
+# ---------------------------------------------------------------- 4) Ⅴ 시설현황 추가 (삭제 전에 추가해야 파트 이름이 겹치지 않음)
 doc = pymupdf.open(OLD_IM)
 for pg in FLOOR_PAGES:
     page = doc[pg]
@@ -130,6 +136,14 @@ for pg in FLOOR_PAGES:
     w_in = 10.75
     h_in = w_in * clip.height / clip.width
     s.shapes.add_picture(io.BytesIO(png), Inches((11.693 - w_in) / 2), Inches(1.15), Inches(w_in), Inches(h_in))
+# ---------------------------------------------------------------- 5) 슬라이드 삭제
+sldIdLst = prs.slides._sldIdLst
+for idx in range(len(slides), 0, -1):
+    if idx not in KEEP:
+        sld = sldIdLst[idx - 1]
+        prs.part.drop_rel(sld.rId)
+        sldIdLst.remove(sld)
+
 # 종료 장을 맨 끝으로
 ids = list(sldIdLst)
 closing_id = next(i for i in ids if prs.part.related_part(i.rId) is closing_slide.part)

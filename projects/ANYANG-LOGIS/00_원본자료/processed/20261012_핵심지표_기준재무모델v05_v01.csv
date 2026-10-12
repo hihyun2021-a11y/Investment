@@ -1,0 +1,39 @@
+지표,값,단위,원본파일,시트,셀,투심v5.1값,투심v5.1위치,일치,비고
+매입가,270000,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T6,"2,700억",p.40,일치,원본 천원
+총투자비,298900,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T13,"2,989억",p.3·p.40,일치,
+감정가,334500,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,U28,"3,345억",p.25,일치,미래새한 담보감정 '26.09
+매입가 할인율(감정가 대비),-19.3,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,P2,-19.3%,p.40,일치,
+Cap Rate(Going-in·Exit),4.89,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,O4,4.89%,-,일치,
+임대보증금(재원),2100,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T14,21억,p.3·p.40,일치,질권설정분 제외
+선순위 대출,160000,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T15,"1,600억",p.3·p.40,일치,4.775%+1.45% All-in 5.50% 24개월 (Q32:S32)
+중순위 대출,38000,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T16,380억,p.3·p.40,일치,6.00%+1.00% All-in 6.50% 24개월 (Q35:S35)
+1종 종류주식,24000,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T18,240억,p.40,일치,
+2종 종류주식,50000,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T19,500억,p.40,일치,2-1 KLI 16000·2-1 타주주 16000·2-2 삼성 18000 (A&R N91:N93)
+3종 종류주식,10000,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T20,100억,p.40,일치,23000원×434783주 무배당 2028-10-31 감자
+보통주(KLI),14800,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T21,148억,p.40,일치,
+LTV 선순위(감정가),48.46,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T32,-,-,-,
+LTV 중순위 누적(감정가),59.82,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T35,59.8%,p.2,일치,
+LTV 중순위 누적(매입가),74.11,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,U35,-,-,-,
+LTV 리파이 후(감정가),61.81,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,T33,-,-,-,2028-10-31 선순위 213000 4.8%
+WALE(종결일),6.66,년,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,AI3,-,-,-,현재 기준 7.25년(AI2)
+매각가치(FY10),375861,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,AJ57,-,-,-,
+DSCR 선순위 Carry 최소,1.72,배,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,X71,1.72,p.47,일치,
+DSCR 선순위 Carry 평균,1.74,배,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,Y71,1.74,p.47,일치,
+DSCR 중순위 Carry 최소,1.32,배,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,X74,1.32,p.47,일치,
+1종 CoC,7.00,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,G65,7.12%(I.G),p.3,확인필요,p.3 I.G는 IRR(C.G제외) 표기로 보임
+1종 IRR,7.12,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,G68,7.12%,p.3·p.45,일치,
+2종 IRR(C.G제외),7.60,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,K67,7.60%,p.3,일치,
+2종 IRR(C.G포함),9.15,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,K68,9.15%,p.3·p.45,일치,
+3종 IRR,0.00,%,20261012_재무모델_Financial_Modeling_v05.xlsm,IM,V61,0.00%,p.3,일치,
+보통주 IRR(C.G제외),0.78,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,K97,0.78%,p.3,일치,
+보통주 IRR(C.G포함),16.18,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,K98,16.18%,p.3,일치,
+보통주 E.Multiple,4.26,배,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,K99,-,-,-,
+전체 Equity IRR,10.21,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,K100,10.21%,p.3·p.44,일치,
+전체 Equity CoC(C.G제외),6.24,%,20261012_재무모델_Financial_Modeling_v05.xlsm,IM,U101,6.18%(p.3)/6.24%(p.44),p.3·p.44,불일치(p.3),v04는 6.10%
+전체 Equity CoC·IRR(자본준비금 감액배당 제외),5.29 / 9.47,%,20261012_재무모델_Financial_Modeling_v05.xlsm,IM,X101·X103,5.29%/9.47%,p.44,일치,
+KLI 통합 CoC,6.09,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,I101,6.09%,p.56,일치,= Sell-down AC100
+KLI 통합 IRR,10.71,%,20261012_재무모델_Financial_Modeling_v05.xlsm,A&R,K101,10.71%(p.56)/10.77%(p.55 본문),p.55·p.56,불일치(p.55),= Sell-down AC102·I59. v04 10.99%
+KLI 1종 IRR(매입분),6.72,%,20261012_재무모델_Financial_Modeling_v05.xlsm,Sell-down,I20,-,-,-,부대비용 360 포함 투자 24360
+KLI 2종 IRR(C.G포함),9.09,%,20261012_재무모델_Financial_Modeling_v05.xlsm,Sell-down,I31,-,-,-,투자 50481(최초 16080 + 1년후 34401)
+KLI 간주취득세(1종+2종),551,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,Sell-down,I14+I25,4억,p.57,불일치,240+311
+KLI 최초 출자(거래종결일),30880,백만원,20261012_재무모델_Financial_Modeling_v05.xlsm,Sell-down,L58,308억,p.6·p.55,일치,보통주 14800 + 2-1종 16000 + 부대 80
