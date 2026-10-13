@@ -1,0 +1,741 @@
+# -*- coding: utf-8 -*-
+"""부동산담보신탁계약서 및 특약 v04 — 특약 서식을 본계약 첫 페이지 기준으로 통일 + 우선수익자 목록·통지처·별지 완성.
+
+입력(원본 불변): 05_대출업무/약정서/20261013_대출약정_부동산담보신탁계약서및특약_v03_당사자정리_변경추적.docx
+대주 자료: 05_대출업무/20261012_금융_대주통지처및수수료_vf.xlsx (INDEX #81) — 선순위 시트 통지처(36~57행)·신협통지처(최종)·중순위 시트
+출력: 05_대출업무/약정서/20261013_대출약정_부동산담보신탁계약서및특약_v04_서식통일_우선수익자목록_변경추적.docx
+
+- 내용 변경(목록·별지 기재, 상호 정정)은 Word 변경추적(작성자 "코람코 상장리츠팀") + 메모로 표시. v03까지의 변경추적·메모는 그대로 둔다.
+- 서식 통일(줄간격·글꼴·크기·여백)은 변경추적 없이 직접 적용하고 특약 제목에 메모로 알린다.
+실행: python3 build_담보신탁_v04_서식통일_우선수익자목록_261013.py
+"""
+import copy
+import os
+import re
+import sys
+
+import openpyxl
+from docx import Document
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.shared import Pt
+from docx.text.paragraph import Paragraph
+from docx.text.run import Run
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.join(HERE, "20261013_대출약정_부동산담보신탁계약서및특약_v03_당사자정리_변경추적.docx")
+XLSX = os.path.join(os.path.dirname(HERE), "20261012_금융_대주통지처및수수료_vf.xlsx")
+OUT = os.path.join(HERE, "20261013_대출약정_부동산담보신탁계약서및특약_v04_서식통일_우선수익자목록_변경추적.docx")
+if len(sys.argv) > 1:
+    OUT = sys.argv[1]
+
+AUTHOR, INIT, DATE = "코람코 상장리츠팀", "KR", "2026-10-13T12:00:00Z"
+_id = [9500]
+W14 = "http://schemas.microsoft.com/office/word/2010/wordml"
+
+
+# ================================================================ 공통 도우미 (v03 빌더와 동일 방식)
+def nid():
+    _id[0] += 1
+    return str(_id[0])
+
+
+def mark(tag):
+    el = OxmlElement(tag)
+    el.set(qn("w:id"), nid())
+    el.set(qn("w:author"), AUTHOR)
+    el.set(qn("w:date"), DATE)
+    return el
+
+
+def to_del(r):
+    for t in r.findall(qn("w:t")):
+        dt = OxmlElement("w:delText")
+        dt.set("{http://www.w3.org/XML/1998/namespace}space", "preserve")
+        dt.text = t.text
+        t.addprevious(dt)
+        r.remove(t)
+    d = mark("w:del")
+    r.addprevious(d)
+    d.append(r)
+    return d
+
+
+def new_run(text, rpr_src=None):
+    r = OxmlElement("w:r")
+    if rpr_src is not None and rpr_src.find(qn("w:rPr")) is not None:
+        r.append(copy.deepcopy(rpr_src.find(qn("w:rPr"))))
+    t = OxmlElement("w:t")
+    t.set("{http://www.w3.org/XML/1998/namespace}space", "preserve")
+    t.text = text
+    r.append(t)
+    return r
+
+
+def direct_runs(p):
+    return [c for c in p._p if c.tag == qn("w:r")]
+
+
+def run_text(r):
+    return "".join(t.text or "" for t in r.findall(qn("w:t")))
+
+
+def split_run(r, pos):
+    txt = run_text(r)
+    if pos <= 0 or pos >= len(txt):
+        return r
+    r2 = copy.deepcopy(r)
+    ts = r.findall(qn("w:t"))
+    for t in ts[1:]:
+        r.remove(t)
+    ts[0].text = txt[:pos]
+    ts[0].set("{http://www.w3.org/XML/1998/namespace}space", "preserve")
+    t2s = r2.findall(qn("w:t"))
+    for t in t2s[1:]:
+        r2.remove(t)
+    t2s[0].text = txt[pos:]
+    t2s[0].set("{http://www.w3.org/XML/1998/namespace}space", "preserve")
+    r.addnext(r2)
+    return r
+
+
+def track_replace(p, old, new, ctx=None, after=False):
+    runs = direct_runs(p)
+    full = "".join(run_text(r) for r in runs)
+    if ctx is not None:
+        c0 = full.find(ctx)
+        assert c0 >= 0, f"문맥 미발견: {ctx[:30]}"
+        i = c0 + ctx.index(old)
+    else:
+        i = full.find(old)
+    assert i >= 0, f"'{old[:30]}' 미발견: {full[:80]}"
+    if after:
+        i, old = i + len(old), ""
+    j = i + len(old)
+
+    def cut(pos):
+        acc = 0
+        for r in direct_runs(p):
+            L = len(run_text(r))
+            if acc < pos < acc + L:
+                split_run(r, pos - acc)
+                return
+            acc += L
+    cut(i)
+    cut(j)
+    acc, covered, before = 0, [], None
+    for r in direct_runs(p):
+        L = len(run_text(r))
+        if acc >= i and acc + L <= j and L > 0:
+            covered.append(r)
+        if acc + L <= i:
+            before = r
+        acc += L
+    tmpl = covered[0] if covered else before
+    anchor = None
+    for r in covered:
+        anchor = to_del(r)
+    if new == "":
+        return anchor
+    ins = mark("w:ins")
+    ins.append(new_run(new, tmpl))
+    if anchor is not None:
+        anchor.addnext(ins)
+    elif before is not None:
+        before.addnext(ins)
+    else:
+        ppr = p._p.pPr
+        (ppr.addnext(ins) if ppr is not None else p._p.insert(0, ins))
+    return ins
+
+
+def track_set(p, text, rpr_tmpl):
+    """칸 문단의 기존 글자를 모두 삭제 표시하고 text를 삽입 표시한다(빈 칸이면 삽입만)."""
+    for r in direct_runs(p):
+        if run_text(r):
+            to_del(r)
+        else:
+            p._p.remove(r)
+    ins = mark("w:ins")
+    ins.append(new_run(text, rpr_tmpl))
+    p._p.append(ins)
+    return ins
+
+
+def comment(doc, p_el, text):
+    para = Paragraph(p_el, doc._body)
+    a = OxmlElement("w:r")
+    b = OxmlElement("w:r")
+    ppr = p_el.find(qn("w:pPr"))
+    (ppr.addnext(a) if ppr is not None else p_el.insert(0, a))
+    p_el.append(b)
+    doc.add_comment([Run(a, para), Run(b, para)], text=text, author=AUTHOR, initials=INIT)
+
+
+def find(ps, start, prefix):
+    for k in range(start, len(ps)):
+        if ps[k].text.strip().startswith(prefix):
+            return k
+    raise ValueError(prefix)
+
+
+def strip_ids(el):
+    for e in el.iter():
+        for a in (f"{{{W14}}}paraId", f"{{{W14}}}textId"):
+            if a in e.attrib:
+                del e.attrib[a]
+
+
+def make_rpr(sz=22, b=False, u=False):
+    rpr = OxmlElement("w:rPr")
+    f = OxmlElement("w:rFonts")
+    for k in ("ascii", "hAnsi", "cs"):
+        f.set(qn(f"w:{k}"), "Times New Roman")
+    f.set(qn("w:eastAsia"), "바탕체")
+    rpr.append(f)
+    if b:
+        rpr.append(OxmlElement("w:b"))
+        rpr.append(OxmlElement("w:bCs"))
+    c = OxmlElement("w:color")
+    c.set(qn("w:val"), "000000")
+    rpr.append(c)
+    k = OxmlElement("w:kern")
+    k.set(qn("w:val"), "0")
+    rpr.append(k)
+    for tag in ("w:sz", "w:szCs"):
+        s = OxmlElement(tag)
+        s.set(qn("w:val"), str(sz))
+        rpr.append(s)
+    if u:
+        uu = OxmlElement("w:u")
+        uu.set(qn("w:val"), "single")
+        rpr.append(uu)
+    return rpr
+
+
+def run_tmpl(sz=22, b=False, u=False):
+    r = OxmlElement("w:r")
+    r.append(make_rpr(sz, b, u))
+    return r
+
+
+def ins_para(ref_el, text, sz=22, b=False, u=False, jc=None, line=360):
+    """ref_el 다음에 삽입 표시된 새 문단을 만든다(본계약 첫 페이지 서식)."""
+    p = OxmlElement("w:p")
+    ppr = OxmlElement("w:pPr")
+    sg = OxmlElement("w:snapToGrid")
+    sg.set(qn("w:val"), "0")
+    ppr.append(sg)
+    sp = OxmlElement("w:spacing")
+    sp.set(qn("w:after"), "0")
+    sp.set(qn("w:line"), str(line))
+    sp.set(qn("w:lineRule"), "auto")
+    ppr.append(sp)
+    if jc:
+        j = OxmlElement("w:jc")
+        j.set(qn("w:val"), jc)
+        ppr.append(j)
+    mrpr = make_rpr(sz, b, u)
+    mrpr.insert(0, mark("w:ins"))
+    ppr.append(mrpr)
+    p.append(ppr)
+    if text:
+        ins = mark("w:ins")
+        ins.append(new_run(text, run_tmpl(sz, b, u)))
+        p.append(ins)
+    ref_el.addnext(p)
+    return p
+
+
+# ---------------------------------------------------------------- 새 표(삽입 표시)
+def _cell(w, text, sz, b=False, jc="center", vm=None, span=1, fill=None):
+    tc = OxmlElement("w:tc")
+    pr = OxmlElement("w:tcPr")
+    tw = OxmlElement("w:tcW")
+    tw.set(qn("w:w"), str(w))
+    tw.set(qn("w:type"), "dxa")
+    pr.append(tw)
+    if span > 1:
+        gs = OxmlElement("w:gridSpan")
+        gs.set(qn("w:val"), str(span))
+        pr.append(gs)
+    if vm:
+        v = OxmlElement("w:vMerge")
+        if vm == "restart":
+            v.set(qn("w:val"), "restart")
+        pr.append(v)
+    if fill:
+        sh = OxmlElement("w:shd")
+        sh.set(qn("w:val"), "clear")
+        sh.set(qn("w:color"), "auto")
+        sh.set(qn("w:fill"), fill)
+        pr.append(sh)
+    va = OxmlElement("w:vAlign")
+    va.set(qn("w:val"), "center")
+    pr.append(va)
+    tc.append(pr)
+    lines = (text or "").split("\n")
+    for ln in lines:
+        p = OxmlElement("w:p")
+        ppr = OxmlElement("w:pPr")
+        sg = OxmlElement("w:snapToGrid")
+        sg.set(qn("w:val"), "0")
+        ppr.append(sg)
+        sp = OxmlElement("w:spacing")
+        sp.set(qn("w:after"), "0")
+        sp.set(qn("w:line"), "240")
+        sp.set(qn("w:lineRule"), "auto")
+        ppr.append(sp)
+        j = OxmlElement("w:jc")
+        j.set(qn("w:val"), jc)
+        ppr.append(j)
+        mrpr = make_rpr(sz, b)
+        mrpr.insert(0, mark("w:ins"))
+        ppr.append(mrpr)
+        p.append(ppr)
+        if ln and vm != "cont":
+            ins = mark("w:ins")
+            ins.append(new_run(ln, run_tmpl(sz, b)))
+            p.append(ins)
+        tc.append(p)
+    return tc
+
+
+def make_table(widths, rows, sz):
+    """rows: [[(text, opts), ...], ...]  opts: b, jc, vm('restart'/'cont'), span, fill"""
+    tbl = OxmlElement("w:tbl")
+    pr = OxmlElement("w:tblPr")
+    tw = OxmlElement("w:tblW")
+    tw.set(qn("w:w"), str(sum(widths)))
+    tw.set(qn("w:type"), "dxa")
+    pr.append(tw)
+    jc = OxmlElement("w:jc")
+    jc.set(qn("w:val"), "center")
+    pr.append(jc)
+    bd = OxmlElement("w:tblBorders")
+    for side in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        e = OxmlElement(f"w:{side}")
+        e.set(qn("w:val"), "single")
+        e.set(qn("w:sz"), "4")
+        e.set(qn("w:space"), "0")
+        e.set(qn("w:color"), "000000")
+        bd.append(e)
+    pr.append(bd)
+    lay = OxmlElement("w:tblLayout")
+    lay.set(qn("w:type"), "fixed")
+    pr.append(lay)
+    mar = OxmlElement("w:tblCellMar")
+    for side, v in (("top", 28), ("left", 57), ("bottom", 28), ("right", 57)):
+        e = OxmlElement(f"w:{side}")
+        e.set(qn("w:w"), str(v))
+        e.set(qn("w:type"), "dxa")
+        mar.append(e)
+    pr.append(mar)
+    tbl.append(pr)
+    grid = OxmlElement("w:tblGrid")
+    for w in widths:
+        g = OxmlElement("w:gridCol")
+        g.set(qn("w:w"), str(w))
+        grid.append(g)
+    tbl.append(grid)
+    for ri, row in enumerate(rows):
+        tr = OxmlElement("w:tr")
+        trpr = OxmlElement("w:trPr")
+        if ri == 0:
+            trpr.append(OxmlElement("w:tblHeader"))
+        cs = OxmlElement("w:cantSplit")
+        trpr.append(cs)
+        trpr.append(mark("w:ins"))
+        tr.append(trpr)
+        col = 0
+        for text, o in row:
+            span = o.get("span", 1)
+            w = sum(widths[col:col + span])
+            tr.append(_cell(w, text, sz, b=o.get("b", ri == 0), jc=o.get("jc", "center"),
+                            vm=o.get("vm"), span=span, fill=o.get("fill", "F2F2F2" if ri == 0 else None)))
+            col += span
+        tbl.append(tr)
+    return tbl
+
+
+def mark_row_inserted(tr, texts, rpr_tmpl):
+    """복제한 행을 '삽입된 행'으로 만들고 칸별 글자를 채운다(texts[i] None이면 비움)."""
+    strip_ids(tr)
+    trpr = tr.find(qn("w:trPr"))
+    if trpr is None:
+        trpr = OxmlElement("w:trPr")
+        tr.insert(0, trpr)
+    trpr.append(mark("w:ins"))
+    for tc, txt in zip(tr.findall(qn("w:tc")), texts):
+        for p in tc.findall(qn("w:p")):
+            for c in list(p):
+                if c.tag != qn("w:pPr"):
+                    p.remove(c)
+            ppr = p.find(qn("w:pPr"))
+            if ppr is None:
+                ppr = OxmlElement("w:pPr")
+                p.insert(0, ppr)
+            mrpr = ppr.find(qn("w:rPr"))
+            if mrpr is None:
+                mrpr = OxmlElement("w:rPr")
+                ppr.append(mrpr)
+            mrpr.insert(0, mark("w:ins"))
+        ps_ = tc.findall(qn("w:p"))
+        for extra in ps_[1:]:
+            tc.remove(extra)
+        if txt:
+            ins = mark("w:ins")
+            ins.append(new_run(txt, rpr_tmpl))
+            ps_[0].append(ins)
+    return tr
+
+
+# ================================================================ 대주 자료(엑셀) 읽기
+FORMAL = {
+    "우리은행": "주식회사 우리은행", "롯데캐피탈": "롯데캐피탈 주식회사", "우리카드": "주식회사 우리카드",
+    "수협은행": "수협은행", "SBI저축은행": "주식회사 에스비아이저축은행",
+    "서로신용협동조합(주간)": "서로신용협동조합",
+    "키움캐피탈": "키움캐피탈 주식회사", "엠지캐피탈": "엠지캐피탈 주식회사", "디비저축은행": "주식회사 디비저축은행",
+}
+REGNO_KNOWN = {"주식회사 우리은행": "110111-0023393"}  # 기존 신탁계약서 기재값
+
+
+def parse_notice(txt):
+    """'주소 : …\n전화번호 : …' 형식 → dict. 키 없는 줄은 앞 항목에 이어 붙인다."""
+    out, last = {}, None
+    keymap = {"주소": "addr", "전화번호": "tel", "팩스번호": "fax", "담당자": "person",
+              "Email": "email", "전자우편": "email", "수취계좌": "acct"}
+    for ln in [x.strip() for x in str(txt).split("\n") if x.strip()]:
+        m = re.match(r"^(주소|전화번호|팩스번호|담당자|Email|전자우편|수취계좌)\s*[:/]\s*(.*)$", ln)
+        if m:
+            last = keymap[m.group(1)]
+            out[last] = m.group(2).strip()
+        elif last:
+            out[last] += " / " + ln
+    return out
+
+
+def office_phones(s):
+    """휴대전화(010) 번호는 빼고 사무실 번호만 남긴다(신탁원부 공시 고려)."""
+    parts = [x.strip() for x in re.split(r"[/,]", s or "") if x.strip()]
+    keep = [x.replace(".", "-") for x in parts if not re.sub(r"\D", "", x).startswith("010")]
+    return " / ".join(keep)
+
+
+def clean_person(s):
+    s = (s or "").replace(" / 투자관리", "(투자관리)")
+    return re.sub(r"\s*/\s*", ", ", s.strip(" /"))
+
+
+wb = openpyxl.load_workbook(XLSX, data_only=True)
+ws = wb["선순위"]
+cu = {}
+wsc = wb["신협통지처(최종)"]
+for r in range(4, wsc.max_row + 1):
+    nm = wsc.cell(r, 2).value
+    if nm:
+        cu[str(nm).strip()] = {"regno": str(wsc.cell(r, 9).value).strip()}
+
+TA, TB = [], []
+for r in range(36, 58):
+    short = str(ws.cell(r, 2).value).strip()
+    tr = str(ws.cell(r, 3).value)
+    amt = int(round(float(ws.cell(r, 4).value) * 100_000_000))
+    n = parse_notice(ws.cell(r, 5).value)
+    name = FORMAL.get(short, short)
+    regno = REGNO_KNOWN.get(name) or cu.get(short, {}).get("regno") or "[*]"
+    TA.append(dict(short=short, name=name, tranche="Tranche A-2 대출" if "A-2" in tr else "Tranche A-1 대출",
+                   amt=amt, regno=regno, **n))
+assert sum(x["amt"] for x in TA) == 160_000_000_000, "Tranche A 합계 불일치"
+assert len(TA) == 22
+wsm = wb["중순위"]
+for r in range(25, 28):
+    short = str(wsm.cell(r, 2).value).strip()
+    amt = int(wsm.cell(r, 3).value)
+    n = parse_notice(wsm.cell(r, 4).value)
+    TB.append(dict(short=short, name=FORMAL[short], tranche="Tranche B 대출", amt=amt, regno="[*]", **n))
+assert sum(x["amt"] for x in TB) == 38_000_000_000, "Tranche B 합계 불일치"
+for x in TA + TB:
+    x["cap"] = x["amt"] * 12 // 10
+    x["addr"] = x.get("addr", "").replace("의의도동", "여의도동").replace(" ,", ",").strip()
+    x["tel"] = office_phones(x.get("tel"))
+    x["fax"] = (x.get("fax") or "").replace(".", "-").strip()
+    x["person"] = clean_person(x.get("person"))
+    x["email"] = re.sub(r"\s*[/,]\s*", "\n", (x.get("email") or "").strip())
+CAP_A = sum(x["cap"] for x in TA)
+CAP_B = sum(x["cap"] for x in TB)
+COUPANG_CAP = 2_132_586_000
+assert CAP_A == 192_000_000_000 and CAP_B == 45_600_000_000
+assert COUPANG_CAP + CAP_A + CAP_B == 239_732_586_000
+
+
+def won(v):
+    return f"{v:,}"
+
+
+# ================================================================ 문서 열기
+doc = Document(SRC)
+ps = doc.paragraphs
+tables = doc.tables
+k_tk = find(ps, 0, "부동산담보신탁계약에 대한 특약")
+tk_title = ps[k_tk]._p
+
+
+def roster_rows():
+    """우선수익자 세부 목록(별첨 1) 표 행."""
+    rows = [[("순위", {}), ("연번", {}), ("우선수익자(상호)", {}), ("법인등록번호", {}),
+             ("대출약정금 등(원)", {}), ("우선수익한도금액(원)", {})]]
+    rows.append([("제1순위", {}), ("1", {}), ("쿠팡 주식회사", {"jc": "left"}), ("[*]", {}),
+                 ("2,132,586,000\n(임대차보증금)", {"jc": "right"}), (won(COUPANG_CAP), {"jc": "right"})])
+    for i, x in enumerate(TA):
+        rows.append([("(공동)\n제2순위\n(Tranche A)", {"vm": "restart"}) if i == 0 else ("", {"vm": "cont"}),
+                     (str(i + 1), {}), (x["name"], {"jc": "left"}), (x["regno"], {}),
+                     (won(x["amt"]), {"jc": "right"}), (won(x["cap"]), {"jc": "right"})])
+    rows.append([(f"Tranche A 소계 ({len(TA)}개사)", {"span": 4, "b": True}),
+                 (won(sum(x['amt'] for x in TA)), {"jc": "right", "b": True}), (won(CAP_A), {"jc": "right", "b": True})])
+    for i, x in enumerate(TB):
+        rows.append([("(공동)\n제3순위\n(Tranche B)", {"vm": "restart"}) if i == 0 else ("", {"vm": "cont"}),
+                     (str(i + 1), {}), (x["name"], {"jc": "left"}), (x["regno"], {}),
+                     (won(x["amt"]), {"jc": "right"}), (won(x["cap"]), {"jc": "right"})])
+    rows.append([(f"Tranche B 소계 ({len(TB)}개사)", {"span": 4, "b": True}),
+                 (won(sum(x['amt'] for x in TB)), {"jc": "right", "b": True}), (won(CAP_B), {"jc": "right", "b": True})])
+    rows.append([("합   계", {"span": 4, "b": True}), ("", {}),
+                 (won(COUPANG_CAP + CAP_A + CAP_B), {"jc": "right", "b": True})])
+    return rows
+
+
+ROSTER_W = [1100, 500, 2726, 1500, 1600, 1600]   # 합 9,026 = 본문 폭(A4, 좌우 여백 1,440)
+NOTICE_W = [800, 1500, 2300, 1000, 1300, 2126]
+
+ROSTER_NOTE = ("[우선수익자 목록 기재] 통지처 및 수수료 자료(20261012 vf, INDEX #81) 기준입니다. 선순위(Tranche A) 22개사 1,600억원(Tranche A-2 변동: 우리은행 700억원, "
+               "나머지 21개사 Tranche A-1 고정), 중순위(Tranche B) 3개사 380억원. 우선수익한도금액은 각 대출약정금의 120%로 계산했습니다"
+               "(Tranche A 합계 1,920억원, Tranche B 456억원, 1순위 포함 총 2,397억3,258만6천원 = 별지 2 제4항 총액과 일치). "
+               "상호는 정식 법인명으로 기재했습니다(SBI저축은행 → 주식회사 에스비아이저축은행, 디비저축은행 → 주식회사 디비저축은행, 서로신협 '(주간)' 표기 삭제; BKL 법률실사 표기 기준). "
+               "법인등록번호는 우리은행(기존 기재값)과 신협 17곳(신협통지처(최종) 시트)만 기재했고, 롯데캐피탈·우리카드·수협은행·에스비아이저축은행·Tranche B 3개사·쿠팡은 "
+               "[*]입니다. 각 사의 법인등기사항증명서를 받아 기재해야 합니다. 대주 구성이 최종 확정된 것인지 BKL·우리은행에 확인이 필요합니다.")
+
+# ================================================================ 1) 본계약 별첨 1 (표 2 정정 + 세부 목록 표 추가)
+t2 = tables[2]
+track_replace(t2.cell(1, 1).paragraphs[0], "외 Tranche A 대주 [확정 시 기재]", "외 21개사")
+db_p = next(p for p in t2.cell(3, 0).paragraphs if p.text.startswith("DB저축은행"))
+track_replace(db_p, "DB저축은행 [정식 상호 확인 필요]", "주식회사 디비저축은행")
+cap1 = ins_para(t2._tbl, "※ 우선수익자별 세부 내역", b=True)
+tbl_r1 = make_table(ROSTER_W, roster_rows(), sz=18)
+cap1.addnext(tbl_r1)
+comment(doc, cap1, ROSTER_NOTE)
+
+# ================================================================ 2) 별지 2 수익자 표(표 3): Tranche A 22개사·Tranche B 상호
+t3 = tables[3]
+rows3 = t3._tbl.findall(qn("w:tr"))
+tmpl_a, tmpl_b = copy.deepcopy(rows3[11]), copy.deepcopy(rows3[12])   # 상호 / 법인등록번호 한 쌍
+rpr3 = direct_runs(t3.cell(13, 2).paragraphs[0])[0]                   # '키움캐피탈 주식회사' 글자 서식
+for i, x in enumerate(TA[:5]):
+    r_name, r_reg = 3 + 2 * i, 4 + 2 * i
+    track_set(t3.cell(r_name, 2).paragraphs[0], x["name"], rpr3)
+    track_set(t3.cell(r_reg, 2).paragraphs[0], x["regno"], rpr3)
+    track_set(t3.cell(r_name, 3).paragraphs[0], f"금{won(x['cap'])}원", rpr3)
+anchor = rows3[12]
+for x in TA[5:]:
+    ra = mark_row_inserted(copy.deepcopy(tmpl_a), [None, "상 호", x["name"], f"금{won(x['cap'])}원"], rpr3)
+    rb = mark_row_inserted(copy.deepcopy(tmpl_b), [None, "법인등록번호", x["regno"], None], rpr3)
+    anchor.addnext(ra)
+    ra.addnext(rb)
+    anchor = rb
+track_replace(t3.cell(len(t3.rows) - 2, 2).paragraphs[0], "DB저축은행 [정식 상호 확인 필요]", "주식회사 디비저축은행")
+comment(doc, t3.cell(3, 2).paragraphs[0]._p,
+        "[별지 2 수익자 기재] (공동) 제2순위 Tranche A 대주 22개사를 상호·법인등록번호·수익권증서 발행금액(대출약정금의 120%)으로 채웠습니다(기존 5칸 + 17쌍 행 추가). "
+        "발행금액 합계 금192,000,000,000원. 법인등록번호 [*]는 등기사항증명서 수령 후 기재합니다. 근거: 대주통지처및수수료 vf(INDEX #81).")
+
+# ================================================================ 3) 별지 4 여신거래 표(표 6)
+t6 = tables[6]
+rows6 = t6._tbl.findall(qn("w:tr"))
+tmpl6 = copy.deepcopy(rows6[5])
+rpr6 = direct_runs(t6.cell(2, 2).paragraphs[0])[0]
+x0 = TA[0]
+track_replace(t6.cell(1, 3).paragraphs[0], "Tranche A 대출", x0["tranche"])
+track_set(t6.cell(1, 4).paragraphs[0], f"금{won(x0['amt'])}원", rpr6)
+for i, x in enumerate(TA[1:5]):
+    r = 2 + i
+    for c, v in ((2, x["name"]), (3, x["tranche"]), (4, f"금{won(x['amt'])}원"), (5, "인출일"), (6, "인출일로부터 24개월")):
+        track_set(t6.cell(r, c).paragraphs[0], v, rpr6)
+anchor = rows6[5]
+for x in TA[5:]:
+    nr = mark_row_inserted(copy.deepcopy(tmpl6), [None, None, x["name"], x["tranche"], f"금{won(x['amt'])}원", "인출일", "인출일로부터 24개월"], rpr6)
+    anchor.addnext(nr)
+    anchor = nr
+t6r = len(t6.rows)
+track_replace(t6.cell(t6r - 2, 2).paragraphs[0], "DB저축은행 [정식 상호 확인 필요]", "주식회사 디비저축은행")
+comment(doc, t6.cell(1, 2).paragraphs[0]._p,
+        "[별지 4 여신거래 기재] Tranche A 22개사(우리은행 Tranche A-2 변동 700억원, 나머지 21개사 Tranche A-1 고정, 합계 1,600억원)와 Tranche B 3개사(380억원)를 대주별로 기재했습니다"
+        "(17행 추가). 합계 금198,000,000,000원은 기존 합계행과 일치합니다. 신규일·만기일은 대출약정서 기준(인출일, 인출일로부터 24개월)입니다.")
+
+# ================================================================ 4) 특약 별첨 1 (목록 문단 정정 + 세부 목록 표)
+ps = doc.paragraphs
+k_b1 = find(ps, find(ps, 0, "부동산담보신탁계약에 대한 특약"), "2. 공동 2순위 우선수익자(Tranche A)")
+track_replace(ps[k_b1], "외 Tranche A 대주 [확정 시 기재]", "외 21개사")
+track_replace(ps[k_b1 + 1], "DB저축은행[정식 상호 확인 필요]", "주식회사 디비저축은행")
+cap2 = ins_para(ps[k_b1 + 1]._p, "※ 우선수익자별 세부 내역", b=True)
+tbl_r2 = make_table(ROSTER_W, roster_rows(), sz=18)
+cap2.addnext(tbl_r2)
+comment(doc, cap2, "[우선수익자 목록 기재] 본계약 별첨 1과 같은 표입니다. " + ROSTER_NOTE.split("] ", 1)[1])
+
+# ================================================================ 5) 특약 별첨 2 통지처 목록
+ps = doc.paragraphs
+k_n = find(ps, k_b1, "우선수익자들의 통지처 목록")
+k_star = find(ps, k_n, "[*]")
+assert ps[k_star].text.strip() == "[*]"
+track_replace(ps[k_star], "[*]", "")
+nrows = [[("순위", {}), ("우선수익자", {}), ("주소", {}), ("담당자", {}), ("전화 / 팩스", {}), ("전자우편", {})]]
+nrows.append([("제1순위", {}), ("쿠팡 주식회사", {"jc": "left"}), ("[*]", {}), ("[*]", {}), ("[*]", {}), ("[*]", {})])
+
+
+def tel_fax(x):
+    t = x["tel"]
+    return t + (f"\n(F) {x['fax']}" if x["fax"] else "")
+
+
+for grp, lab in ((TA, "(공동)\n제2순위\n(Tranche A)"), (TB, "(공동)\n제3순위\n(Tranche B)")):
+    for i, x in enumerate(grp):
+        nrows.append([(lab, {"vm": "restart"}) if i == 0 else ("", {"vm": "cont"}),
+                      (x["name"], {"jc": "left"}), (x["addr"], {"jc": "left"}), (x["person"], {}),
+                      (tel_fax(x), {}), (x["email"], {"jc": "left"})])
+tbl_n = make_table(NOTICE_W, nrows, sz=16)
+ps[k_star]._p.addnext(tbl_n)
+comment(doc, ps[k_n]._p,
+        "[통지처 목록 기재] 대주통지처및수수료 vf(20261012, INDEX #81) 선순위 시트 통지처(22개사)·중순위 시트 통지처(3개사)를 옮겼습니다. "
+        "① 담당자 휴대전화 번호와 원리금 수취계좌는 넣지 않았습니다. 특약·별첨이 신탁원부로 등기소에 제출·열람될 수 있기 때문이며, 휴대전화는 대출약정서 통지처에서 관리합니다. "
+        "기재가 필요하면 말씀해 주세요. "
+        "② 우리은행 주소의 '의의도동'은 '여의도동'으로 바로잡았습니다(엑셀 원문 오기). "
+        "③ 1순위 쿠팡 주식회사 통지처는 [미접수]이므로 [*]로 두었습니다(임대차계약서 통지 조항 또는 쿠팡 회신으로 확인 필요). "
+        "④ 특약 제19조 통지처 표의 '별첨 2.와 같음'과 연결됩니다.")
+
+# ================================================================ 6) 서식 통일 — 특약 이후 본문 문단을 본계약 첫 페이지 기준으로
+#   기준(본계약 제1면): 줄간격 1.5줄(line 360 auto)·문단 뒤 0, 격자 맞춤 해제, 글꼴 바탕체 / Times New Roman, 11pt
+#   제목은 본계약 제목(20pt 굵게 밑줄), 별첨·별지 제목은 본계약 별첨 제목(15pt 굵게 밑줄)과 같게 한다. 표 안 서식은 손대지 않는다.
+SUBTITLES = ("우선수익자들 목록", "우선수익자들의 통지처 목록", "임대차계약등 내역")
+
+
+def set_spacing(p_el):
+    ppr = p_el.find(qn("w:pPr"))
+    if ppr is None:
+        ppr = OxmlElement("w:pPr")
+        p_el.insert(0, ppr)
+    para = Paragraph(p_el, doc._body)
+    pf = para.paragraph_format
+    pf.space_after = Pt(0)
+    pf.line_spacing = 1.5
+    sp = ppr.find(qn("w:spacing"))
+    if qn("w:before") in sp.attrib:
+        del sp.attrib[qn("w:before")]
+    if ppr.find(qn("w:snapToGrid")) is None:
+        sg = OxmlElement("w:snapToGrid")
+        sg.set(qn("w:val"), "0")
+        sp.addprevious(sg)
+    else:
+        ppr.find(qn("w:snapToGrid")).set(qn("w:val"), "0")
+
+
+def set_rpr(rpr, sz, title=False):
+    f = rpr.get_or_add_rFonts()
+    for a in list(f.attrib):
+        if a.endswith("Theme"):
+            del f.attrib[a]
+    for k in ("ascii", "hAnsi", "cs"):
+        f.set(qn(f"w:{k}"), "Times New Roman")
+    f.set(qn("w:eastAsia"), "바탕체")
+    for tag in ("w:sz", "w:szCs"):
+        e = rpr.find(qn(tag))
+        if e is None:
+            e = OxmlElement(tag)
+            succ = [qn(x) for x in ("w:highlight", "w:u", "w:effect", "w:bdr", "w:shd", "w:fitText", "w:vertAlign",
+                                    "w:rtl", "w:cs", "w:em", "w:lang", "w:eastAsianLayout", "w:specVanish", "w:oMath", "w:rPrChange")]
+            if tag == "w:sz":
+                succ.insert(0, qn("w:szCs"))
+            nxt = next((c for c in rpr if c.tag in succ), None)
+            (nxt.addprevious(e) if nxt is not None else rpr.append(e))
+        e.set(qn("w:val"), str(sz))
+    cs = rpr.find(qn("w:spacing"))
+    if cs is not None:
+        rpr.remove(cs)
+    if title:
+        col = rpr.get_or_add_color()
+        col.set(qn("w:val"), "000000")
+        for a in list(col.attrib):
+            if a != qn("w:val"):
+                del col.attrib[a]
+        rpr.get_or_add_b()
+        u = rpr.get_or_add_u()
+        u.set(qn("w:val"), "single")
+
+
+def normalize_para(p_el, sz, title=False):
+    set_spacing(p_el)
+    ppr = p_el.find(qn("w:pPr"))
+    mrpr = ppr.find(qn("w:rPr"))
+    if mrpr is None:
+        mrpr = OxmlElement("w:rPr")
+        ppr.append(mrpr)
+    # 문단 기호 rPr은 CT_RPr가 아닐 수 있어 직접 처리
+    f = mrpr.find(qn("w:rFonts"))
+    if f is None:
+        f = OxmlElement("w:rFonts")
+        tr = [c for c in mrpr if c.tag in (qn("w:ins"), qn("w:del"))]
+        (tr[-1].addnext(f) if tr else mrpr.insert(0, f))
+    for a in list(f.attrib):
+        if a.endswith("Theme"):
+            del f.attrib[a]
+    for k in ("ascii", "hAnsi", "cs"):
+        f.set(qn(f"w:{k}"), "Times New Roman")
+    f.set(qn("w:eastAsia"), "바탕체")
+    for tag in ("w:sz", "w:szCs"):
+        e = mrpr.find(qn(tag))
+        if e is None:
+            e = OxmlElement(tag)
+            mrpr.append(e)
+        e.set(qn("w:val"), str(sz))
+    for r in p_el.iter(qn("w:r")):
+        set_rpr(r.get_or_add_rPr(), sz, title)
+
+
+body = doc.element.body
+started = False
+n_norm = 0
+for el in list(body):
+    if el is tk_title:
+        started = True
+    if not started or el.tag != qn("w:p"):
+        continue
+    txt = "".join(t.text or "" for t in el.iter(qn("w:t"))).strip()
+    if el is tk_title:
+        normalize_para(el, 40, title=True)
+    elif txt in SUBTITLES:
+        normalize_para(el, 30)
+    else:
+        normalize_para(el, 22)
+    n_norm += 1
+
+# 특약 구역 여백·격자를 본계약과 같게
+sect = body.find(qn("w:sectPr"))
+pm = sect.find(qn("w:pgMar"))
+for k, v in (("top", 1701), ("right", 1440), ("bottom", 1440), ("left", 1440)):
+    pm.set(qn(f"w:{k}"), str(v))
+dg = sect.find(qn("w:docGrid"))
+if dg is not None and qn("w:type") in dg.attrib:
+    del dg.attrib[qn("w:type")]
+
+# 본계약: 일부 글자에 섞인 대체 글꼴(바탕;Batang, MS Mincho)을 바탕체로
+for el in body:
+    if el is tk_title:
+        break
+    for f in el.iter(qn("w:rFonts")):
+        if f.get(qn("w:eastAsia")) in ("바탕;Batang", "MS Mincho"):
+            f.set(qn("w:eastAsia"), "바탕체")
+
+comment(doc, tk_title,
+        "[서식 통일] 특약·별첨·별지 본문을 본계약 첫 페이지 서식으로 맞췄습니다(내용 변경 없음, 변경추적 미표시): 줄간격 1.5줄(종전 일부 문단 '고정 10pt'로 12pt 글자가 겹쳐 보이던 문제 해소)·문단 뒤 0pt, "
+        "글꼴 바탕체/Times New Roman 11pt(종전 바탕·바탕체 혼용 12pt, 일부 8pt), 제목 20pt·별첨 제목 15pt 굵게 밑줄, 여백 위 30mm·좌우하 25.4mm(종전 위 35mm·좌우하 30mm). "
+        f"대상 문단 {n_norm}개. 표 안 서식은 그대로 두었습니다.")
+
+doc.core_properties.last_modified_by = AUTHOR
+doc.save(OUT)
+print("saved", OUT, "| normalized paragraphs:", n_norm, "| TA", len(TA), "TB", len(TB))
