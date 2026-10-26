@@ -49,9 +49,9 @@ LENDERS = {
         ("주식회사 디비저축은행", "금 팔십억원(￦8,000,000,000)"),
     ],
 }
-OUTS = {"A-1": "20261026_대출약정_인출요청서_TrA-1_대주별21개사_v01.docx",
-        "A-2": "20261026_대출약정_인출요청서_TrA-2_우리은행_v01.docx",
-        "B": "20261026_대출약정_인출요청서_TrB_대주별3개사_v01.docx"}
+OUTS = {"A-1": "20261026_대출약정_인출요청서_TrA-1_대주별21개사_v02.docx",
+        "A-2": "20261026_대출약정_인출요청서_TrA-2_우리은행_v02.docx",
+        "B": "20261026_대출약정_인출요청서_TrB_대주별3개사_v02.docx"}
 
 
 def ptext(p):
@@ -184,11 +184,10 @@ def build(tranche):
         paras = [e for e in els if e.tag == qn("w:p")]
         title = paras[0]
         assert ptext(title) == "인출요청서"
-        # 별첨 표시 + 부제
-        att = new_par_like(paras[2], "별첨 가", align="left")
+        # 부제 (v02: "별첨 가" 표시 삭제 — 운용역 요청 2026-10-26)
         sub = new_par_like(paras[2], f"-{label} 대출 인출용-", align="center")
         if idx:
-            page_break_before(att)
+            page_break_before(title)
         # 일자·수신
         set_text(paras[2], REQ_DATE)
         set_text(paras[3], f"{name} 귀중")
@@ -207,12 +206,12 @@ def build(tranche):
         cells = rows[1].findall(qn("w:tc"))
         cell_set(cells[0], f"{label} 대출")
         cell_set(cells[1], amount)
-        # 조립: 별첨 → 제목 → 부제 → 나머지
+        # 조립: 제목 → 부제 → 나머지
         # 한 쪽 유지: 빈 제목줄(paras[1])과 확인사항 머리말 다음 빈 줄 1개를 뺀다
         confirm = next(p for p in paras if ptext(p).startswith("차주는 이 인출요청서 일자 현재"))
         gap = els[els.index(confirm) + 1]
         assert gap.tag == qn("w:p") and not ptext(gap).strip()
-        out = [att, title, sub] + [e for e in els if e is not title and e is not paras[1] and e is not gap]
+        out = [title, sub] + [e for e in els if e is not title and e is not paras[1] and e is not gap]
         if idx:
             restart_numbering(doc, out)
         for e in out:
