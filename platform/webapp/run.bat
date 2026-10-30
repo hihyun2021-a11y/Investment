@@ -3,13 +3,15 @@ chcp 65001 >nul
 rem 신규투자 워크벤치 실행 (Windows). 처음 한 번은 가상환경을 만들고 패키지를 설치한다.
 cd /d "%~dp0"
 
-rem 1) Python 확인 (py 런처 우선)
+rem 1) Python 확인 - 패키지가 미리 빌드돼 있는 3.13, 3.12, 3.11 버전을 우선 사용
 set "PY="
-where py >nul 2>nul && set "PY=py -3"
-if not defined PY (
-  where python >nul 2>nul && set "PY=python"
+for %%V in (3.13 3.12 3.11) do (
+  if not defined PY (
+    py -%%V -c "import sys" >nul 2>nul && set "PY=py -%%V"
+  )
 )
 if not defined PY goto :nopython
+echo 사용할 Python: %PY%
 
 rem 2) 가상환경 만들기
 if not exist ".venv\Scripts\python.exe" (
@@ -44,8 +46,11 @@ pause
 exit /b
 
 :nopython
-echo [오류] Python을 찾지 못했습니다.
-echo python.org 에서 Python 3.11 이상을 설치하세요. 설치 첫 화면에서 "Add python.exe to PATH" 를 꼭 체크합니다.
+echo [오류] 사용할 수 있는 Python(3.11~3.13)을 찾지 못했습니다.
+echo 너무 최신 버전(3.14, 3.15)은 일부 패키지가 아직 지원하지 않습니다.
+echo python.org 에서 Python 3.13 을 추가로 설치한 뒤 다시 실행하세요. 기존 버전은 지우지 않아도 됩니다.
+echo 설치 첫 화면에서 "Add python.exe to PATH" 를 체크하세요.
+start "" https://www.python.org/downloads/windows/
 pause
 exit /b 1
 
@@ -56,6 +61,6 @@ exit /b 1
 
 :pipfail
 echo [오류] 패키지 설치에 실패했습니다.
-echo 회사망(프록시·보안 프로그램)에서 인터넷 설치가 막혔을 수 있습니다. 위 메시지를 IT팀에 전달해 주세요.
+echo .venv 폴더를 지우고 다시 실행해 보세요. 계속 실패하면 위 메시지를 캡처해 주세요.
 pause
 exit /b 1
