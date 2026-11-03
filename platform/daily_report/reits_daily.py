@@ -167,9 +167,8 @@ def resolve_code(name: str) -> str | None:
             log(f"[코드검색] {name}: {e}")
             continue
         blob = json.dumps(data, ensure_ascii=False)
-        m = re.search(r'"code"\s*:\s*"(\d{6})"[^{}]*?"name"\s*:\s*"' + re.escape(name), blob) or \
-            re.search(r'"name"\s*:\s*"' + re.escape(name) + r'"[^{}]*?"code"\s*:\s*"(\d{6})"', blob) or \
-            re.search(r'"(\d{6})"', blob)
+        m = re.search(r'"code"\s*:\s*"([0-9A-Z]{6})"[^{}]*?"name"\s*:\s*"' + re.escape(name), blob) or \
+            re.search(r'"name"\s*:\s*"' + re.escape(name) + r'"[^{}]*?"code"\s*:\s*"([0-9A-Z]{6})"', blob)
         if m:
             return m.group(1)
     return None
@@ -683,7 +682,9 @@ def send(subject: str, html_body: str):
     msg["To"] = ", ".join(to)
     msg.attach(MIMEText(html_to_text(html_body), "plain", "utf-8"))
     msg.attach(MIMEText(html_body, "html", "utf-8"))
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context()) as s:
+    # PC 이름에 한글이 있으면 EHLO 단계에서 ascii 오류가 나므로 접속 이름을 고정한다
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, local_hostname="localhost",
+                          context=ssl.create_default_context()) as s:
         s.login(user, pw)
         s.sendmail(user, to, msg.as_string())
 
@@ -762,12 +763,76 @@ def demo() -> dict:
             "since_major": now - dt.timedelta(days=30), "since_new": now - dt.timedelta(days=5)}
 
 
+def run_once(preview: bool):
+    now = dt.datetime.now(KST)
+    state = load_state()
+    R = collect(now, state)
+    subj, body = render(R)
+    if preview:
+        p = HERE / "report_preview.html"
+        p.write_text(f"<!doctype html><meta charset='utf-8'><title>{html.escape(subj)}</title>{body}", encoding="utf-8")
+        print(f"미리보기 저장: {p}\n제목: {subj}")
+        if os.name == "nt":
+            os.startfile(str(p))  # noqa: S606
+        return
+    send(subj, body)
+    save_state(state, now)
+    print(f"발송 완료: {subj}")
+
+
+def menu():
+    env = HERE / "env.txt"
+    if not env.exists() and (HERE / "env.example.txt").exists():
+        env.write_text((HERE / "env.example.txt").read_text(encoding="utf-8"), encoding="utf-8")
+    items = {"1": "점검 (접속·수집 확인, 메일 안 보냄)", "2": "미리보기 (오늘 메일을 브라우저로 열기)",
+             "3": "지금 메일 보내기", "4": "평일 07:50 자동 발송 등록", "5": "설정 파일(env.txt) 열기", "0": "끝내기"}
+    while True:
+        print("\n ==========================================")
+        print(f"  상장리츠 공시·금리 일일 보고   (Python {sys.version.split()[0]})")
+        print(" ==========================================")
+        for k, v in items.items():
+            print(f"  {k}. {v}")
+        sel = input("\n번호를 입력하고 Enter: ").strip()
+        LOG.clear()
+        try:
+            if sel == "1":
+                print("\n[점검] 1~3분 걸릴 수 있습니다...")
+                check()
+                print("\n경고가 있으면 이 창을 캡처해 보내 주세요.")
+            elif sel == "2":
+                print("\n[미리보기] 24개 종목을 수집합니다. 2~5분 걸릴 수 있습니다...")
+                run_once(preview=True)
+            elif sel == "3":
+                print("\n[발송] 수집 후 메일을 보냅니다. 2~5분 걸릴 수 있습니다...")
+                run_once(preview=False)
+            elif sel == "4":
+                bat = HERE / "run_daily.bat"
+                cmd = (f'schtasks /create /tn ReitsDailyReport /tr "\\"{bat}\\" auto" '
+                       f'/sc weekly /d MON,TUE,WED,THU,FRI /st 07:50 /f')
+                rc = os.system(cmd)
+                print("등록 완료: 평일 07:50 자동 발송 (해제: schtasks /delete /tn ReitsDailyReport /f)" if rc == 0
+                      else "등록 실패 — 이 창을 캡처해 보내 주세요.")
+            elif sel == "5":
+                os.system(f'notepad "{env}"')
+            elif sel == "0":
+                return
+        except SystemExit as e:
+            print(f"\n[안내] {e}")
+        except Exception as e:  # noqa: BLE001
+            import traceback
+            traceback.print_exc()
+            print(f"\n[오류] {e} — 이 창을 캡처해 보내 주세요.")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--menu", action="store_true", help="번호 메뉴(run_daily.bat 더블클릭 시)")
     ap.add_argument("--check", action="store_true", help="접속·파싱 점검(발송 안 함)")
     ap.add_argument("--preview", action="store_true", help="수집 후 report_preview.html 저장(발송 안 함)")
     ap.add_argument("--demo", action="store_true", help="샘플 데이터로 report_preview.html 저장")
     a = ap.parse_args()
+    if a.menu:
+        return menu()
     if a.check:
         return check()
     now = dt.datetime.now(KST)
