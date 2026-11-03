@@ -1,0 +1,5 @@
+.env
+data/
+report_preview.html
+__pycache__/
+run.log

@@ -1,0 +1,26 @@
+# (선택) PC를 끄고도 받고 싶을 때: 이 파일을 저장소의 .github/workflows/reits_daily.yml 로 복사하고,
+# GitHub 저장소 Settings → Secrets 에 ECOS_API_KEY, GMAIL_USER, GMAIL_APP_PASSWORD, MAIL_TO 를 등록한다.
+# 해외 서버에서 실행되므로 네이버 응답이 PC와 다를 수 있다 — 먼저 PC에서 --check 로 확인 후 사용.
+name: reits-daily
+on:
+  schedule:
+    - cron: "50 22 * * 0-4"   # UTC 22:50 = KST 평일 07:50
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/cache@v4      # '직전 보고 이후 새 공시' 판정용 상태 파일 유지
+        with:
+          path: platform/daily_report/data
+          key: reits-daily-${{ github.run_id }}
+          restore-keys: reits-daily-
+      - run: python platform/daily_report/reits_daily.py
+        env:
+          ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
