@@ -3,7 +3,7 @@
 
 데이터
 - 공시·종가·시가총액: 네이버증권(KOSCOM 제공). 모바일 API → 데스크톱 화면 순으로 시도한다.
-- 금리: 한국은행 ECOS Open API (ECOS_API_KEY 필요). 기준금리·CD·CP·국고채·회사채.
+- 금리: 한국은행 ECOS Open API (ECOS_API_KEY) — 기준금리·CD·CP·국고채·회사채 / FRED (FRED_API_KEY) — 미 연방기금·SOFR·국채 2·10년.
 
 실행
   python reits_daily.py --check            # 접속·파싱 점검(메일 발송 안 함). 처음 한 번 꼭 실행
@@ -438,6 +438,39 @@ def fetch_rates(key: str | None, today: dt.date) -> list[dict]:
     return res
 
 
+def fetch_fred(key: str | None, today: dt.date) -> list[dict]:
+    """미국 금리(FRED). 값이 '.'인 날(휴일)은 건너뛴다."""
+    items = CONFIG.get("fred") or []
+    if not key:
+        if items:
+            log("[금리] FRED_API_KEY 없음 — 해외 금리 표는 '[미입력]'으로 표시")
+        return [{"name": r["name"], "value": None, "d1": None, "w1": None, "date": None} for r in items]
+    start = (today - dt.timedelta(days=30)).isoformat()
+    res = []
+    for r in items:
+        row = {"name": r["name"], "value": None, "d1": None, "w1": None, "date": None}
+        url = ("https://api.stlouisfed.org/fred/series/observations?"
+               + urllib.parse.urlencode({"series_id": r["series"], "api_key": key, "file_type": "json",
+                                         "observation_start": start}))
+        try:
+            obs = get_json(url).get("observations") or []
+            vals = [(o["date"].replace("-", ""), float(o["value"])) for o in obs if o.get("value") not in (None, "", ".")]
+            vals.sort()
+            if vals:
+                row["date"], row["value"] = vals[-1]
+                if len(vals) >= 2:
+                    row["d1"] = (vals[-1][1] - vals[-2][1]) * 100
+                if len(vals) >= 6:
+                    row["w1"] = (vals[-1][1] - vals[-6][1]) * 100
+            else:
+                log(f"[금리] FRED {r['series']}: 자료 없음")
+        except Exception as e:  # noqa: BLE001
+            log(f"[금리] FRED {r['series']}: {e}")
+        res.append(row)
+        time.sleep(0.2)
+    return res
+
+
 # ────────────────────────────────────────────────────────────── 수집
 def collect(now: dt.datetime, state: dict) -> dict:
     load_env()
@@ -490,7 +523,8 @@ def collect(now: dt.datetime, state: dict) -> dict:
     new_list.sort(key=lambda z: z["date"], reverse=True)
     price_date = next((r["asof"] for r in reits if r.get("asof")), None)
     return {"now": now, "reits": reits, "major": major, "new": new_list,
-            "rates": fetch_rates(os.environ.get("ECOS_API_KEY"), today), "price_date": price_date,
+            "rates": fetch_rates(os.environ.get("ECOS_API_KEY"), today),
+            "fred": fetch_fred(os.environ.get("FRED_API_KEY"), today), "price_date": price_date,
             "since_major": since_major, "since_new": since_new}
 
 
@@ -547,19 +581,25 @@ def render(R: dict) -> tuple[str, str]:
     out = [f'<div style="font-family:\'맑은 고딕\',Malgun Gothic,sans-serif;color:#1F1F1F;max-width:960px;">',
            f'<div style="font-size:18px;font-weight:bold;color:#002060;">{html.escape(CONFIG["title"])}</div>',
            f'<div style="font-size:12px;color:#646464;margin:2px 0 8px 0;">공시 기준 {_wd(now.date())} {now:%H:%M} · '
-           f'종가·시가총액 기준 {pdate} · {len(R["reits"])}개 종목 · 출처: 네이버증권(KOSCOM), 한국은행 ECOS</div>']
+           f'종가·시가총액 기준 {pdate} · {len(R["reits"])}개 종목 · 출처: 네이버증권(KOSCOM), 한국은행 ECOS, FRED</div>']
 
     # 0. 금리
-    out.append(f'<div style="{CSS_H}">1. 주요 금리 (한국은행 ECOS)</div>')
-    rows = []
-    for r in R["rates"]:
-        v = f"{r['value']:.3f}%" if r["value"] is not None else "[미입력]"
-        d = r["date"] or "-"
-        if d != "-" and len(d) == 8:
-            d = f"{d[:4]}-{d[4:6]}-{d[6:]}"
-        rows.append([html.escape(r["name"]), (v, "font-weight:bold;"), bp(r["d1"]), bp(r["w1"]), d])
-    out.append(table(["구분", "금리", "전일 대비", "1주 전 대비", "기준일"], rows,
-                     ["left", "right", "right", "right", "center"]))
+    def rate_rows(lst):
+        rows = []
+        for r in lst:
+            v = f"{r['value']:.3f}%" if r["value"] is not None else "[미입력]"
+            d = r["date"] or "-"
+            if d != "-" and len(d) == 8:
+                d = f"{d[:4]}-{d[4:6]}-{d[6:]}"
+            rows.append([html.escape(r["name"]), (v, "font-weight:bold;"), bp(r["d1"]), bp(r["w1"]), d])
+        return rows
+    out.append(f'<div style="{CSS_H}">1. 주요 금리</div>')
+    heads, al = ["구분", "금리", "전일 대비", "1주 전 대비", "기준일"], ["left", "right", "right", "right", "center"]
+    out.append(f'<div style="{CSS_H2}">1) 국내 (한국은행 ECOS)</div>')
+    out.append(table(heads, rate_rows(R["rates"]), al))
+    if R.get("fred"):
+        out.append(f'<div style="{CSS_H2}">2) 미국 (FRED, 미국 현지 기준일)</div>')
+        out.append(table(heads, rate_rows(R["fred"]), al))
 
     # 1. 주요사항 공시
     out.append(f'<div style="{CSS_H}">2. 주요사항 공시</div>')
@@ -677,7 +717,9 @@ def check():
     else:
         print("3) 본문 추출: 최근 목록에 주요사항 공시가 없어 건너뜀")
     rates = fetch_rates(os.environ.get("ECOS_API_KEY"), dt.datetime.now(KST).date())
-    print("4) 금리:", [(r["name"], r["value"], r["date"]) for r in rates])
+    print("4) 국내 금리(ECOS):", [(r["name"], r["value"], r["date"]) for r in rates])
+    fr = fetch_fred(os.environ.get("FRED_API_KEY"), dt.datetime.now(KST).date())
+    print("   미국 금리(FRED):", [(r["name"], r["value"], r["date"]) for r in fr])
     print("5) 메일 설정:", "OK" if all(os.environ.get(k) for k in ("GMAIL_USER", "GMAIL_APP_PASSWORD", "MAIL_TO")) else "미설정(.env)")
     if LOG:
         print("\n경고:", *LOG, sep="\n - ")
@@ -711,9 +753,11 @@ def demo() -> dict:
     for r, (v, d1, w1) in zip(rates, [(2.50, 0, 0), (3.27, 0.0, 1.0), (3.45, -1.0, 2.0), (2.95, 2.1, 5.3),
                                      (3.05, 1.8, 4.9), (3.20, 1.5, 4.0), (3.55, 1.9, 4.7), (9.20, 0.3, 1.2)]):
         r.update(value=v, d1=d1, w1=w1, date=(now - dt.timedelta(days=1)).strftime("%Y%m%d"))
+    fred = [{"name": r["name"], "value": v, "d1": d1, "w1": w1, "date": (now - dt.timedelta(days=2)).strftime("%Y%m%d")}
+            for r, (v, d1, w1) in zip(CONFIG.get("fred", []), [(3.88, 0, -2.0), (3.92, 1.0, -3.0), (3.55, -2.4, -6.1), (4.12, -1.8, -4.4)])]
     new = [{"name": x["name"], **x["disc"][0]} for x in reits]
     LOG.append("[예시] --demo 샘플 데이터입니다. 수치는 실제와 다릅니다.")
-    return {"now": now, "reits": reits, "major": major, "new": new, "rates": rates, "price_date": "2026-11-02",
+    return {"now": now, "reits": reits, "major": major, "new": new, "rates": rates, "fred": fred, "price_date": "2026-11-02",
             "since_major": now - dt.timedelta(days=30), "since_new": now - dt.timedelta(days=5)}
 
 
