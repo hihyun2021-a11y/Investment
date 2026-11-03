@@ -11,6 +11,7 @@ platform/scripts/    new_project.sh · list_projects.sh · validate_project.sh
 platform/standards/  명명 규칙, 단위·지표, 보고 스타일, 법률 체크리스트
 platform/webapp/     신규투자 워크벤치(로컬 웹앱, Claude API로 샘플 양식 기반 문서 생성) — 사용법 platform/webapp/README.md
 projects/<코드명>/    프로젝트별 작업 공간 (REGISTRY.md에 자동 등록)
+platform/roadmap/    운용역 업무 표준화·자동화 로드맵 메모(보관만, 착수 지시 전 작업 금지)
 shared/              시장자료, 과거 딜 선례, 투자 전략 기준(strategy.md)
 ```
 
