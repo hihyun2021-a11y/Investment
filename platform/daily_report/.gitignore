@@ -3,3 +3,4 @@ data/
 report_preview.html
 __pycache__/
 run.log
+env.txt

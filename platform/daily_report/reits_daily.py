@@ -11,7 +11,7 @@
   python reits_daily.py                    # 수집 → 메일 발송(.env 설정 필요)
   python reits_daily.py --demo             # 인터넷 없이 샘플 데이터로 메일 모양만 확인
 
-외부 패키지 없이 Python 3.9+ 기본 기능만 사용한다. 설정: config.json, 비밀값: .env (깃에 올리지 않음).
+외부 패키지 없이 Python 3.9+ 기본 기능만 사용한다. 설정: config.json, 비밀값: env.txt(또는 .env, 깃에 올리지 않음).
 """
 from __future__ import annotations
 
@@ -51,11 +51,12 @@ def log(msg: str):
 
 # ────────────────────────────────────────────────────────────── 공통 도구
 def load_env():
-    """.env(KEY=VALUE) → 환경변수. 이미 설정된 값은 덮어쓰지 않는다."""
-    p = HERE / ".env"
-    if not p.exists():
+    """env.txt 또는 .env(KEY=VALUE) → 환경변수. 이미 설정된 값은 덮어쓰지 않는다.
+    회사 PC에서 .env 확장자가 AnySign4PC(인증서 암호화 파일)와 연결돼 있어 env.txt를 기본으로 쓴다."""
+    p = next((x for x in (HERE / "env.txt", HERE / ".env") if x.exists()), None)
+    if p is None:
         return
-    for line in p.read_text(encoding="utf-8").splitlines():
+    for line in p.read_text(encoding="utf-8-sig").splitlines():
         line = line.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue
@@ -675,7 +676,7 @@ def send(subject: str, html_body: str):
     user, pw = os.environ.get("GMAIL_USER"), os.environ.get("GMAIL_APP_PASSWORD")
     to = [x.strip() for x in os.environ.get("MAIL_TO", "").split(",") if x.strip()]
     if not (user and pw and to):
-        raise SystemExit("GMAIL_USER / GMAIL_APP_PASSWORD / MAIL_TO 를 .env 에 넣어 주세요.")
+        raise SystemExit("GMAIL_USER / GMAIL_APP_PASSWORD / MAIL_TO 를 env.txt 에 넣어 주세요.")
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"] = formataddr((os.environ.get("MAIL_FROM_NAME", "상장리츠 일일보고"), user))
@@ -720,7 +721,7 @@ def check():
     print("4) 국내 금리(ECOS):", [(r["name"], r["value"], r["date"]) for r in rates])
     fr = fetch_fred(os.environ.get("FRED_API_KEY"), dt.datetime.now(KST).date())
     print("   미국 금리(FRED):", [(r["name"], r["value"], r["date"]) for r in fr])
-    print("5) 메일 설정:", "OK" if all(os.environ.get(k) for k in ("GMAIL_USER", "GMAIL_APP_PASSWORD", "MAIL_TO")) else "미설정(.env)")
+    print("5) 메일 설정:", "OK" if all(os.environ.get(k) for k in ("GMAIL_USER", "GMAIL_APP_PASSWORD", "MAIL_TO")) else "미설정(env.txt)")
     if LOG:
         print("\n경고:", *LOG, sep="\n - ")
 
