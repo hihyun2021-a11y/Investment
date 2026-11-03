@@ -16,10 +16,10 @@
 2. **Gmail 앱 비밀번호**: 보낼 Gmail 계정 → Google 계정 관리 → 보안 → 2단계 인증 켜기 → "앱 비밀번호" 16자리 생성.
 3. 이 폴더의 `env.txt`(없으면 `env.example.txt`를 복사)를 메모장으로 열어 Gmail 정보와 받는 주소(`MAIL_TO`)를 채웁니다.
    - `.env` 확장자는 회사 PC에서 AnySign4PC(인증서 암호화 파일)와 연결돼 있어 더블클릭하면 암호 창이 뜹니다. 그래서 `env.txt`를 씁니다(`.env`도 계속 읽음).
-4. **점검**: `run_daily.bat check` (또는 `python reits_daily.py --check`)
+4. `run_daily.bat`을 더블클릭하면 메뉴가 뜹니다. **1번 점검**부터 실행하세요.
    - 시세·공시 목록·공시 본문·금리·메일 설정이 차례로 나옵니다. 경고가 나오면 그 화면을 캡처해 Claude에게 주세요.
-5. **미리보기**: `run_daily.bat preview` → 브라우저에 오늘 메일 모양이 열립니다(발송 안 함).
-6. **자동 실행 등록**: `register_task.bat` 을 한 번 실행 → 평일 07:50 자동 발송.
+5. **2번 미리보기**: 브라우저에 오늘 메일 모양이 열립니다(발송 안 함). **3번**은 지금 바로 발송입니다.
+6. **4번 자동 발송 등록**(또는 `register_task.bat`) → 평일 07:50 자동 발송. 자동 실행 기록은 `run.log`에 남습니다.
    - PC가 켜져 있어야 합니다. 해제: `schtasks /delete /tn ReitsDailyReport /f`
    - PC를 꺼 두고 받으려면 `github_actions_예시.yml` 안내대로 GitHub Actions를 쓸 수 있습니다.
 
