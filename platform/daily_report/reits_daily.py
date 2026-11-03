@@ -670,23 +670,81 @@ def render(R: dict) -> tuple[str, str]:
 
 
 # ────────────────────────────────────────────────────────────── 발송·상태
-def send(subject: str, html_body: str):
-    load_env()
-    user, pw = os.environ.get("GMAIL_USER"), os.environ.get("GMAIL_APP_PASSWORD")
-    to = [x.strip() for x in os.environ.get("MAIL_TO", "").split(",") if x.strip()]
-    if not (user and pw and to):
-        raise SystemExit("GMAIL_USER / GMAIL_APP_PASSWORD / MAIL_TO 를 env.txt 에 넣어 주세요.")
+def _send_outlook(subject: str, html_body: str, to: list[str]):
+    """회사 PC의 Outlook으로 발송(PowerShell COM). Gmail·외부 SMTP가 막힌 경우용."""
+    import subprocess
+    import tempfile
+    tmp = Path(tempfile.mkdtemp(prefix="reits_"))
+    (tmp / "subject.txt").write_text(subject, encoding="utf-8")
+    (tmp / "body.html").write_text(html_body, encoding="utf-8")
+    (tmp / "to.txt").write_text("; ".join(to), encoding="utf-8")
+    ps = tmp / "send.ps1"
+    ps.write_text("""
+$ErrorActionPreference = 'Stop'
+$d = Split-Path -Parent $MyInvocation.MyCommand.Path
+$o = New-Object -ComObject Outlook.Application
+$m = $o.CreateItem(0)
+$m.To = Get-Content -Raw -Encoding UTF8 (Join-Path $d 'to.txt')
+$m.Subject = (Get-Content -Raw -Encoding UTF8 (Join-Path $d 'subject.txt')).Trim()
+$m.HTMLBody = Get-Content -Raw -Encoding UTF8 (Join-Path $d 'body.html')
+$m.Send()
+""", encoding="utf-8-sig")
+    r = subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ps)],
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if r.returncode != 0:
+        raise RuntimeError("Outlook 발송 실패: " + (r.stderr or r.stdout).strip()[:400] +
+                           " — Outlook이 설치·로그인돼 있는지 확인하세요.")
+
+
+def _send_gmail(subject: str, html_body: str, to: list[str]):
+    user = os.environ.get("GMAIL_USER", "").strip()
+    pw = re.sub(r"\s+", "", os.environ.get("GMAIL_APP_PASSWORD", ""))   # 구글이 4자리씩 띄워 보여 주는 공백 제거
+    if not (user and pw):
+        raise SystemExit("GMAIL_USER / GMAIL_APP_PASSWORD 를 env.txt 에 넣어 주세요(또는 MAIL_METHOD=outlook).")
+    if len(pw) != 16 or not pw.isascii():
+        raise SystemExit(f"GMAIL_APP_PASSWORD 가 16자리 앱 비밀번호가 아닙니다(현재 {len(pw)}자). "
+                         "구글 계정 → 보안 → 앱 비밀번호에서 만든 16자리를 넣어 주세요.")
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"] = formataddr((os.environ.get("MAIL_FROM_NAME", "상장리츠 일일보고"), user))
     msg["To"] = ", ".join(to)
     msg.attach(MIMEText(html_to_text(html_body), "plain", "utf-8"))
     msg.attach(MIMEText(html_body, "html", "utf-8"))
+    errors = []
     # PC 이름에 한글이 있으면 EHLO 단계에서 ascii 오류가 나므로 접속 이름을 고정한다
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, local_hostname="localhost",
-                          context=ssl.create_default_context()) as s:
-        s.login(user, pw)
-        s.sendmail(user, to, msg.as_string())
+    for port in (465, 587):
+        try:
+            if port == 465:
+                s = smtplib.SMTP_SSL("smtp.gmail.com", 465, local_hostname="localhost",
+                                     context=ssl.create_default_context(), timeout=30)
+            else:
+                s = smtplib.SMTP("smtp.gmail.com", 587, local_hostname="localhost", timeout=30)
+                s.ehlo()
+                s.starttls(context=ssl.create_default_context())
+                s.ehlo()
+            with s:
+                s.login(user, pw)
+                s.sendmail(user, to, msg.as_string())
+            return
+        except smtplib.SMTPAuthenticationError as e:
+            raise SystemExit(f"Gmail 로그인 거부({e.smtp_code}): 주소·앱 비밀번호를 확인하세요. "
+                             "2단계 인증이 켜져 있어야 앱 비밀번호를 쓸 수 있습니다.") from e
+        except Exception as e:  # noqa: BLE001  (연결 끊김·차단·시간 초과 → 다음 포트)
+            errors.append(f"{port}: {type(e).__name__} {e}")
+    raise SystemExit("Gmail 서버 연결이 끊겼습니다(" + " / ".join(errors) + "). 회사 보안 프로그램·방화벽이 외부 메일 "
+                     "발송을 막는 경우가 많습니다. env.txt 에 MAIL_METHOD=outlook 을 넣으면 회사 Outlook으로 보냅니다.")
+
+
+def send(subject: str, html_body: str):
+    load_env()
+    to = [x.strip() for x in re.split(r"[,;]", os.environ.get("MAIL_TO", "")) if x.strip()]
+    if not to:
+        raise SystemExit("MAIL_TO(받는 사람)를 env.txt 에 넣어 주세요.")
+    method = os.environ.get("MAIL_METHOD", "gmail").strip().lower()
+    if method == "outlook":
+        _send_outlook(subject, html_body, to)
+    else:
+        _send_gmail(subject, html_body, to)
 
 
 def load_state() -> dict:
@@ -722,7 +780,9 @@ def check():
     print("4) 국내 금리(ECOS):", [(r["name"], r["value"], r["date"]) for r in rates])
     fr = fetch_fred(os.environ.get("FRED_API_KEY"), dt.datetime.now(KST).date())
     print("   미국 금리(FRED):", [(r["name"], r["value"], r["date"]) for r in fr])
-    print("5) 메일 설정:", "OK" if all(os.environ.get(k) for k in ("GMAIL_USER", "GMAIL_APP_PASSWORD", "MAIL_TO")) else "미설정(env.txt)")
+    method = os.environ.get("MAIL_METHOD", "gmail").lower()
+    need = ("MAIL_TO",) if method == "outlook" else ("GMAIL_USER", "GMAIL_APP_PASSWORD", "MAIL_TO")
+    print(f"5) 메일 설정({method}):", "OK" if all(os.environ.get(k) for k in need) else "미설정(env.txt)")
     if LOG:
         print("\n경고:", *LOG, sep="\n - ")
 

@@ -23,6 +23,10 @@
    - PC가 켜져 있어야 합니다. 해제: `schtasks /delete /tn ReitsDailyReport /f`
    - PC를 꺼 두고 받으려면 `github_actions_예시.yml` 안내대로 GitHub Actions를 쓸 수 있습니다.
 
+## 발송 방식
+- 기본은 Gmail(`MAIL_METHOD=gmail`). 회사 보안 프로그램이 외부 메일 서버를 막아 "Connection unexpectedly closed"가 나오면 `env.txt`에 `MAIL_METHOD=outlook`을 넣으세요. 회사 PC의 Outlook(로그인 상태)으로 보내며 Gmail 정보는 필요 없습니다.
+- 앱 비밀번호의 띄어쓰기는 자동으로 지웁니다.
+
 ## 설정 바꾸기 (`config.json`)
 - 종목 추가·삭제: `reits` 목록. `code`가 null이면 네이버 종목검색으로 자동으로 찾습니다(현재 대신밸류리츠).
 - 금리 항목: `rates` (ECOS 통계코드 `817Y002` 시장금리 일별, `722Y001` 기준금리), `fred` (FRED 시리즈 ID: DFF·SOFR·DGS2·DGS10 등).
