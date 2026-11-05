@@ -233,6 +233,28 @@ def parse_ics(text: str) -> list[dict]:
 
 
 # ────────────────────────────────────────────────────────────── 제목·메모 해석
+_BULLET = re.compile(r"^[\s\-–—•·▪▫●○◦■□☐☑☒✓✔✗✘*>#\d.)]*")
+
+
+def parse_memo(desc: str) -> dict:
+    """구글 캘린더 설명 → {항목: 내용}. HTML·체크박스(☐)·글머리(-, •) 제거, 콜론 앞 공백 무시."""
+    import html as _h
+    s = desc
+    if "<" in s and ">" in s:
+        s = re.sub(r"(?i)<br\s*/?>|</p>|</li>|</div>", "\n", s)
+        s = re.sub(r"<[^>]+>", "", s)
+    s = _h.unescape(s).replace("\xa0", " ")
+    memo = {}
+    for line in s.splitlines():
+        line = _BULLET.sub("", line).strip()
+        mm = re.match(r"^([^:：]{1,15}?)\s*[:：]\s*(.*)$", line)
+        if mm:
+            key = re.sub(r"\s+", "", mm.group(1))
+            if key and mm.group(2).strip():
+                memo.setdefault(key, mm.group(2).strip())
+    return memo
+
+
 def norm_category(raw: str) -> str | None:
     s = raw.strip()
     for c in CFG["categories"]:
@@ -273,12 +295,16 @@ def parse_event(ev: dict) -> dict | None:
     customer = parts[0].strip() if parts else ""
     customer = load_alias().get(norm_name(customer), customer)   # 예전에 고른 정식 이름
     purpose_raw = parts[1].strip() if len(parts) > 1 else ""
+    memo = parse_memo(ev.get("desc") or "")
+    if memo.get("목적") or memo.get("마케팅목적"):
+        purpose_raw = memo.get("목적") or memo.get("마케팅목적")
     group, purpose, warn = resolve_purpose(purpose_raw)
-    memo = {}
-    for line in (ev.get("desc") or "").splitlines():
-        mm = re.match(r"^\s*([^:：]+)[:：]\s*(.*)$", line)
-        if mm:
-            memo[mm.group(1).strip().replace(" ", "")] = mm.group(2).strip()
+    if purpose_raw and not group:                       # 버튼 이름이 아니면 낱말로 추정
+        guess = next((v for k, v in CFG.get("purpose_keywords", {}).items() if k.lower() in purpose_raw.lower()), None)
+        if guess:
+            group, purpose, _ = resolve_purpose(guess)
+            warn = f"목적 '{purpose_raw}' → '{guess}'로 추정 — 확인"
+        memo.setdefault("주요내용", purpose_raw)       # 제목 설명은 주요내용 후보로
     y, mo, w = week_of(ev["start"])
     warns = [x for x in [warn] if x]
     if not cat:
@@ -383,7 +409,8 @@ def build_results(events: list[dict], st: dict) -> list[dict]:
             warns.append("고객 직급 없음")
         elif e["c_rank"] not in RANKS:
             warns.append(f"직급 '{e['c_rank']}' → 임원급·팀장급·팀원급 중 하나로")
-        ready = e["main"] and e["comment"] and e["purpose"] and e["c_dept"] and e["c_rank"] and not e["warn"]
+        hard = e["warn"] and ("인식 불가" in e["warn"] or "못 찾음" in e["warn"] or "고객명 없음" in e["warn"])
+        ready = e["main"] and e["comment"] and e.get("group") and e["c_dept"] and e["c_rank"] in RANKS and not hard
         res.append({**e, "kind": "결과", "warn": " / ".join(warns), "selected": bool(ready)})
     return res
 
@@ -479,7 +506,13 @@ def approve(items: list[dict], kind: str) -> list[dict]:
             return
         x, y, w, h = box
         var = tk.StringVar(value=_row_val(items[int(row)], key))
-        ent = tk.Entry(tv, textvariable=var)
+        choices = {"purpose_full": [f"{g}-{p_}" for g, ps in CFG["purposes"].items() for p_ in ps],
+                   "category": CFG["categories"], "c_rank": RANKS, "week": [f"{i}주차" for i in range(1, 6)]}.get(key)
+        if choices:
+            ent = ttk.Combobox(tv, textvariable=var, values=choices, state="normal")
+            ent.bind("<<ComboboxSelected>>", lambda _e: done())
+        else:
+            ent = tk.Entry(tv, textvariable=var)
         ent.place(x=x, y=y, width=max(w, 200), height=h)
         ent.focus()
 
