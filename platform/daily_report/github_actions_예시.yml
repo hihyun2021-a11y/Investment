@@ -4,7 +4,7 @@
 name: reits-daily
 on:
   schedule:
-    - cron: "50 22 * * 0-4"   # UTC 22:50 = KST 평일 07:50
+    - cron: "10 0 * * 1-5"   # UTC 00:10 = KST 평일 09:10
   workflow_dispatch:
 jobs:
   run:

@@ -845,7 +845,7 @@ def menu():
     if not env.exists() and (HERE / "env.example.txt").exists():
         env.write_text((HERE / "env.example.txt").read_text(encoding="utf-8"), encoding="utf-8")
     items = {"1": "점검 (접속·수집 확인, 메일 안 보냄)", "2": "미리보기 (오늘 메일을 브라우저로 열기)",
-             "3": "지금 메일 보내기", "4": "평일 07:50 자동 발송 등록", "5": "설정 파일(env.txt) 열기", "0": "끝내기"}
+             "3": "지금 메일 보내기", "4": f"평일 {CONFIG.get('send_time', '09:10')} 자동 발송 등록(시간 변경도 이 메뉴)", "5": "설정 파일(env.txt) 열기", "0": "끝내기"}
     while True:
         print("\n ==========================================")
         print(f"  상장리츠 공시·금리 일일 보고   (Python {sys.version.split()[0]})")
@@ -868,9 +868,9 @@ def menu():
             elif sel == "4":
                 bat = HERE / "run_daily.bat"
                 cmd = (f'schtasks /create /tn ReitsDailyReport /tr "\\"{bat}\\" auto" '
-                       f'/sc weekly /d MON,TUE,WED,THU,FRI /st 07:50 /f')
+                       f'/sc weekly /d MON,TUE,WED,THU,FRI /st {CONFIG.get("send_time", "09:10")} /f')
                 rc = os.system(cmd)
-                print("등록 완료: 평일 07:50 자동 발송 (해제: schtasks /delete /tn ReitsDailyReport /f)" if rc == 0
+                print(f"등록 완료: 평일 {CONFIG.get('send_time', '09:10')} 자동 발송 (해제: schtasks /delete /tn ReitsDailyReport /f)" if rc == 0
                       else "등록 실패 — 이 창을 캡처해 보내 주세요.")
             elif sel == "5":
                 os.system(f'notepad "{env}"')
