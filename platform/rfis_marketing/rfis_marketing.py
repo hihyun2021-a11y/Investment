@@ -179,7 +179,8 @@ def resolve_purpose(raw: str) -> tuple[str | None, str | None, str]:
 
 
 def parse_event(ev: dict) -> dict | None:
-    m = re.match(r"^\s*\[([^\]]+)\]\s*(.*)$", ev.get("summary", ""))
+    title = (ev.get("summary", "") or "").translate(str.maketrans({"［": "[", "］": "]", "【": "[", "】": "]", "〔": "[", "〕": "]"}))
+    m = re.match(r"^[\s\W]*?\[([^\]]+)\]\s*(.*)$", title)
     if not m:
         return None
     cat = norm_category(m.group(1))
@@ -212,15 +213,18 @@ def load_events() -> list[dict]:
     url = os.environ.get("ICS_URL")
     if not url:
         raise SystemExit("settings.txt 에 ICS_URL(구글 캘린더 'iCal 형식의 비공개 주소')을 넣어 주세요.")
-    out, skipped = [], 0
+    out, skipped = [], []
     for ev in parse_ics(fetch_ics(url)):
         e = parse_event(ev)
         if e:
             out.append(e)
         else:
-            skipped += 1
+            skipped.append(f"{ev['start']} '{ev.get('summary', '')}'")
     if skipped:
-        print(f"  (제목이 [마케팅구분]으로 시작하지 않는 일정 {skipped}건은 건너뜀)")
+        print(f"  (제목이 [마케팅구분]으로 시작하지 않아 건너뛴 일정 {len(skipped)}건)")
+        for s in skipped[-5:]:
+            print(f"     - {s}")
+        print("     → 제목 형식: [F.I/LP/대주/증권] 고객명 / 마케팅목적")
     return sorted(out, key=lambda x: x["date"])
 
 
@@ -302,7 +306,9 @@ def _set_val(it, key, val):
 def approve(items: list[dict], kind: str) -> list[dict]:
     """tkinter 승인 창. 체크(✔) 칸 클릭 = 선택 전환, 다른 칸 더블클릭 = 수정."""
     if not items:
-        print(f"\n[{kind}] 새로 입력할 항목이 없습니다.")
+        why = ("결과 등록은 오늘까지 지난 일정(최근 30일) 중 미등록 건만 대상입니다" if kind == "결과"
+               else "계획 등록은 이번 달부터 45일 안의 일정이 대상입니다")
+        print(f"\n[{kind}] 새로 입력할 항목이 없습니다. ({why})")
         return []
     try:
         import tkinter as tk
