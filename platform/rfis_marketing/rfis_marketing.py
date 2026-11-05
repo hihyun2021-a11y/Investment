@@ -73,6 +73,44 @@ def log_row(kind: str, item: dict, status: str, msg: str = ""):
                     item.get("summary_text") or item.get("main", ""), msg])
 
 
+# ────────────────────────────────────────────────────────────── 고객명 느슨한 일치
+ALIAS = DATA / "고객명_별칭.json"
+_CORP = re.compile(r"\(주\)|㈜|주식회사|\(유\)|유한회사|\(재\)|재단법인|\(사\)|사단법인|\(株\)|inc\.?|co\.,?\s*ltd\.?|ltd\.?",
+                   re.I)
+
+
+def norm_name(s: str) -> str:
+    """'삼성증권(주)', '(주)삼성증권', '삼성 증권' → '삼성증권'."""
+    return re.sub(r"[\s·.,\-()]", "", _CORP.sub("", s or "")).lower()
+
+
+def load_alias() -> dict:
+    try:
+        return json.loads(ALIAS.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def save_alias(short: str, official: str):
+    a = load_alias()
+    if a.get(norm_name(short)) != official:
+        a[norm_name(short)] = official
+        DATA.mkdir(parents=True, exist_ok=True)
+        ALIAS.write_text(json.dumps(a, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def rank_names(query: str, names: list[str]) -> list[tuple[int, str]]:
+    """점수 높은 순: 3=정규화 일치, 2=앞부분 일치, 1=포함."""
+    q = norm_name(query)
+    out = []
+    for n in names:
+        k = norm_name(n)
+        s = 3 if k == q else 2 if k.startswith(q) else 1 if q and (q in k or k in q) else 0
+        if s:
+            out.append((s, n))
+    return sorted(out, key=lambda x: (-x[0], len(x[1])))
+
+
 # ────────────────────────────────────────────────────────────── 주차 계산
 def week_of(d: dt.date) -> tuple[int, int, int]:
     """(연, 월, 주차). thursday: 월~일 주를 목요일이 속한 달로 / day7: 1~7일=1주차."""
@@ -187,6 +225,7 @@ def parse_event(ev: dict) -> dict | None:
     rest = m.group(2).strip()
     parts = re.split(r"\s*[/|]\s*", rest, maxsplit=1)
     customer = parts[0].strip() if parts else ""
+    customer = load_alias().get(norm_name(customer), customer)   # 예전에 고른 정식 이름
     purpose_raw = parts[1].strip() if len(parts) > 1 else ""
     group, purpose, warn = resolve_purpose(purpose_raw)
     memo = {}
@@ -466,6 +505,37 @@ class RFIS:
         exact = [i for i in range(opts.count()) if opts.nth(i).inner_text().strip() == value]
         opts.nth(exact[0] if exact else 0).click()
 
+    def pick_customer(self, scope, name: str) -> str:
+        """고객 선택: '삼성증권'만 써도 '삼성증권(주)'를 찾아 고른다. 고른 이름을 돌려준다."""
+        p = self.page
+        self._control(scope, "고객명").click()
+        base = _CORP.sub("", name).strip() or name
+        query = next((v for k, v in CFG.get("customer_alias", {}).items() if norm_name(k) == norm_name(base)), base)
+        p.keyboard.type(query, delay=40)
+        time.sleep(1.2)
+        opts = p.get_by_role("option")
+        if opts.count() == 0:
+            opts = p.locator("[data-part='item'], li, tr").filter(has_text=query[:2])
+        texts = [opts.nth(i).inner_text().strip().split("\n")[0] for i in range(min(opts.count(), 50))]
+        ranked = rank_names(query, texts) or rank_names(name, texts)
+        if not ranked:
+            p.keyboard.press("Escape")
+            raise LookupError(f"고객정보에서 '{name}'을(를) 찾지 못했습니다 — RFIS 고객정보에 먼저 등록하거나 이름을 확인하세요")
+        best = [n for s, n in ranked if s == ranked[0][0]]
+        choice = best[0]
+        if len(best) > 1 and ranked[0][0] < 3:
+            print(f"\n  '{name}'과(와) 비슷한 고객이 여러 개입니다:")
+            for i, n in enumerate(best[:9], 1):
+                print(f"    {i}. {n}")
+            a = input("  번호를 고르세요(Enter=1번): ").strip()
+            choice = best[int(a) - 1] if a.isdigit() and 0 < int(a) <= len(best[:9]) else best[0]
+        idx = texts.index(choice)
+        opts.nth(idx).click()
+        save_alias(name, choice)
+        if choice != name:
+            print(f"  · 고객명 '{name}' → '{choice}'")
+        return choice
+
     def purpose(self, scope, group, purpose):
         p = self.page
         self._control(scope, "마케팅 목적").click()
@@ -538,7 +608,7 @@ class RFIS:
         p = self.page
         p.get_by_role("button", name="결과 등록").click()
         d = self.drawer("결과 등록")
-        self.pick(d, "고객명", it["customer"], typed=True)
+        it["customer"] = self.pick_customer(d, it["customer"])
         self.fill(d, "완료일", it["date"], placeholder="YYYY-MM-DD")
         p.keyboard.press("Escape")
         self.pick(d, "완료주차", f"{it['week']}주차")
