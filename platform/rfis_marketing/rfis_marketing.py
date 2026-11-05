@@ -111,6 +111,52 @@ def rank_names(query: str, names: list[str]) -> list[tuple[int, str]]:
     return sorted(out, key=lambda x: (-x[0], len(x[1])))
 
 
+CONTACTS = DATA / "고객담당자.json"
+RANKS = ["임원급", "팀장급", "팀원급"]
+
+
+def load_contacts() -> dict:
+    try:
+        return json.loads(CONTACTS.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def save_contact(customer: str, name: str, dept: str, rank: str):
+    c = load_contacts()
+    c[norm_name(customer)] = {"customer": customer, "name": name, "dept": dept, "rank": rank}
+    DATA.mkdir(parents=True, exist_ok=True)
+    CONTACTS.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def import_result_excel(path: Path) -> int:
+    """RFIS '마케팅 결과 관리' 엑셀 다운로드 파일 → 고객별 최근 담당자·부서·직급 사전."""
+    import openpyxl
+    ws = openpyxl.load_workbook(path, data_only=True, read_only=True).active
+    head = None
+    c = load_contacts()
+    n = 0
+    rows = list(ws.iter_rows(values_only=True))
+    for row in rows:
+        vals = [str(x).strip() if x is not None else "" for x in row]
+        if head is None:
+            if "고객명" in vals and "완료일" in vals:
+                head = {k: i for i, k in enumerate(vals)}
+            continue
+        g = lambda k: vals[head[k]] if k in head and head[k] < len(vals) else ""  # noqa: E731
+        cust, dept, rank = g("고객명"), g("고객담당자부서"), g("고객담당자직급")
+        if not cust or not dept or not rank or "," in cust:
+            continue
+        key = norm_name(cust)
+        if key in c and c[key].get("date", "") >= g("완료일"):
+            continue
+        c[key] = {"customer": cust, "name": g("고객담당자명"), "dept": dept, "rank": rank, "date": g("완료일")}
+        n += 1
+    DATA.mkdir(parents=True, exist_ok=True)
+    CONTACTS.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
+    return n
+
+
 # ────────────────────────────────────────────────────────────── 주차 계산
 def week_of(d: dt.date) -> tuple[int, int, int]:
     """(연, 월, 주차). thursday: 월~일 주를 목요일이 속한 달로 / day7: 1~7일=1주차."""
@@ -244,7 +290,30 @@ def parse_event(ev: dict) -> dict | None:
             "group": group, "purpose": purpose, "main": memo.get("주요내용", ""),
             "comment": memo.get("코멘트", ""),
             "staff": memo.get("당사담당자") or CFG.get("default_staff", ""),
+            **_contact_from_memo(memo, customer),
             "warn": " / ".join(warns), "recurring": bool(ev.get("rrule"))}
+
+
+def _contact_from_memo(memo: dict, customer: str) -> dict:
+    """메모 '고객담당자: 이름 / 부서 / 직급' 또는 '담당자명:'·'부서명:'·'직급:' 각각. 없으면 지난 등록 이력."""
+    name = dept = rank = ""
+    raw = memo.get("고객담당자") or memo.get("고객측담당자") or ""
+    if raw:
+        parts = [x.strip() for x in re.split(r"[/|,]", raw) if x.strip()]
+        for x in parts:
+            if x in RANKS or x.endswith("급"):
+                rank = x
+            elif not name:
+                name = x
+            elif not dept:
+                dept = x
+    name = memo.get("담당자명") or memo.get("고객담당자명") or name
+    dept = memo.get("부서명") or memo.get("부서") or memo.get("고객담당자부서") or dept
+    rank = memo.get("직급") or memo.get("고객담당자직급") or rank
+    if not (dept and rank):
+        hist = load_contacts().get(norm_name(customer)) or {}
+        name, dept, rank = name or hist.get("name", ""), dept or hist.get("dept", ""), rank or hist.get("rank", "")
+    return {"c_name": name, "c_dept": dept, "c_rank": rank}
 
 
 def load_events() -> list[dict]:
@@ -308,17 +377,24 @@ def build_results(events: list[dict], st: dict) -> list[dict]:
             warns.append("주요내용 없음")
         if not e["comment"]:
             warns.append("코멘트 없음")
-        res.append({**e, "kind": "결과", "warn": " / ".join(warns),
-                    "selected": bool(e["main"] and e["comment"] and e["purpose"] and not e["warn"])})
+        if not e["c_dept"]:
+            warns.append("고객 부서명 없음")
+        if not e["c_rank"]:
+            warns.append("고객 직급 없음")
+        elif e["c_rank"] not in RANKS:
+            warns.append(f"직급 '{e['c_rank']}' → 임원급·팀장급·팀원급 중 하나로")
+        ready = e["main"] and e["comment"] and e["purpose"] and e["c_dept"] and e["c_rank"] and not e["warn"]
+        res.append({**e, "kind": "결과", "warn": " / ".join(warns), "selected": bool(ready)})
     return res
 
 
 # ────────────────────────────────────────────────────────────── 승인 창
 PLAN_COLS = [("category", "마케팅구분", 150), ("month_label", "월", 70)] + \
             [(f"w{i}", f"{i}주차", 150) for i in range(1, 6)] + [("warn", "확인 필요", 260)]
-RES_COLS = [("date", "완료일", 85), ("week", "주차", 45), ("category", "마케팅구분", 130), ("customer", "고객명", 130),
-            ("purpose_full", "마케팅목적", 190), ("staff", "당사담당자", 110), ("main", "주요내용", 220),
-            ("comment", "코멘트", 220), ("warn", "확인 필요", 220)]
+RES_COLS = [("date", "완료일", 85), ("week", "주차", 45), ("category", "마케팅구분", 125), ("customer", "고객명", 120),
+            ("c_name", "고객담당자", 75), ("c_dept", "부서명", 100), ("c_rank", "직급", 60),
+            ("purpose_full", "마케팅목적", 180), ("staff", "당사담당자", 100), ("main", "주요내용", 200),
+            ("comment", "코멘트", 200), ("warn", "확인 필요", 200)]
 
 
 def _row_val(it, key):
@@ -453,10 +529,12 @@ class RFIS:
         PROFILE.mkdir(parents=True, exist_ok=True)
         try:
             self.ctx = self.pw.chromium.launch_persistent_context(str(PROFILE), channel="chrome", headless=False,
-                                                                  no_viewport=True, args=["--start-maximized"])
+                                                                  no_viewport=True, args=["--start-maximized"],
+                                                                  chromium_sandbox=True)
         except Exception:  # noqa: BLE001  크롬이 없으면 Edge
             self.ctx = self.pw.chromium.launch_persistent_context(str(PROFILE), channel="msedge", headless=False,
-                                                                  no_viewport=True, args=["--start-maximized"])
+                                                                  no_viewport=True, args=["--start-maximized"],
+                                                                  chromium_sandbox=True)
         self.page = self.ctx.pages[0] if self.ctx.pages else self.ctx.new_page()
         self.page.set_default_timeout(8000)
 
@@ -511,7 +589,10 @@ class RFIS:
         if typed:
             p.keyboard.type(value, delay=40)
             time.sleep(0.8)
-        opts = p.get_by_role("option").filter(has_text=value)
+        time.sleep(0.3)
+        opts = p.get_by_role("option", name=value, exact=True)
+        if opts.count() == 0:
+            opts = p.get_by_role("option").filter(has_text=value)
         if opts.count() == 0:
             opts = p.locator("[data-part='item'], li").filter(has_text=value)
         if opts.count() == 0:
@@ -619,22 +700,139 @@ class RFIS:
                 return
         raise LookupError("월 선택 달력에서 월을 찾지 못했습니다 — 메뉴 4번(화면 구조 저장) 결과를 보내 주세요")
 
+    def modal(self, has_text: str):
+        d = self.page.locator('[role="dialog"], [role="alertdialog"]').filter(has_text=has_text).last
+        d.wait_for(timeout=8000)
+        return d
+
+    def _check_row(self, row):
+        for sel in ("label", "[data-part='control']", "input[type='checkbox']"):
+            loc = row.locator(sel)
+            if loc.count():
+                try:
+                    loc.first.click(timeout=3000)
+                    return
+                except Exception:  # noqa: BLE001
+                    continue
+        row.locator("td").first.click()
+
+    def choose_customer(self, d, name: str) -> str:
+        """고객 선택: 팝업 검색(조회) → 행 체크 → 선택 완료. 고른 정식 이름을 돌려준다."""
+        p = self.page
+        d.get_by_placeholder("고객 선택").first.click()
+        m = self.modal("선택 완료")
+        base = _CORP.sub("", name).strip() or name
+        query = next((v for k, v in CFG.get("customer_alias", {}).items() if norm_name(k) == norm_name(base)), base)
+        box = m.get_by_placeholder("고객명으로 검색").first
+        box.fill(query)
+        m.get_by_role("button", name="조회").first.click()
+        time.sleep(1.5)
+        rows = m.locator("tbody tr")
+        if rows.count() == 0:
+            rows = m.locator("[role='row']")
+        cands = []
+        for i in range(min(rows.count(), 60)):
+            tds = rows.nth(i).locator("td")
+            cells = [tds.nth(j).inner_text().strip() for j in range(tds.count())]
+            cname = cells[3] if len(cells) >= 5 else max(cells, key=lambda c: len(rank_names(query, [c])) and len(c), default="")
+            if cname:
+                cands.append((i, cname))
+        ranked = rank_names(query, [c for _, c in cands]) or rank_names(name, [c for _, c in cands])
+        if not ranked:
+            m.get_by_role("button", name="닫기").first.click()
+            raise LookupError(f"고객정보에서 '{name}'(검색어 '{query}')을(를) 찾지 못했습니다 — RFIS 고객정보에 먼저 등록하세요")
+        best = [n for s_, n in ranked if s_ == ranked[0][0]]
+        choice = best[0]
+        if len(set(best)) > 1:
+            print(f"\n  '{name}'과(와) 비슷한 고객이 여러 개입니다:")
+            for i, n in enumerate(best[:9], 1):
+                print(f"    {i}. {n}")
+            a = input("  번호를 고르세요(Enter=1번): ").strip()
+            choice = best[int(a) - 1] if a.isdigit() and 0 < int(a) <= len(best[:9]) else best[0]
+        idx = next(i for i, c in cands if c == choice)
+        self._check_row(rows.nth(idx))
+        m.get_by_role("button", name="선택 완료").first.click()
+        save_alias(name, choice)
+        if choice != name:
+            print(f"  · 고객명 '{name}' → '{choice}'")
+        return choice
+
+    def fill_contact(self, it: dict):
+        """'고객사별 담당자 등록' 팝업: 담당자명·부서명·직급 → 담당자 등록 완료."""
+        p = self.page
+        m = self.modal("고객사별 담당자 등록")
+        if it.get("c_name"):
+            m.get_by_placeholder("예: 김철수").first.fill(it["c_name"])
+        m.get_by_placeholder("예: 투자운용팀").first.fill(it["c_dept"])
+        m.get_by_text("직급 선택").first.click()
+        opt = p.get_by_role("option", name=it["c_rank"], exact=True)
+        if opt.count() == 0:
+            opt = p.locator("[data-part='item']").filter(has_text=it["c_rank"])
+        opt.first.click()
+        m.get_by_role("button", name="담당자 등록 완료").first.click()
+        m.wait_for(state="hidden", timeout=8000)
+
+    def choose_staff(self, d, names: list[str]):
+        """당사담당자 선택: 검색 팝업(체크 → 선택 완료) 또는 드롭다운, 화면 형태에 맞춰 처리."""
+        p = self.page
+        for nm in names:
+            d.get_by_placeholder("당사담당자 선택").first.click()
+            time.sleep(0.8)
+            dlg = p.locator('[role="dialog"]').filter(has=p.get_by_role("button", name="선택 완료")).last
+            if dlg.count() and dlg.is_visible():
+                box = dlg.locator("input[type='text'], input:not([type])").first
+                box.fill(nm)
+                btn = dlg.get_by_role("button", name="조회")
+                if btn.count():
+                    btn.first.click()
+                else:
+                    p.keyboard.press("Enter")
+                time.sleep(1.2)
+                row = dlg.locator("tbody tr, [role='row']").filter(has_text=nm)
+                if row.count() == 0:
+                    dlg.get_by_role("button", name="닫기").first.click()
+                    raise LookupError(f"당사담당자 '{nm}'을(를) 찾지 못했습니다")
+                self._check_row(row.first)
+                dlg.get_by_role("button", name="선택 완료").first.click()
+            else:
+                p.keyboard.type(nm, delay=40)
+                time.sleep(0.8)
+                opt = p.get_by_role("option").filter(has_text=nm)
+                if opt.count() == 0:
+                    p.keyboard.press("Escape")
+                    raise LookupError(f"당사담당자 '{nm}'을(를) 찾지 못했습니다")
+                opt.first.click()
+                p.keyboard.press("Escape")
+
     def add_result(self, it: dict) -> bool:
         p = self.page
         p.get_by_role("button", name="결과 등록").click()
         d = self.drawer("결과 등록")
-        it["customer"] = self.pick_customer(d, it["customer"])
-        self.fill(d, "완료일", it["date"], placeholder="YYYY-MM-DD")
+        # 1) 고객명 → 담당자 등록
+        it["customer"] = self.choose_customer(d, it["customer"])
+        self.fill_contact(it)
+        # 2) 완료일(키인)
+        dt_in = d.get_by_placeholder("YYYY-MM-DD").first
+        dt_in.click()
+        dt_in.fill(it["date"])
+        p.keyboard.press("Tab")
         p.keyboard.press("Escape")
+        # 3) 완료주차·4) 마케팅구분 드롭다운
         self.pick(d, "완료주차", f"{it['week']}주차")
         self.pick(d, "마케팅구분", it["category"])
+        # 5) 마케팅 목적 버튼
         self.purpose(d, it["group"], it["purpose"])
-        for name in [x.strip() for x in re.split(r"[,/]", it["staff"]) if x.strip()]:
-            self.pick(d, "당사담당자", name, typed=True)
-            p.keyboard.press("Escape")
-        self.fill(d, "주요 내용", it["main"], placeholder="주요 내용 입력")
-        self.fill(d, "코멘트", it["comment"])
-        return self.save(d, f"결과 {it['date']} {it['customer']}")
+        # 당사담당자
+        names = [x.strip() for x in re.split(r"[,/]", it["staff"]) if x.strip()]
+        if names:
+            self.choose_staff(d, names)
+        # 6) 주요내용·코멘트 직접 입력
+        d.get_by_placeholder("주요 내용 입력").first.fill(it["main"])
+        d.get_by_placeholder("주요 논의내용", exact=False).first.fill(it["comment"])
+        saved = self.save(d, f"결과 {it['date']} {it['customer']}")
+        if saved:
+            save_contact(it["customer"], it.get("c_name", ""), it["c_dept"], it["c_rank"])
+        return saved
 
 
 def run(kind: str):
@@ -731,7 +929,8 @@ def menu():
         (HERE / "settings.txt").write_text((HERE / "settings.example.txt").read_text(encoding="utf-8"), encoding="utf-8")
     items = {"1": "미리보기 (구글 캘린더 → 입력안 확인, RFIS 접속 안 함)", "2": "계획 등록 (승인 후 RFIS 입력)",
              "3": "결과 등록 (승인 후 RFIS 입력)", "4": "RFIS 화면 구조 저장 (처음 한 번 / 오류 시)",
-             "5": "설정 파일(settings.txt) 열기", "6": "등록 이력 열기", "0": "끝내기"}
+             "5": "설정 파일(settings.txt) 열기", "6": "등록 이력 열기",
+             "7": "고객담당자 사전 만들기 (RFIS 결과관리 엑셀 다운로드 파일 가져오기)", "0": "끝내기"}
     while True:
         print("\n ==========================================\n  RFIS 마케팅 캘린더 자동 입력\n ==========================================")
         for k, v in items.items():
@@ -753,6 +952,12 @@ def menu():
                     os.startfile(str(LOGCSV))  # noqa: S606
                 else:
                     print("아직 등록 이력이 없습니다.")
+            elif sel == "7":
+                xs = sorted(HERE.glob("*.xlsx"), key=lambda x: x.stat().st_mtime, reverse=True)
+                if not xs:
+                    print("이 폴더에 RFIS '마케팅 결과 관리' → [엑셀 다운로드] 파일(.xlsx)을 넣고 다시 실행하세요.")
+                else:
+                    print(f"  {xs[0].name} → 고객 {import_result_excel(xs[0])}곳의 최근 담당자·부서·직급을 저장했습니다.")
             elif sel == "0":
                 return
         except SystemExit as e:
