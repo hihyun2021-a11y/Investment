@@ -86,9 +86,19 @@ def week_of(d: dt.date) -> tuple[int, int, int]:
 
 # ────────────────────────────────────────────────────────────── 구글 캘린더(iCal)
 def fetch_ics(url: str) -> str:
+    import urllib.error
+    url = url.strip().strip('"').strip("'")
+    if "calendar.google.com" in url and "/private-" not in url:
+        raise SystemExit("ICS_URL이 'iCal 형식의 비공개 주소'가 아닙니다(공개 주소·embed 주소는 404가 납니다). "
+                         "캘린더 설정 → 캘린더 통합 → 'iCal 형식의 비공개 주소'(…/private-…/basic.ics)를 넣어 주세요.")
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read().decode("utf-8", errors="replace")
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.read().decode("utf-8", errors="replace")
+    except urllib.error.HTTPError as e:
+        raise SystemExit(f"구글 캘린더 주소 오류(HTTP {e.code}). settings.txt 의 ICS_URL을 다시 복사해 넣어 주세요 — "
+                         "'iCal 형식의 비공개 주소'를 통째로(…/basic.ics까지) 붙여야 합니다. "
+                         "비공개 주소를 '재설정'했다면 새 주소로 바꿔야 합니다.") from e
 
 
 def _unescape(v: str) -> str:
