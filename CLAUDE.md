@@ -12,6 +12,7 @@ platform/standards/  명명 규칙, 단위·지표, 보고 스타일, 법률 체
 platform/webapp/     신규투자 워크벤치(로컬 웹앱, Claude API로 샘플 양식 기반 문서 생성) — 사용법 platform/webapp/README.md
 projects/<코드명>/    프로젝트별 작업 공간 (REGISTRY.md에 자동 등록)
 platform/daily_report/ 상장리츠 공시·금리 일일 메일(네이버증권+ECOS, 회사 PC 작업 스케줄러) — 사용법 README.md
+platform/rfis_marketing/ 구글 캘린더 → RFIS 마케팅 캘린더 계획·결과 자동 입력(승인 창, Playwright) — 사용법 README.md
 platform/roadmap/    운용역 업무 표준화·자동화 로드맵 메모(보관만, 착수 지시 전 작업 금지)
 shared/              시장자료, 과거 딜 선례, 투자 전략 기준(strategy.md)
 ```
