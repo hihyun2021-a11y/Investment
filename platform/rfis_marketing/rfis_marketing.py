@@ -357,7 +357,11 @@ def approve(items: list[dict], kind: str) -> list[dict]:
     cols = PLAN_COLS if kind == "계획" else RES_COLS
     root = tk.Tk()
     root.title(f"RFIS {kind} 등록 — 입력 전 승인")
-    root.geometry("1500x560")
+    root.geometry("1500x560+40+40")
+    root.attributes("-topmost", True)            # 명령 창 뒤에 숨지 않도록 맨 앞에
+    root.after(800, lambda: root.attributes("-topmost", False))
+    root.lift()
+    root.focus_force()
     tk.Label(root, text=f"아래 내용으로 RFIS [{kind} 등록]에 입력합니다.  ✔ 칸 클릭: 선택/해제 · 다른 칸 더블클릭: 수정",
              font=("맑은 고딕", 11)).pack(anchor="w", padx=10, pady=6)
     frame = tk.Frame(root)
@@ -627,7 +631,7 @@ def run(kind: str):
     print("\n[1/3] 구글 캘린더를 읽는 중...")
     events = load_events()
     items = build_plans(events, st) if kind == "계획" else build_results(events, st)
-    print(f"[2/3] 입력안 {len(items)}건 — 승인 창을 확인하세요.")
+    print(f"[2/3] 입력안 {len(items)}건 — 승인 창이 열립니다. 안 보이면 작업 표시줄에서 'RFIS {kind} 등록' 창을 누르세요.")
     chosen = approve(items, kind)
     if not chosen:
         print("  입력할 항목이 없거나 취소했습니다.")
