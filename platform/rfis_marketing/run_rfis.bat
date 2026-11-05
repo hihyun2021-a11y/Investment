@@ -15,12 +15,12 @@ if not exist ".venv\Scripts\python.exe" (
   %PY% -m venv .venv
   if errorlevel 1 goto :fail
 )
-if not exist ".venv\installed_v2.ok" (
+if not exist ".venv\installed_v3.ok" (
   echo [setup 2/2] Installing Playwright. This takes 1-2 minutes, only once ...
   ".venv\Scripts\python.exe" -m pip install --upgrade pip >nul
   ".venv\Scripts\python.exe" -m pip install -r requirements.txt
   if errorlevel 1 goto :pipfail
-  echo ok> ".venv\installed_v2.ok"
+  echo ok> ".venv\installed_v3.ok"
 )
 ".venv\Scripts\python.exe" rfis_marketing.py
 goto :eof

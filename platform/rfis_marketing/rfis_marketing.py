@@ -157,6 +157,38 @@ def import_result_excel(path: Path) -> int:
     return n
 
 
+KR_SERVICE = "RFIS-marketing-autoinput"
+
+
+def get_login() -> tuple[str, str]:
+    """RFIS 아이디는 settings.txt(RFIS_ID), 비밀번호는 Windows 자격 증명 관리자(keyring)에서 읽는다."""
+    load_settings()
+    uid = os.environ.get("RFIS_ID", "")
+    pwd = ""
+    try:
+        import keyring
+        if not uid:
+            uid = keyring.get_password(KR_SERVICE, "__id__") or ""
+        if uid:
+            pwd = keyring.get_password(KR_SERVICE, uid) or ""
+    except Exception:  # noqa: BLE001
+        pass
+    return uid, pwd
+
+
+def set_login():
+    import getpass
+    import keyring
+    uid = input("  RFIS 아이디: ").strip()
+    pwd = getpass.getpass("  RFIS 비밀번호(입력해도 화면에 안 보임): ")
+    if not (uid and pwd):
+        print("  취소했습니다.")
+        return
+    keyring.set_password(KR_SERVICE, "__id__", uid)
+    keyring.set_password(KR_SERVICE, uid, pwd)
+    print("  Windows 자격 증명 관리자에 암호화해 저장했습니다. 다음부터 자동 로그인합니다.")
+
+
 # ────────────────────────────────────────────────────────────── 주차 계산
 def week_of(d: dt.date) -> tuple[int, int, int]:
     """(연, 월, 주차). thursday: 월~일 주를 목요일이 속한 달로 / day7: 1~7일=1주차."""
@@ -296,6 +328,7 @@ def parse_event(ev: dict) -> dict | None:
     customer = load_alias().get(norm_name(customer), customer)   # 예전에 고른 정식 이름
     purpose_raw = parts[1].strip() if len(parts) > 1 else ""
     memo = parse_memo(ev.get("desc") or "")
+    title_rest = purpose_raw
     if memo.get("목적") or memo.get("마케팅목적"):
         purpose_raw = memo.get("목적") or memo.get("마케팅목적")
     group, purpose, warn = resolve_purpose(purpose_raw)
@@ -316,6 +349,7 @@ def parse_event(ev: dict) -> dict | None:
             "group": group, "purpose": purpose, "main": memo.get("주요내용", ""),
             "comment": memo.get("코멘트", ""),
             "staff": memo.get("당사담당자") or CFG.get("default_staff", ""),
+            "project": memo.get("프로젝트") or memo.get("대상자산") or memo.get("펀드") or "", "title_rest": title_rest,
             **_contact_from_memo(memo, customer),
             "warn": " / ".join(warns), "recurring": bool(ev.get("rrule"))}
 
@@ -571,17 +605,40 @@ class RFIS:
         self.page = self.ctx.pages[0] if self.ctx.pages else self.ctx.new_page()
         self.page.set_default_timeout(8000)
 
+    def _auto_login(self) -> bool:
+        p = self.page
+        pw_box = p.locator("input[type='password']:visible")
+        if not pw_box.count():
+            return False
+        uid, pwd = get_login()
+        if not (uid and pwd):
+            return False
+        user_box = p.locator("input[type='text']:visible, input[type='email']:visible, input:not([type]):visible").first
+        user_box.fill(uid)
+        pw_box.first.fill(pwd)
+        btn = p.get_by_role("button", name=re.compile("로그인|Login|LOGIN|Sign in"))
+        if btn.count():
+            btn.first.click()
+        else:
+            pw_box.first.press("Enter")
+        p.wait_for_load_state("networkidle", timeout=15000)
+        print("  · RFIS 자동 로그인")
+        return True
+
     def open(self):
         p = self.page
         p.goto(CFG["rfis_url"])
         for _ in range(3):
             try:
-                p.get_by_text("마케팅 캘린더", exact=True).first.wait_for(timeout=8000)
-                if p.get_by_role("button", name="계획 등록").count():
-                    return
+                p.get_by_role("button", name="계획 등록").first.wait_for(timeout=8000)
+                return
             except Exception:  # noqa: BLE001
                 pass
-            input("\n  ▶ 브라우저에서 RFIS에 로그인한 뒤 이 창에서 Enter를 누르세요 (로그인은 다음부터 유지됩니다)...")
+            if self._auto_login():
+                p.goto(CFG["rfis_url"])
+                continue
+            input("\n  ▶ 브라우저에서 RFIS에 로그인한 뒤 이 창에서 Enter를 누르세요 "
+                  "(메뉴 8번에 로그인 정보를 저장하면 다음부터 자동 로그인)...")
             p.goto(CFG["rfis_url"])
         raise RuntimeError("마케팅 캘린더 화면을 열지 못했습니다.")
 
@@ -624,26 +681,87 @@ class RFIS:
         el.fill(value)
 
     def pick(self, scope, label, value, typed=False):
-        """드롭다운: 열고 → (필요시 검색어 입력) → 옵션 클릭."""
+        """드롭다운(Ark select): 트리거의 aria-controls 목록만 열어 글자가 같은 항목 클릭. 실패하면 숨은 <select>로 지정."""
         p = self.page
-        self._control(scope, label).click()
-        if typed:
-            p.keyboard.type(value, delay=40)
-            time.sleep(0.8)
-        time.sleep(0.4)
-        opts = p.locator("[data-scope='select'][data-part='item']:visible").filter(
-            has=p.get_by_text(value, exact=True))
-        if opts.count() == 0:
-            opts = p.get_by_role("option", name=value, exact=True)
-        if opts.count() == 0:
-            opts = p.get_by_role("option").filter(has_text=value)
-        if opts.count() == 0:
-            opts = p.locator("[data-part='item'], li").filter(has_text=value)
-        if opts.count() == 0:
+        trig = self._control(scope, label)
+        cid = trig.get_attribute("aria-controls") if trig.count() else None
+        for attempt in range(2):
+            trig.click()
+            time.sleep(0.5)
+            box = p.locator(f'[id="{cid}"]') if cid else p.locator("[role='listbox']:visible").last
+            items = box.locator("[data-part='item']")
+            n = items.count()
+            for i in range(n):
+                it = items.nth(i)
+                txt = it.inner_text().strip()
+                if txt == value or it.get_attribute("data-value") == value:
+                    it.scroll_into_view_if_needed()
+                    it.click()
+                    time.sleep(0.3)
+                    if (trig.inner_text().strip() or "").find(value) >= 0:
+                        return
+                    break
             p.keyboard.press("Escape")
-            raise LookupError(f"'{label}' 목록에 '{value}'이(가) 없습니다")
-        exact = [i for i in range(opts.count()) if opts.nth(i).inner_text().strip() == value]
-        opts.nth(exact[0] if exact else 0).click()
+            time.sleep(0.3)
+        # 대체: 숨은 네이티브 <select>
+        sel = self.row(scope, label).locator("select")
+        if sel.count():
+            sel.first.select_option(label=value, force=True)
+            sel.first.dispatch_event("change")
+            time.sleep(0.3)
+            if value in trig.inner_text():
+                return
+        raise LookupError(f"'{label}'에서 '{value}'을(를) 고르지 못했습니다")
+
+    def pick_project(self, d, it: dict):
+        """목적 선택 뒤 '프로젝트'(대상자산/펀드) 칸이 생기면 제목·메모 글자와 가장 많이 겹치는 항목을 고른다."""
+        p = self.page
+        time.sleep(0.8)
+        known = {"고객명", "완료일", "완료주차", "마케팅구분", "마케팅 목적", "당사담당자", "주요 내용", "코멘트", "대표 부서"}
+        roots = d.locator("[data-scope='field'][data-part='root']")
+        target = None
+        for i in range(roots.count()):
+            lab = roots.nth(i).locator("label p").first
+            if not lab.count():
+                continue
+            name = lab.inner_text().strip()
+            if name not in known and any(k in name for k in ("프로젝트", "대상", "펀드", "블라인드", "자산")):
+                target = (name, roots.nth(i))
+                break
+        if not target:
+            return
+        label, root = target
+        hint = it.get("project") or f"{it.get('title_rest', '')} {it.get('main', '')}"
+        trig = root.locator("[role='combobox'], [data-scope='popover'][data-part='trigger'], input")
+        trig = trig.first if trig.count() else root.locator("xpath=./div[last()]//p").first
+        cid = trig.get_attribute("aria-controls")
+        trig.click()
+        time.sleep(0.8)
+        box = p.locator(f'[id="{cid}"]') if cid else p.locator("[role='listbox']:visible, [data-scope='dialog'][data-part='content'][data-state='open']").last
+        items = box.locator("[data-part='item'], [role='option'], tbody tr")
+        texts = [items.nth(i).inner_text().strip().replace("\n", " ") for i in range(min(items.count(), 200))]
+
+        def overlap(a, b):
+            a, b = norm_name(a), norm_name(b)
+            best = 0
+            for i in range(len(a)):
+                for j in range(i + 2, len(a) + 1):
+                    if a[i:j] in b:
+                        best = max(best, j - i)
+            return best
+        scored = sorted(((overlap(x, hint), i, x) for i, x in enumerate(texts) if x), reverse=True)
+        if not scored or scored[0][0] < 2:
+            p.keyboard.press("Escape")
+            print(f"  · '{label}' 칸: 제목과 겹치는 항목이 없어 비워 둡니다(필수면 메모에 '프로젝트: 이름' 추가)")
+            return
+        _, idx, choice = scored[0]
+        row = items.nth(idx)
+        cb = row.locator("label, input[type='checkbox']")
+        (cb.first if cb.count() else row).click()
+        done = box.get_by_role("button", name="선택 완료")
+        if done.count():
+            done.first.click()
+        print(f"  · {label}: '{choice}' 선택")
 
     def pick_customer(self, scope, name: str) -> str:
         """고객 선택: '삼성증권'만 써도 '삼성증권(주)'를 찾아 고른다. 고른 이름을 돌려준다."""
@@ -698,15 +816,30 @@ class RFIS:
             if a == "s":
                 self.back(scope)
                 return False
+        p = self.page
         scope.get_by_role("button", name="저장").first.click()
-        scope.wait_for(state="hidden", timeout=15000)
-        return True
+        for _ in range(30):                       # 최대 15초
+            time.sleep(0.5)
+            conf = (p.locator("[data-scope='dialog'][data-part='content'][data-state='open'], [role='alertdialog']")
+                    .filter(has_not_text="결과 등록").filter(has_not_text="계획 등록")
+                    .filter(has=p.get_by_role("button", name=re.compile("^(확인|저장|예)$"))))
+            if conf.count() and conf.last.is_visible():   # 저장 확인 창(등록 창 자신은 제외)
+                conf.last.get_by_role("button", name=re.compile("^(확인|저장|예)$")).last.click()
+            if not scope.is_visible():
+                return True
+        errs = scope.locator("[data-part='error-text'], [role='alert']").all_inner_texts()
+        raise RuntimeError("저장되지 않았습니다 — " + (" / ".join(e for e in errs if e.strip()) or "필수 항목을 확인하세요"))
 
     def back(self, scope):
+        p = self.page
         try:
-            self.page.keyboard.press("Escape")
+            p.keyboard.press("Escape")
             if scope.is_visible():
                 scope.locator("button").first.click()   # 좌상단 ← 버튼
+            time.sleep(0.6)
+            warn = p.locator("[data-scope='dialog'][data-part='content'][data-state='open']").filter(has_text="작성 중인 내용")
+            if warn.count():
+                warn.last.get_by_role("button", name="닫기", exact=True).first.click()
         except Exception:  # noqa: BLE001
             pass
 
@@ -882,6 +1015,7 @@ class RFIS:
         self.pick(d, "마케팅구분", it["category"])
         # 5) 마케팅 목적 버튼
         self.purpose(d, it["group"], it["purpose"])
+        self.pick_project(d, it)
         # 당사담당자
         names = [x.strip() for x in re.split(r"[,/]", it["staff"]) if x.strip()]
         if names:
@@ -990,7 +1124,8 @@ def menu():
     items = {"1": "미리보기 (구글 캘린더 → 입력안 확인, RFIS 접속 안 함)", "2": "계획 등록 (승인 후 RFIS 입력)",
              "3": "결과 등록 (승인 후 RFIS 입력)", "4": "RFIS 화면 구조 저장 (처음 한 번 / 오류 시)",
              "5": "설정 파일(settings.txt) 열기", "6": "등록 이력 열기",
-             "7": "고객담당자 사전 만들기 (RFIS 결과관리 엑셀 다운로드 파일 가져오기)", "0": "끝내기"}
+             "7": "고객담당자 사전 만들기 (RFIS 결과관리 엑셀 다운로드 파일 가져오기)",
+             "8": "RFIS 로그인 정보 저장 (자동 로그인, Windows 자격 증명에 암호화 저장)", "0": "끝내기"}
     while True:
         print("\n ==========================================\n  RFIS 마케팅 캘린더 자동 입력\n ==========================================")
         for k, v in items.items():
@@ -1018,6 +1153,8 @@ def menu():
                     print("이 폴더에 RFIS '마케팅 결과 관리' → [엑셀 다운로드] 파일(.xlsx)을 넣고 다시 실행하세요.")
                 else:
                     print(f"  {xs[0].name} → 고객 {import_result_excel(xs[0])}곳의 최근 담당자·부서·직급을 저장했습니다.")
+            elif sel == "8":
+                set_login()
             elif sel == "0":
                 return
         except SystemExit as e:
