@@ -355,6 +355,9 @@ def approve(items: list[dict], kind: str) -> list[dict]:
     except ImportError:
         return _approve_console(items, kind)
     cols = PLAN_COLS if kind == "계획" else RES_COLS
+    for it in items:
+        print(f"   {'✔' if it['selected'] else '·'} {it.get('month_label') or it.get('date')} {it['category']} "
+              f"{it.get('customer', '') or it.get('summary_text', '')}" + (f"  ⚠ {it['warn']}" if it["warn"] else ""))
     root = tk.Tk()
     root.title(f"RFIS {kind} 등록 — 입력 전 승인")
     root.geometry("1500x560+40+40")
@@ -416,8 +419,16 @@ def approve(items: list[dict], kind: str) -> list[dict]:
     result = {"ok": False}
     bar = tk.Frame(root)
     bar.pack(fill="x", padx=10, pady=8)
+    def on_ok():
+        if not any(it["selected"] for it in items):
+            from tkinter import messagebox
+            messagebox.showwarning("선택 없음", "체크(✔)된 항목이 없습니다.\n맨 왼쪽 ✔ 칸을 클릭해 입력할 항목을 선택하세요.\n"
+                                   "'확인 필요'에 적힌 내용(예: 주요내용 없음)은 해당 칸을 더블클릭해 채울 수 있습니다.", parent=root)
+            return
+        result.update(ok=True)
+        root.destroy()
     tk.Button(bar, text="  승인 — 선택 항목 입력 시작  ", bg="#C00000", fg="white", font=("맑은 고딕", 11, "bold"),
-              command=lambda: (result.update(ok=True), root.destroy())).pack(side="right")
+              command=on_ok).pack(side="right")
     tk.Button(bar, text="  취소  ", font=("맑은 고딕", 11), command=root.destroy).pack(side="right", padx=8)
     refresh()
     root.mainloop()
@@ -634,7 +645,8 @@ def run(kind: str):
     print(f"[2/3] 입력안 {len(items)}건 — 승인 창이 열립니다. 안 보이면 작업 표시줄에서 'RFIS {kind} 등록' 창을 누르세요.")
     chosen = approve(items, kind)
     if not chosen:
-        print("  입력할 항목이 없거나 취소했습니다.")
+        if items:
+            print("  승인 창을 닫아 입력을 취소했습니다.")
         return
     print(f"[3/3] RFIS에 {len(chosen)}건 입력을 시작합니다. 크롬 창을 건드리지 마세요.")
     r = RFIS()
