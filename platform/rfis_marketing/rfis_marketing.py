@@ -562,20 +562,28 @@ class RFIS:
     # 도우미 ─────────────────────────────────
     def drawer(self, title: str):
         p = self.page
-        d = p.locator('[role="dialog"]').filter(has_text=title).last
+        d = p.locator("[data-scope='dialog'][data-part='content'][data-state='open']").filter(
+            has=p.locator("p", has_text=title)).last
         d.wait_for(timeout=8000)
         return d
 
     @staticmethod
     def row(scope, label: str):
-        x = (f"xpath=.//*[normalize-space(text())='{label}']"
-             f"/ancestor::*[.//input or .//textarea or .//*[@role='combobox']][1]")
-        return scope.locator(x).first
+        """RFIS(Chakra UI) 입력 행: <div data-scope=field data-part=root><label>…<p>라벨</p>…</label> 컨트롤 </div>"""
+        root = scope.locator(f"xpath=.//*[@data-scope='field' and @data-part='root']"
+                             f"[./label//p[normalize-space(.)='{label}']]")
+        if root.count():
+            return root.first
+        return scope.locator(f"xpath=.//*[normalize-space(text())='{label}']"
+                             f"/ancestor::*[.//input or .//textarea or .//*[@role='combobox']][1]").first
 
     def _control(self, scope, label):
         r = self.row(scope, label)
-        c = r.locator("[role='combobox'], input:not([type='hidden']):not([aria-hidden='true']), textarea")
-        return c.first
+        c = r.locator("[role='combobox'], [data-scope='popover'][data-part='trigger'], "
+                      "input:not([type='hidden']):not([aria-hidden='true']), textarea")
+        if c.count():
+            return c.first
+        return r.locator("xpath=./div[last()]//p").first      # '고객 선택'·'당사담당자 선택' 같은 버튼형 칸
 
     def fill(self, scope, label, value, placeholder=None):
         el = scope.get_by_placeholder(placeholder).first if placeholder else self._control(scope, label)
@@ -589,8 +597,11 @@ class RFIS:
         if typed:
             p.keyboard.type(value, delay=40)
             time.sleep(0.8)
-        time.sleep(0.3)
-        opts = p.get_by_role("option", name=value, exact=True)
+        time.sleep(0.4)
+        opts = p.locator("[data-scope='select'][data-part='item']:visible").filter(
+            has=p.get_by_text(value, exact=True))
+        if opts.count() == 0:
+            opts = p.get_by_role("option", name=value, exact=True)
         if opts.count() == 0:
             opts = p.get_by_role("option").filter(has_text=value)
         if opts.count() == 0:
@@ -635,9 +646,16 @@ class RFIS:
     def purpose(self, scope, group, purpose):
         p = self.page
         self._control(scope, "마케팅 목적").click()
-        chip = p.locator(f"xpath=//*[normalize-space(text())='{group}']/following::*[normalize-space(text())='{purpose}'][1]")
+        time.sleep(0.5)
+        pop = p.locator("[data-scope='popover'][data-part='content'][data-state='open']").last
+        chip = pop.locator(f"xpath=.//p[normalize-space(.)='{group}']/ancestor::div[1]/following-sibling::div[1]"
+                           f"//p[normalize-space(.)='{purpose}']")
+        if chip.count() == 0:
+            chip = p.locator(f"xpath=//p[normalize-space(.)='{group}']/following::p[normalize-space(.)='{purpose}'][1]")
         chip.first.click()
-        p.keyboard.press("Escape")
+        time.sleep(0.3)
+        if pop.is_visible():
+            p.keyboard.press("Escape")
 
     def save(self, scope, desc: str) -> bool:
         if CFG.get("confirm_each", True):
@@ -701,7 +719,8 @@ class RFIS:
         raise LookupError("월 선택 달력에서 월을 찾지 못했습니다 — 메뉴 4번(화면 구조 저장) 결과를 보내 주세요")
 
     def modal(self, has_text: str):
-        d = self.page.locator('[role="dialog"], [role="alertdialog"]').filter(has_text=has_text).last
+        d = self.page.locator("[data-scope='dialog'][data-part='content'][data-state='open'], [role='alertdialog']"
+                              ).filter(has_text=has_text).last
         d.wait_for(timeout=8000)
         return d
 
@@ -719,7 +738,7 @@ class RFIS:
     def choose_customer(self, d, name: str) -> str:
         """고객 선택: 팝업 검색(조회) → 행 체크 → 선택 완료. 고른 정식 이름을 돌려준다."""
         p = self.page
-        d.get_by_placeholder("고객 선택").first.click()
+        self.row(d, "고객명").get_by_text("고객 선택", exact=True).first.click()
         m = self.modal("선택 완료")
         base = _CORP.sub("", name).strip() or name
         query = next((v for k, v in CFG.get("customer_alias", {}).items() if norm_name(k) == norm_name(base)), base)
@@ -776,9 +795,12 @@ class RFIS:
         """당사담당자 선택: 검색 팝업(체크 → 선택 완료) 또는 드롭다운, 화면 형태에 맞춰 처리."""
         p = self.page
         for nm in names:
-            d.get_by_placeholder("당사담당자 선택").first.click()
+            r = self.row(d, "당사담당자")
+            tgt = r.get_by_text("당사담당자 선택", exact=True)
+            (tgt.first if tgt.count() else r.locator("xpath=./div[last()]").first).click()
             time.sleep(0.8)
-            dlg = p.locator('[role="dialog"]').filter(has=p.get_by_role("button", name="선택 완료")).last
+            dlg = p.locator("[data-scope='dialog'][data-part='content'][data-state='open']").filter(
+                has=p.get_by_role("button", name="선택 완료")).last
             if dlg.count() and dlg.is_visible():
                 box = dlg.locator("input[type='text'], input:not([type])").first
                 box.fill(nm)
@@ -805,6 +827,11 @@ class RFIS:
                 p.keyboard.press("Escape")
 
     def add_result(self, it: dict) -> bool:
+        miss = [n for n, v in (("마케팅구분", it["category"] in CFG["categories"]), ("마케팅목적", it.get("group") and it.get("purpose")),
+                               ("고객 부서명", it.get("c_dept")), ("고객 직급", it.get("c_rank") in RANKS),
+                               ("주요내용", it.get("main")), ("코멘트", it.get("comment"))) if not v]
+        if miss:
+            raise ValueError("필수값 없음: " + ", ".join(miss) + " — 승인 창에서 채운 뒤 다시 실행하세요")
         p = self.page
         p.get_by_role("button", name="결과 등록").click()
         d = self.drawer("결과 등록")
@@ -812,7 +839,7 @@ class RFIS:
         it["customer"] = self.choose_customer(d, it["customer"])
         self.fill_contact(it)
         # 2) 완료일(키인)
-        dt_in = d.get_by_placeholder("YYYY-MM-DD").first
+        dt_in = self.row(d, "완료일").locator("input").first
         dt_in.click()
         dt_in.fill(it["date"])
         p.keyboard.press("Tab")
@@ -827,8 +854,8 @@ class RFIS:
         if names:
             self.choose_staff(d, names)
         # 6) 주요내용·코멘트 직접 입력
-        d.get_by_placeholder("주요 내용 입력").first.fill(it["main"])
-        d.get_by_placeholder("주요 논의내용", exact=False).first.fill(it["comment"])
+        self.row(d, "주요 내용").locator("textarea, input").first.fill(it["main"][:500])
+        self.row(d, "코멘트").locator("textarea, input").first.fill(it["comment"][:500])
         saved = self.save(d, f"결과 {it['date']} {it['customer']}")
         if saved:
             save_contact(it["customer"], it.get("c_name", ""), it["c_dept"], it["c_rank"])
