@@ -14,6 +14,7 @@ projects/<코드명>/    프로젝트별 작업 공간 (REGISTRY.md에 자동 �
 platform/daily_report/ 상장리츠 공시·금리 일일 메일(네이버증권+ECOS, 회사 PC 작업 스케줄러) — 사용법 README.md
 platform/rfis_marketing/ 구글 캘린더 → RFIS 마케팅 캘린더 계획·결과 자동 입력(승인 창, Playwright) — 사용법 README.md
 platform/roadmap/    운용역 업무 표준화·자동화 로드맵 메모(보관만, 착수 지시 전 작업 금지)
+platform/dealflow/   딜플로우: 신규 딜 1건 단계별 자동 처리(1~13단계 누적, 현재 1단계: Teaser·실사 RFP·선정 기안·일정 체크리스트·WGL·메일 이슈로그·협의용 재무모델) — 사용법 README.md, 계획 ROADMAP.md
 shared/              시장자료, 과거 딜 선례, 투자 전략 기준(strategy.md)
 ```
 

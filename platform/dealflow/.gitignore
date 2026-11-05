@@ -1,0 +1,6 @@
+deals/
+settings.txt
+.venv/
+__pycache__/
+vendor/
+samples/안양물류센터/
