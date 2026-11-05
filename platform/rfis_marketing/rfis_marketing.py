@@ -604,6 +604,40 @@ class RFIS:
                                                                   chromium_sandbox=True)
         self.page = self.ctx.pages[0] if self.ctx.pages else self.ctx.new_page()
         self.page.set_default_timeout(8000)
+        self.discarding = False
+        warn = self.page.locator("[data-scope='dialog'][data-part='content'][data-state='open']").filter(
+            has_text="작성 중인 내용이 있습니다")
+        try:
+            self.page.add_locator_handler(warn, self._on_unsaved_warning, no_wait_after=True)
+        except Exception:  # noqa: BLE001  (구버전 Playwright)
+            pass
+
+    def _on_unsaved_warning(self, loc=None):
+        """등록 창 위에 '작성 중인 내용이 있습니다'가 뜨면: 입력 중이면 X로 닫아 계속 작성, 버리는 중이면 [닫기]."""
+        p = self.page
+        loc = loc or p.locator("[data-scope='dialog'][data-part='content'][data-state='open']").filter(
+            has_text="작성 중인 내용이 있습니다").last
+        try:
+            if self.discarding:
+                loc.get_by_role("button", name="닫기", exact=True).first.click()
+                return
+            x = loc.locator("button").filter(has_not_text=re.compile(r"\S"))   # 글자 없는 X 버튼
+            if x.count():
+                x.first.click()
+            else:
+                p.keyboard.press("Escape")
+        except Exception:  # noqa: BLE001
+            p.keyboard.press("Escape")
+
+    def soft_close(self, scope=None):
+        """드롭다운·팝오버를 Esc 대신 등록 창 제목을 클릭해 닫는다(Esc는 RFIS가 '창 닫기'로 받음)."""
+        p = self.page
+        try:
+            d = scope or p.locator("[data-scope='dialog'][data-part='content'][data-state='open']").last
+            head = d.locator("p", has_text=re.compile("^(결과 등록|계획 등록)$"))
+            (head.first if head.count() else d).click(position={"x": 5, "y": 5})
+        except Exception:  # noqa: BLE001
+            pass
 
     def _auto_login(self) -> bool:
         p = self.page
@@ -701,7 +735,7 @@ class RFIS:
                     if (trig.inner_text().strip() or "").find(value) >= 0:
                         return
                     break
-            p.keyboard.press("Escape")
+            self.soft_close(scope)
             time.sleep(0.3)
         # 대체: 숨은 네이티브 <select>
         sel = self.row(scope, label).locator("select")
@@ -751,7 +785,7 @@ class RFIS:
             return best
         scored = sorted(((overlap(x, hint), i, x) for i, x in enumerate(texts) if x), reverse=True)
         if not scored or scored[0][0] < 2:
-            p.keyboard.press("Escape")
+            self.soft_close(d)
             print(f"  · '{label}' 칸: 제목과 겹치는 항목이 없어 비워 둡니다(필수면 메모에 '프로젝트: 이름' 추가)")
             return
         _, idx, choice = scored[0]
@@ -806,7 +840,7 @@ class RFIS:
         chip.first.click()
         time.sleep(0.3)
         if pop.is_visible():
-            p.keyboard.press("Escape")
+            self.soft_close(scope)
 
     def save(self, scope, desc: str) -> bool:
         if CFG.get("confirm_each", True):
@@ -832,6 +866,7 @@ class RFIS:
 
     def back(self, scope):
         p = self.page
+        self.discarding = True
         try:
             p.keyboard.press("Escape")
             if scope.is_visible():
@@ -842,6 +877,8 @@ class RFIS:
                 warn.last.get_by_role("button", name="닫기", exact=True).first.click()
         except Exception:  # noqa: BLE001
             pass
+        finally:
+            self.discarding = False
 
     def dump(self, name: str):
         DATA.mkdir(parents=True, exist_ok=True)
@@ -987,10 +1024,10 @@ class RFIS:
                 time.sleep(0.8)
                 opt = p.get_by_role("option").filter(has_text=nm)
                 if opt.count() == 0:
-                    p.keyboard.press("Escape")
+                    self.soft_close(d)
                     raise LookupError(f"당사담당자 '{nm}'을(를) 찾지 못했습니다")
                 opt.first.click()
-                p.keyboard.press("Escape")
+                self.soft_close(d)
 
     def add_result(self, it: dict) -> bool:
         miss = [n for n, v in (("마케팅구분", it["category"] in CFG["categories"]), ("마케팅목적", it.get("group") and it.get("purpose")),
@@ -1009,7 +1046,7 @@ class RFIS:
         dt_in.click()
         dt_in.fill(it["date"])
         p.keyboard.press("Tab")
-        p.keyboard.press("Escape")
+        self.soft_close(d)
         # 3) 완료주차·4) 마케팅구분 드롭다운
         self.pick(d, "완료주차", f"{it['week']}주차")
         self.pick(d, "마케팅구분", it["category"])
