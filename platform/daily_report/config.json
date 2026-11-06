@@ -162,5 +162,12 @@
       "series": "DGS10"
     }
   ],
-  "send_time": "09:10"
+  "send_time": "09:10",
+  "dart": {
+    "_설명": "OpenDART 재무 지표(시가배당수익률·가중평균 차입금리·LTV·P/NAV). env.txt 의 DART_API_KEY 필요. enabled=false 로 끄기",
+    "enabled": true
+  },
+  "dart_override": {
+    "_설명": "자동 추출이 틀린 종목만 값 덮어쓰기. 예) \"SK리츠\": {\"settle_months\": 3, \"debt_won\": 1500000000000, \"rate\": 4.2, \"ip_won\": 0, \"eq_won\": 0, \"deposit_won\": 0, \"dart_corp_code\": \"01234567\"} — 금액은 원 단위, rate는 %"
+  }
 }

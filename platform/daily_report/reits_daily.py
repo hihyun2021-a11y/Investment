@@ -4,12 +4,14 @@
 데이터
 - 공시·종가·시가총액: 네이버증권(KOSCOM 제공). 모바일 API → 데스크톱 화면 순으로 시도한다.
 - 금리: 한국은행 ECOS Open API (ECOS_API_KEY) — 기준금리·CD·CP·국고채·회사채 / FRED (FRED_API_KEY) — 미 연방기금·SOFR·국채 2·10년.
+- 재무 지표: OpenDART (DART_API_KEY) — 최근 사업·반기보고서 주석과 배당결정 공시로 시가배당수익률·가중평균 차입금리·LTV·P/NAV (dart_metrics.py)
 
 실행
   python reits_daily.py --check            # 접속·파싱 점검(메일 발송 안 함). 처음 한 번 꼭 실행
   python reits_daily.py --preview          # 수집 후 report_preview.html 저장(발송 안 함)
   python reits_daily.py                    # 수집 → 메일 발송(.env 설정 필요)
   python reits_daily.py --demo             # 인터넷 없이 샘플 데이터로 메일 모양만 확인
+  python reits_daily.py --dart             # DART 재무 지표만 계산해 화면에 표시(근거: data/dart_trace/)
 
 외부 패키지 없이 Python 3.9+ 기본 기능만 사용한다. 설정: config.json, 비밀값: env.txt(또는 .env, 깃에 올리지 않음).
 """
@@ -522,10 +524,30 @@ def collect(now: dt.datetime, state: dict) -> dict:
             new_list.append({"name": r["name"], **cand[0]})
     new_list.sort(key=lambda z: z["date"], reverse=True)
     price_date = next((r["asof"] for r in reits if r.get("asof")), None)
-    return {"now": now, "reits": reits, "major": major, "new": new_list,
-            "rates": fetch_rates(os.environ.get("ECOS_API_KEY"), today),
+    rates = fetch_rates(os.environ.get("ECOS_API_KEY"), today)
+    return {"now": now, "reits": reits, "major": major, "new": new_list, "rates": rates,
             "fred": fetch_fred(os.environ.get("FRED_API_KEY"), today), "price_date": price_date,
-            "since_major": since_major, "since_new": since_new}
+            "since_major": since_major, "since_new": since_new, "dart": collect_dart(reits, rates)}
+
+
+def _cd(rates) -> float | None:
+    return next((r["value"] for r in rates or [] if "CD" in r["name"] and r["value"] is not None), None)
+
+
+def collect_dart(reits: list[dict], rates=None) -> list[dict] | None:
+    """DART 재무 지표(키가 없거나 꺼져 있으면 None)."""
+    key = os.environ.get("DART_API_KEY")
+    if not CONFIG.get("dart", {}).get("enabled", True):
+        return None
+    if not key:
+        log("[DART] DART_API_KEY 없음 — 재무 지표 표는 생략")
+        return None
+    import dart_metrics
+    try:
+        return dart_metrics.collect_all(key, reits, CONFIG.get("dart_override") or {}, log, _cd(rates))
+    except Exception as e:  # noqa: BLE001
+        log(f"[DART] {e}")
+        return None
 
 
 # ────────────────────────────────────────────────────────────── HTML
@@ -601,8 +623,15 @@ def render(R: dict) -> tuple[str, str]:
         out.append(f'<div style="{CSS_H2}">2) 미국 (FRED, 미국 현지 기준일)</div>')
         out.append(table(heads, rate_rows(R["fred"]), al))
 
-    # 1. 주요사항 공시
-    out.append(f'<div style="{CSS_H}">2. 주요사항 공시</div>')
+    # 2. 재무 지표 (DART)
+    sec = 2
+    if R.get("dart"):
+        out.append(f'<div style="{CSS_H}">2. 리츠별 재무 지표 (DART 최근 사업·반기보고서)</div>')
+        out.append(dart_table(R))
+        sec = 3
+
+    # 3. 주요사항 공시
+    out.append(f'<div style="{CSS_H}">{sec}. 주요사항 공시</div>')
     out.append(f'<div style="font-size:12px;color:#646464;">최근 {CONFIG["major_window_days"]}일({_d(R["since_major"])}~) · '
                f'같은 건의 정정공시는 최신 것만 표시 · 본문에서 자동 추출(빈칸은 링크에서 확인)</div>')
     spec = {
@@ -632,7 +661,7 @@ def render(R: dict) -> tuple[str, str]:
         out.append('<div style="font-size:13px;margin:6px 0 12px 2px;">해당 기간 주요사항 공시 없음</div>')
 
     # 2. 리츠별 공시
-    out.append(f'<div style="{CSS_H}">3. 리츠별 공시사항</div>')
+    out.append(f'<div style="{CSS_H}">{sec + 1}. 리츠별 공시사항</div>')
     out.append(f'<div style="{CSS_H2}">1) 새 공시 {len(R["new"])}건 · 최근 {CONFIG["new_window_days"]}일({_d(R["since_new"])}~) · '
                f'리츠별 최신 1건 · {"·".join(CONFIG["exclude_new_titles"])} 제외</div>')
     if R["new"]:
@@ -667,6 +696,37 @@ def render(R: dict) -> tuple[str, str]:
     out.append('<div style="font-size:11px;color:#8C8C8C;margin-top:8px;">본 메일은 공개 정보를 자동 취합한 참고자료이며, '
                '세부 내용은 공시 원문을 확인하시기 바랍니다.</div></div>')
     return subj, "".join(out)
+
+
+def dart_table(R: dict) -> str:
+    by = {m["name"]: m for m in R["dart"]}
+    f = lambda v, d=2, u="": "-" if v is None else f"{v:,.{d}f}{u}"  # noqa: E731
+    rows = []
+    for r in R["reits"]:
+        m = by.get(r["name"])
+        if not m:
+            continue
+        rate = f(m.get("rate"), 2, "%") + (" [추정]" if m.get("rate_est") and m.get("rate") is not None else "")
+        div = f(m.get("yield"), 2, "%")
+        if m.get("dps"):
+            div += f'<br><span style="font-size:11px;color:#646464;">{m["dps"]:,.0f}원/{m.get("months") or "?"}개월</span>'
+        ltv = f(m.get("ltv"), 1, "%")
+        nav = f(m.get("nav_eok"), 0)
+        pn = f(m.get("pnav"), 2, "x")
+        rep = html.escape(m.get("report") or "-")
+        note = html.escape(" · ".join(m.get("flags") or [])) or "-"
+        rows.append([f'<b>{html.escape(r["name"])}</b>', (div, "text-align:right;"), (rate, "text-align:right;"),
+                     (ltv, "text-align:right;"), (nav, "text-align:right;"), (pn, "text-align:right;font-weight:bold;white-space:nowrap;"),
+                     (f'<span style="font-size:11px;">{rep}</span>', "text-align:left;"),
+                     (f'<span style="font-size:11px;color:#646464;">{note}</span>', "text-align:left;")])
+    head = ["종목", "시가배당수익률(연환산)", "가중평균 차입금리", "LTV", "NAV(억원)", "P/NAV", "기준 보고서", "비고"]
+    note = ('<div style="font-size:11px;color:#646464;margin:-8px 0 12px 0;line-height:1.5;">'
+            '시가배당수익률 = 최근 부동산투자회사금전배당결정 1주당 배당금 × (12 ÷ 결산기간 개월) ÷ 전일 종가 · '
+            '가중평균 차입금리 = 「재무제표 주석」 차입금·사채 당기말 장부금액 가중평균(변동금리는 CD(91일)+가산금리 [추정]) · '
+            'LTV = 차입금·사채 ÷ (종속·관계기업투자 장부금액 + 투자부동산 공정가치(서열체계, 없으면 장부금액)) · '
+            'NAV = 위 자산가치 − 차입금·사채 − 재무상태표 임대보증금 · P/NAV = 시가총액(보통주) ÷ NAV. '
+            '자동 추출값이므로 의사결정에 쓰기 전 보고서 원문을 확인하세요(근거: data/dart_trace/).</div>')
+    return table(head, rows, ["left", "right", "right", "right", "right", "right", "left", "left"]) + note
 
 
 # ────────────────────────────────────────────────────────────── 발송·상태
@@ -780,6 +840,13 @@ def check():
     print("4) 국내 금리(ECOS):", [(r["name"], r["value"], r["date"]) for r in rates])
     fr = fetch_fred(os.environ.get("FRED_API_KEY"), dt.datetime.now(KST).date())
     print("   미국 금리(FRED):", [(r["name"], r["value"], r["date"]) for r in fr])
+    if os.environ.get("DART_API_KEY"):
+        q = fetch_quote(code)
+        res = collect_dart([{"name": "코람코라이프인프라리츠", "code": code, "close": q["close"], "mcap_eok": q["mcap_eok"]}], rates)
+        print("   DART 재무 지표:", res)
+        print("   근거:", HERE / "data" / "dart_trace")
+    else:
+        print("   DART 재무 지표: DART_API_KEY 미설정(env.txt)")
     method = os.environ.get("MAIL_METHOD", "gmail").lower()
     need = ("MAIL_TO",) if method == "outlook" else ("GMAIL_USER", "GMAIL_APP_PASSWORD", "MAIL_TO")
     print(f"5) 메일 설정({method}):", "OK" if all(os.environ.get(k) for k in need) else "미설정(env.txt)")
@@ -819,8 +886,36 @@ def demo() -> dict:
             for r, (v, d1, w1) in zip(CONFIG.get("fred", []), [(3.88, 0, -2.0), (3.92, 1.0, -3.0), (3.55, -2.4, -6.1), (4.12, -1.8, -4.4)])]
     new = [{"name": x["name"], **x["disc"][0]} for x in reits]
     LOG.append("[예시] --demo 샘플 데이터입니다. 수치는 실제와 다릅니다.")
+    dart = [
+        {"name": "SK리츠", "yield": 6.31, "dps": 77.5, "months": 3, "rate": 4.21, "rate_est": False, "ltv": 58.2, "nav_eok": 16890,
+         "pnav": 0.88, "report": "사업보고서 (2026.06) (2026.09.12 공시)", "flags": []},
+        {"name": "코람코라이프인프라리츠", "yield": 7.06, "dps": 125, "months": 6, "rate": 4.95, "rate_est": True, "ltv": 61.4,
+         "nav_eok": 4120, "pnav": 0.84, "report": "사업보고서 (2026.06) (2026.09.10 공시)", "flags": ["변동금리는 CD 2.87%+가산금리로 추정"]},
+        {"name": "NH올원리츠", "yield": None, "dps": None, "months": None, "rate": 5.12, "rate_est": False, "ltv": 55.0,
+         "nav_eok": 1610, "pnav": 0.82, "report": "반기보고서 (2026.06) (2026.08.14 공시)", "flags": ["최근 배당결정 공시 없음"]}]
     return {"now": now, "reits": reits, "major": major, "new": new, "rates": rates, "fred": fred, "price_date": "2026-11-02",
-            "since_major": now - dt.timedelta(days=30), "since_new": now - dt.timedelta(days=5)}
+            "since_major": now - dt.timedelta(days=30), "since_new": now - dt.timedelta(days=5), "dart": dart}
+
+
+def dart_only():
+    """DART 재무 지표만 계산해 화면에 표 형태로 출력(메일 발송 안 함)."""
+    load_env()
+    rates = fetch_rates(os.environ.get("ECOS_API_KEY"), dt.datetime.now(KST).date())
+    reits = []
+    for r in CONFIG["reits"]:
+        code = r.get("code")
+        if code:
+            q = fetch_quote(code)
+            reits.append({"name": r["name"], "code": code, "close": q["close"], "mcap_eok": q["mcap_eok"]})
+    res = collect_dart(reits, rates) or []
+    f = lambda v, d=2: "-" if v is None else f"{v:,.{d}f}"  # noqa: E731
+    print(f"\n{'종목':<16}{'배당수익률':>9}{'차입금리':>9}{'LTV':>8}{'NAV(억)':>10}{'P/NAV':>7}  비고")
+    for m in res:
+        print(f"{m['name'][:14]:<16}{f(m.get('yield')):>9}{f(m.get('rate')):>9}{f(m.get('ltv'), 1):>8}"
+              f"{f(m.get('nav_eok'), 0):>10}{f(m.get('pnav')):>7}  {' · '.join(m.get('flags') or [])}")
+    print(f"\n계산 근거(종목별): {HERE / 'data' / 'dart_trace'}")
+    if LOG:
+        print("\n경고:", *LOG, sep="\n - ")
 
 
 def run_once(preview: bool):
@@ -845,7 +940,8 @@ def menu():
     if not env.exists() and (HERE / "env.example.txt").exists():
         env.write_text((HERE / "env.example.txt").read_text(encoding="utf-8"), encoding="utf-8")
     items = {"1": "점검 (접속·수집 확인, 메일 안 보냄)", "2": "미리보기 (오늘 메일을 브라우저로 열기)",
-             "3": "지금 메일 보내기", "4": f"평일 {CONFIG.get('send_time', '09:10')} 자동 발송 등록(시간 변경도 이 메뉴)", "5": "설정 파일(env.txt) 열기", "0": "끝내기"}
+             "3": "지금 메일 보내기", "4": f"평일 {CONFIG.get('send_time', '09:10')} 자동 발송 등록(시간 변경도 이 메뉴)", "5": "설정 파일(env.txt) 열기",
+             "6": "DART 재무 지표만 계산(배당수익률·차입금리·LTV·P/NAV, 근거 폴더 열기)", "0": "끝내기"}
     while True:
         print("\n ==========================================")
         print(f"  상장리츠 공시·금리 일일 보고   (Python {sys.version.split()[0]})")
@@ -874,6 +970,12 @@ def menu():
                       else "등록 실패 — 이 창을 캡처해 보내 주세요.")
             elif sel == "5":
                 os.system(f'notepad "{env}"')
+            elif sel == "6":
+                print("\n[DART] 처음 실행은 보고서 원문을 받느라 3~10분 걸립니다(다음부터는 새 보고서만 받음)...")
+                dart_only()
+                tr = HERE / "data" / "dart_trace"
+                if os.name == "nt" and tr.exists():
+                    os.startfile(str(tr))  # noqa: S606
             elif sel == "0":
                 return
         except SystemExit as e:
@@ -890,7 +992,10 @@ def main():
     ap.add_argument("--check", action="store_true", help="접속·파싱 점검(발송 안 함)")
     ap.add_argument("--preview", action="store_true", help="수집 후 report_preview.html 저장(발송 안 함)")
     ap.add_argument("--demo", action="store_true", help="샘플 데이터로 report_preview.html 저장")
+    ap.add_argument("--dart", action="store_true", help="DART 재무 지표만 계산해 표시")
     a = ap.parse_args()
+    if a.dart:
+        return dart_only()
     if a.menu:
         return menu()
     if a.check:
