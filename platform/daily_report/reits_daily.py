@@ -707,7 +707,7 @@ def dart_table(R: dict) -> str:
         if not m:
             continue
         rate = f(m.get("rate"), 2, "%") + (" [추정]" if m.get("rate_est") and m.get("rate") is not None else "")
-        div = f(m.get("yield"), 2, "%")
+        div = f(m.get("yield"), 2, "%") + (" (회차)" if m.get("yield") is not None and m.get("yield_annualized") is False else "")
         if m.get("dps"):
             div += f'<br><span style="font-size:11px;color:#646464;">{m["dps"]:,.0f}원/{m.get("months") or "?"}개월</span>'
         ltv = f(m.get("ltv"), 1, "%")
@@ -721,9 +721,9 @@ def dart_table(R: dict) -> str:
                      (f'<span style="font-size:11px;color:#646464;">{note}</span>', "text-align:left;")])
     head = ["종목", "시가배당수익률(연환산)", "가중평균 차입금리", "LTV", "NAV(억원)", "P/NAV", "기준 보고서", "비고"]
     note = ('<div style="font-size:11px;color:#646464;margin:-8px 0 12px 0;line-height:1.5;">'
-            '시가배당수익률 = 최근 부동산투자회사금전배당결정 1주당 배당금 × (12 ÷ 결산기간 개월) ÷ 전일 종가 · '
+            '시가배당수익률 = 최근 부동산투자회사금전배당결정 1주당 배당금 × (12 ÷ 결산기간 개월) ÷ 전일 종가(회차당 8% 이상인 특별·청산 배당은 연환산하지 않고 \'(회차)\' 표시) · '
             '가중평균 차입금리 = 「재무제표 주석」 차입금·사채 당기말 장부금액 가중평균(변동금리는 CD(91일)+가산금리 [추정]) · '
-            'LTV = 차입금·사채 ÷ (종속·관계기업투자 장부금액 + 투자부동산 공정가치(서열체계, 없으면 장부금액)) · '
+            'LTV = 차입금·사채 장부금액 ÷ (종속·관계기업투자 장부금액 + 투자부동산 공정가치(서열체계, 없으면 장부금액)) — 별도재무제표 기준이라 자리츠를 거쳐 투자하는 리츠는 자리츠 차입금이 빠짐 · '
             'NAV = 위 자산가치 − 차입금·사채 − 재무상태표 임대보증금 · P/NAV = 시가총액(보통주) ÷ NAV. '
             '자동 추출값이므로 의사결정에 쓰기 전 보고서 원문을 확인하세요(근거: data/dart_trace/).</div>')
     return table(head, rows, ["left", "right", "right", "right", "right", "right", "left", "left"]) + note
