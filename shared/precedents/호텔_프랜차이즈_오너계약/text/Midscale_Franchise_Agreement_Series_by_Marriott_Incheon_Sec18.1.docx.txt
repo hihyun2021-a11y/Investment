@@ -1,0 +1,874 @@
+MI draft 
+
+
+
+SERIES BY MARRIOTT
+FRANCHISE AGREEMENT
+
+
+
+[5 Yesul-ro 204beon-gil, Namdong-gu, Incheon, South Korea]
+INCHEON, THE REPUBLIC OF KOREA
+
+
+[_____________________], 20[  ]
+
+
+1.	LICENSE GRANT &TERM	1
+1.1	Limited Grant.	1
+1.2	Term.	1
+1.3	Reserved Rights.	1
+2.	FRANCHISOR’S TRAINING AND PRE-OPENING TEAM	1
+2.1	Training.	1
+2.2	Design Review Services & Pre-Opening Training.	1
+3.	FRANCHISE FEES, OTHER FEES & CHARGES	1
+3.1	Initial Fee.	1
+3.2	Franchise Fees.	1
+3.3	Design Review Payment.	1
+3.4	Other Fees & Charges.	1
+3.5	Training Costs, Travel Costs & Personnel Costs.	1
+3.6	Timing of Payments & Performance of Services.	2
+3.7	Interest on Late Payments.	2
+4.	AFFILIATION COST CONTRIBUTION	2
+4.1	Affiliation Cost Contribution and Programs and Services.	2
+4.2	Permitted Changes.	2
+4.3	Benefits.	2
+4.4	No Fiduciary Duty.	3
+5.	HOTEL CONVERSION, CONSTRUCTION, RENOVATION & MAINTENANCE	3
+5.1	Number of Guestrooms.	3
+5.2	Design & Completion of the Hotel.	3
+5.3	Maintenance & Quality Assurance Program.	3
+5.4	Periodic Renovations & Review of Plans.	3
+5.5	Design & Independent Hotel Brand.	4
+6.	FURNITURE, FIXTURES, EQUIPMENT, INVENTORIES & SUPPLIES	4
+6.1	Uniformity of System.	4
+6.2	Suppliers.	4
+7.	ADVERTISING AND MARKETING; RESERVATIONS, PRICING & RATES	4
+7.1	Franchisee’s Local Advertising & Marketing Programs.	4
+7.2	International Marketing Fund.	4
+7.3	Additional Sales & Marketing Programs.	5
+8.	ELECTRONIC SYSTEMS	5
+8.1	Systems Installation & Use.	5
+8.2	Reservation System.	5
+8.3	Use of Electronic Systems.	5
+8.4	Access to Information.	5
+8.5	Technology Audit.	6
+9.	HOTEL OPERATIONS	6
+9.1	Opening & Operating Hotel.	6
+9.2	System Promotion & No Diversion to Other Businesses.	6
+9.3	Employees.	6
+9.4	Operator of Hotel.	6
+10.	DATA PROTECTION	7
+10.1	Controllership.	7
+10.2	Signing of Documents.	7
+10.3	Notification Requirements.	7
+11.	STANDARDS & SYSTEM	7
+12.	PROPRIETARY MARKS & INTELLECTUAL PROPERTY	7
+12.1	Franchisor’s Representations Concerning Licensed Marks.	7
+12.2	Franchisee’s Use of the System.	8
+12.3	Franchisee’s Use of Other Marks.	10
+12.4	Websites & Domain Names.	10
+12.5	Confidentiality Obligations.	10
+12.6	Confidentiality of Terms.	10
+12.7	Press Releases & Public Statements.	10
+12.8	No Liability for Loss in Brand Value.	10
+13.	ACCOUNTING & REPORTS; TAXES & CURRENCY	11
+13.1	Accounting.	11
+13.2	Books, Records & Accounts.	11
+13.3	Statements & Reports.	11
+13.4	Franchisor Examination & Audit of Hotel Records.	11
+13.5	Taxes.	11
+13.6	Restrictions on Transfers of Funds.	12
+13.7	Currency.	12
+14.	INDEMNIFICATION & INSURANCE	12
+14.1	Indemnification.	12
+14.2	Insurance.	13
+15.	TRANSFERS	13
+15.1	Franchisee’s Transfer Rights.	13
+15.2	Proposed Transfer to Restricted Persons or Competitor.	13
+15.3	Franchisor Transfers.	13
+16.	Prospectus review	14
+17.	DEFAULT & TERMINATION	14
+17.1	Default with Opportunity to Cure.	14
+17.2	Termination on Notice.	14
+17.3	Suspension of Reservation System.	15
+17.4	Damages & Costs.	15
+18.	POST-TERMINATION	15
+18.1	Franchisee Obligations.	15
+18.2	Franchisor’s Rights & Obligations on Termination.	16
+19.	CONDEMNATION & CASUALTY	16
+20.	OWNERSHIP & FINANCING OF THE HOTEL	17
+20.1	Ownership of Franchisee.	17
+20.2	Ownership of the Hotel.	17
+20.3	Financing & Security Interest.	17
+21.	COMPLIANCE WITH LAWS; LEGAL ACTIONS	17
+21.1	Compliance with Laws.	17
+21.2	Notice of Legal Actions.	17
+21.3	Suspension of Systems and Standards Due to Sanctions and Other Laws.	17
+22.	RELATIONSHIP OF PARTIES	18
+23.	GOVERNING LAW; ARBITRATION & RELATED ISSUES	18
+23.1	Governing Law.	18
+23.2	Interim Relief.	18
+23.3	Costs of Enforcement.	18
+23.4	Arbitration.	18
+23.5	Waiver of Exemplary, Punitive and Indirect Damages.	18
+23.6	Waiver of Jury Trial.	19
+24.	NOTICES	19
+25.	REPRESENTATIONS & WARRANTIES	19
+25.1	Existence; Authorization; Prior Representations; Restricted Person.	19
+25.2	Additional Franchisee Acknowledgments & Representations.	19
+26.	MISCELLANEOUS	20
+26.1	Translations.	20
+26.2	Counterparts.	20
+26.3	Construction & Interpretation.	20
+26.4	Reasonable Business Judgment.	21
+26.5	Consents & Approvals.	21
+26.6	Waiver.	21
+26.7	Entire Agreement.	21
+26.8	Amendments.	21
+26.9	Survival.	21
+EXHIBIT A - KEY TERMS	A-1
+EXHIBIT B - DEFINITIONS	B-1
+EXHIBIT C - INSURANCE	C-1
+EXHIBIT D - DESIGN & COMPLETION OF THE HOTEL	D-1
+EXHIBIT E - LIST OF LICENSED MARKS	E-1
+EXHIBIT F - USE OF ELECTRONIC SYSTEMS	F-1
+EXHIBIT G - FRANCHISEE MARKS	G-1
+EXHIBIT H - MARRIOTT BRANDS	H-1
+
+
+FRANCHISE AGREEMENT
+This Agreement between Franchisor and Franchisee (collectively, the “Parties” and individually a “Party”) is executed and becomes effective on the Effective Date. 
+RECITALS
+	Marriott Companies own the System. You, Franchisee, have requested a license to use the System to operate the Hotel as a System Hotel at the Approved Location. We grant a license to you subject to the terms of this Agreement. If applicable, Guarantor will provide the Guaranty. 
+Therefore, the Parties agree as follows:
+LICENSE GRANT &TERM
+Limited Grant. 
+ Franchisor grants to Franchisee a limited, non-exclusive license to use the Licensed Marks and the System to operate the Hotel as a System Hotel solely at the Approved Location under this Agreement. 
+Term.
+ The term of this Agreement is stated in Exhibit A Item 4.
+Reserved Rights.
+ Subject to Exhibit A Item 14.C, you have no territorial rights or exclusivity. Marriott Companies reserve the right to conduct Development Activities at any location, except the Approved Location, without notice to you. You will not interfere with our Development Activities. Marriott Companies may allow other Marriott Products to use various parts of the System, including under affiliation or marketing agreements.
+FRANCHISOR’S TRAINING AND PRE-OPENING TEAM
+Training.
+  Marriott Companies will provide training, programs, advisory and consulting services, and certain advertising, sales and marketing activities to you, similar to those offered to other similarly situated System Hotels. 
+Design Review Services & Pre-Opening Training.
+ One of our Affiliates, currently MIDCS, will provide design review services in accordance with Exhibit D Section 1. Our opening team will assist with the opening of the Hotel as a System Hotel, including training for Hotel employees, and the use of certain Electronic Systems. You will cooperate with us to obtain any necessary visas or permits. 
+FRANCHISE FEES, OTHER FEES & CHARGES 
+Initial Fee.
+ Not applicable. 
+Franchise Fees.
+ You must pay the monthly Franchise Fee stated in Exhibit A Item 10. 
+Design Review Payment.
+ You must pay to one of our Affiliates, currently MIDCS, the Design Review Payment in accordance with Exhibit D Section 1.5. 
+Other Fees & Charges.
+ You must pay for: (i) all fees, charges and costs under the Hotel Agreements; (ii) all costs for mandatory programs for System Hotels (including the monthly ACC) and optional programs in which you participate; and (iii) any goods or services purchased, leased or licensed by you through Marriott Companies and all costs related to purchasing, installing and upgrading any Electronic Systems. The initial fee, Franchise Fee, and Design Review Payment are fixed. All other mandatory fees, charges and costs under this Agreement are computed on a fair and consistent basis among similarly situated System Hotels, and may be changed on a fair and consistent basis among similarly situated System Hotels to reflect changes in the (i) costs of providing, or the scope of, the relevant goods, programs or services; (ii) our method to determine allocation of the applicable charges; or (iii) competitive needs of the System.
+Training Costs, Travel Costs & Personnel Costs.
+ You will pay all Training Costs for mandatory programs and optional programs in which you participate that are not included in the ACC. You will reimburse us for all Travel Costs and Personnel Costs for individuals designated by us to provide training, services or conduct inspections or audits under the Hotel Agreements (including pre-opening training and assistance under Article 2), unless included in the ACC. Any Travel Costs will be in line with our corporate travel policies. If the Hotel is not in a sold-out position, you may be required to provide complimentary lodging in accordance with the Standards to such individuals while they are providing training, services or conducting inspections or audits at the Hotel. If such individuals are visiting more than one hotel in the market, the Travel Costs and Personnel Costs are fairly allocated between such hotels.
+Timing of Payments & Performance of Services.
+Timing of Payments. Franchise Fees and the ACC are calculated as of the end of each month. All payments under this Agreement are due within 15 days after date of invoice and will be made by wire transfer to our designated accounts. 
+Affiliates & Designees. Any of our services or obligations may be performed by our Affiliates or designees. We may designate that payment is made to such Person, and if so, they will issue the required invoice. Any reference in this Agreement to us about payments or performance of services includes such Affiliates and designees. Any designation for the performance of services will not relieve either Party of their obligations under this Agreement.
+Right of Set-Off. We may set-off or deduct any amounts owed to Marriott Companies by you or your Affiliates from amounts that would otherwise be payable to you or your Affiliates under the Hotel Agreements.
+Interest on Late Payments.
+ You will pay interest on any overdue amounts. Interest will accrue at the Interest Rate and is computed daily from the date such amount was due until paid. 
+AFFILIATION COST CONTRIBUTION
+Affiliation Cost Contribution and Programs and Services.
+ We will use the ACC to fund some of the costs for certain mandatory programs and services for System Hotels (“Programs and Services”), which may include the following, to the extent applicable to similarly situated System Hotels: (i) IMF Activities; (ii) development, modification, maintenance, support, administration and operation of: (a) certain mandatory Electronic Systems, including the Reservation System; and (b) the Loyalty Program; (iii) development, operation, administration, oversight and access to certain mandatory training programs included in the ACC; and (iv) the retention or employment of personnel, consultants and other professionals to assist in the development, implementation and administration of Programs and Services, including collection and accounting of the ACC and the IMF Contribution, as well as overhead, other costs incurred in providing Programs and Services, the reimbursement of capital invested in the development of such Programs and Services, and our costs incurred to finance such capital. The ACC excludes any costs that you will pay related to purchasing, installing and upgrading any Electronic Systems, and third-party related costs, or costs for optional support services requested by you or additional support services required based on your non-compliance with Standards. The amount of the ACC contributed to the IMF is stated in Exhibit A Item 11 (the “IMF Contribution”).
+Permitted Changes.
+ With respect to the ACC (including the IMF Contribution), we may at any time: (i) change the method of funding (including by establishing methods of funding Programs and Services except by the ACC) and calculation; (ii) change the programs and services covered by the ACC; (iii) combine or operate the ACC and Programs and Services funds used to benefit other Marriott Products; or (iv) discontinue the use of the ACC to fund any one or all mandatory programs or services for System Hotels (v) change the local, country, regional, continental or international scope of the IMF or the IMF Activities; (vi) merge or separate the IMF with marketing funds used to benefit other Marriott Products; (vii) change the amount of the IMF; or (viii) discontinue any IMF Activities. You are bound by any such changes, which are applicable on a fair and consistent basis among similarly situated System Hotels. Such changes will not increase the amount of the ACC listed in Exhibit A Item 11 for such Programs and Services.
+Benefits.
+ We may use the ACC (including the IMF Contribution) to benefit System Hotels as a whole, groups of System Hotels, and other Marriott Products. We have no obligation to ensure that any particular System Hotel benefits from the ACC, Programs and Services, or IMF Activities on an equivalent basis or that the Hotel will benefit from Programs and Services or IMF Activities proportionate to your contribution.
+No Fiduciary Duty.
+ Marriott Companies do not hold the ACC or the IMF Contribution as a trustee or as trust funds and have no fiduciary duty to you for such funds. The ACC and IMF Contribution may be commingled with other money of Marriott Companies and used to pay all costs, including administrative costs, salaries and overhead, and collection and accounting costs, incurred by the Marriott Companies for the ACC, including the IMF Contribution. Marriott Companies may: (i) loan money for Programs and Services and IMF Activities and charge interest on any such loan; and (ii) use the ACC or IMF Contribution to repay any such loan plus interest. On request, Franchisor will provide to Franchisee a statement of operations presenting the revenues and expenses of the ACC and International Marketing Fund (which statement may be audited or unaudited in Franchisor’s sole discretion) for any fiscal year of Franchisor if such request is made between 90 and 180 days after the end of such fiscal year.
+HOTEL CONVERSION, CONSTRUCTION, RENOVATION & MAINTENANCE
+Number of Guestrooms.
+ The Hotel will have the number of Guestrooms stated in Exhibit A Item 7. You may add Guestrooms in compliance with Sections 5 and 6 with our prior approval.
+Design & Completion of the Hotel.
+ You will, at your sole cost, commence the Hotel’s construction or conversion (“Construction Start”) by the Construction Start Deadline, and plan, design, construct or convert, furnish and equip the Hotel (“Design and Complete”) in accordance with this Agreement (including Exhibit D) and the Design Criteria. The Hotel must be Designed and Completed by the Opening Deadline. 
+Maintenance & Quality Assurance Program.
+ You will, at your sole cost, maintain and make repairs, alterations, and replacements to the Hotel in conformity with Laws and the Standards. You will not undertake any material alterations to the Hotel without our prior consent, unless required by Laws or if needed for the continued safe and orderly operation of the Hotel.
+Periodic Renovations & Review of Plans.
+Replacement of Soft Goods and Case Goods. You will periodically renovate all Guestrooms and Public Facilities in accordance with the Standards, including: (i) a Soft Goods renovation at least once every seven years after the date such Soft Goods were installed; and (ii) a Case Goods renovation at least once every 14 years after the date such Case Goods were installed; however, we may require earlier, or permit later, renovations or replacements depending on the condition of the Hotel.
+Material Renovations Review. At least 60 days before beginning any periodic renovation under Section 5.4.A or a material renovation of the Hotel, you will provide Plans incorporating the Standards for renovation for our review. We will review the Plans only for compliance with the Standards and not for compliance with Laws. If we determine that the Plans do not comply with the Standards, we may require changes, and you will deliver revised Plans incorporating the changes. You will (i) prepare color boards, drawings and furnished models of the Guestrooms for our acceptance before purchasing FF&E for any renovation, and (ii) not begin renovation until we accept the Plans and the proposed FF&E. You will promptly deliver to us the final Plans, which will not be changed without our prior consent. We may charge a fee based on our standard hourly rates for review of the Plans and related Travel Costs.
+Compliance with Laws & Funding. You will ensure that any renovations comply with Laws and the Standards, including any accessibility requirements. We will have no liability or obligation concerning the means, methods or techniques used in renovating the Hotel. You will not reproduce, use or permit the use of any Standards, except for the Hotel. You will fund the cost of all renovations and replacements of FF&E.
+Design & Independent Hotel Brand.
+ The Standards do not specify the Design or Independent Hotel Brand. You will: (i) create and maintain an identifiable Design and Independent Hotel Brand for the Hotel, subject to MIDCS’ acceptance; and (ii) if we require, retain a branding consultant and an interior design firm acceptable to us to develop a communications and marketing plan, implement a service experience program, and create spaces and experiences to reinforce the Design and Independent Hotel Brand. Nothing in this Section will: (x) affect your obligation to maintain the Hotel in compliance with Section 5.3, or (y) limit our right to approve or set Standards for the quality or condition of the Hotel. 
+FURNITURE, FIXTURES, EQUIPMENT, INVENTORIES & SUPPLIES
+Uniformity of System.
+ You will only use FF&E, Inventories and Fixed Asset Supplies that comply with the Standards to maintain the identity, integrity and reputation of the System. We may designate suppliers (including us for (iii) and (iv)) for items related to: (i) life safety; (ii) signage; (iii) Electronic Systems; and (iv) Intellectual Property. You may otherwise purchase FF&E (other than designated Electronic Systems including Opportunity Management Systems, Reservation System, Yield Management System, Mobile Device and Application Management and Mobile Application Access (Mobile Device and Application Management and Mobile Application Access being an optional item), Continent IT Services, Intranet Website, and MDash, of which their respective supply price is set out in the Disclosure Document provided to Franchisee and is subject to change), Inventories and Fixed Asset Supplies from any supplier that complies with the Standards and Laws. You may be permitted or required to participate in arrangements with Travel Management Companies and other booking agents negotiated by us, and will pay for such arrangements in a timely manner failing which we may suspend or terminate your participation in such arrangements. Any such arrangements are made available or required on a fair and consistent basis with similarly situated System Hotels. 
+Suppliers.
+ If we designate a supplier for an item under Section 6.1, you may propose alternative suppliers by delivering sufficient information and samples for us to confirm that such item meets the Standards, and the proposed supplier can provide such item to the Standards. We may require (i) reimbursement for the cost of such review, and (ii) that suppliers of certain designated items have insurance protecting the Parties. We may refuse to permit future purchases if the supplier fails to meet the requirements of this Section or the Standards.
+ADVERTISING AND MARKETING; RESERVATIONS, PRICING & RATES
+Franchisee’s Local Advertising & Marketing Programs.
+Local Advertising. You will undertake local advertising, marketing, promotional, sales and public relations programs and activities for the Hotel, including preparing and using any Marketing Materials, in accordance with the Standards and Laws.
+Use of Signs, Marketing Materials & Proprietary Marks. You will only use signs and other Marketing Materials and the Proprietary Marks in the places, combination, arrangement and manner we approved or required and in accordance with the Standards and Laws. Before any use, you must deliver samples of Marketing Materials for our approval. We may withdraw our approval for the use of Marketing Materials, and on our request, you will stop using such Marketing Materials. We will take into consideration any contracts you have and the amount of your existing supply of such Marketing Materials. You will ensure that, at no cost to us, Marriott Companies have all necessary rights to use or modify such materials on an unlimited basis. 
+International Marketing Fund.
+To promote general public recognition of Franchisor´s Marks, including the Proprietary Marks and use of Marriott Products, including the Loyalty Program and System Hotels, we will undertake marketing activities which may include the following (the “IMF Activities”): (i) brand strategy and brand development activities, (ii) producing, placing and distributing Marketing Materials in any form of media, (iii) advertising, marketing, promotions, public relations, inventory management, reservation activities and sales campaigns, programs, sponsorships, seminars and other sales activities, and allocated to cover the cost of Programs and Services, (iv) market research, and oversight and management of the guest satisfaction program and the Loyalty Programs, (v) development, modification, maintenance, support, administration and operation of the websites, applications, software and related technologies used to promote System Hotels and other Marriott Products; and (vi) retaining or employing personnel, advertising agencies, marketing consultants, and other professionals to assist in developing, implementing and administering any of such activities. The IMF Activities may be conducted on a local, country, regional, continental, international or Category basis.
+Additional Sales & Marketing Programs.
+ You (i) will participate in Additional Sales and Marketing Programs that are mandatory for similarly situated System Hotels, and (ii) may participate in optional ones.
+7.4. 	Pricing, Rates & Reservations.
+Pricing & Rates. You are responsible for setting your own prices and rates for Guestrooms and other products and services at the Hotel, including determining any prices or rates that appear in the Reservation System. We may, however: (i) prohibit certain types of charges or billing practices that we determine are misleading or detrimental to the System, including price-gouging or incremental fees for services that guests would normally expect to be included in the Guestroom charge; (ii) require you to price consistently in all distribution channels; or (iii) impose other pricing requirements permitted or required by Laws.
+Honoring Reservations. You will (i) provide your prices and rates for use in the Reservation System in accordance with the Standards, (ii) honor any prices, rates, or discounts that appear in the Reservation System, or any other publication, program, or promotion; (ii) honor all reservations made through the Reservation System or that are confirmed; and (iii) not charge any Hotel guest a rate higher than the rate specified for the Hotel guest’s reservation in the Reservation System or the reservation confirmation. You will also honor all pricing and terms for any other product or service offered in connection with the Hotel.
+Pricing Recommendations; Participation in Programs. We may recommend prices or rates for the products and services you offer or require participation in various sales or Inventory Management programs or promotions we offer, to the extent permitted under Laws. Our recommendations are not mandatory nor a representation or warranty that the use of such recommended prices or rates will produce, increase, or optimize your profits. You are ultimately responsible for determining and making decisions on the prices or rates at which you offer Hotel related products and services. We will have no liability for any such recommendations, including those made in connection with any sales activity or Inventory Management program. We may provide Inventory Management or sales services at the request of, and as Sales Agent for, you. If we are acting as your Sales Agent, you consign Hotel inventory to us, and you retain all risk of loss of inventory that goes unsold or is sold at a reduced price.
+ELECTRONIC SYSTEMS 
+Systems Installation & Use.
+ At your cost, you will: (i) obtain, install, maintain, use and replace at the Hotel all Electronic Systems in compliance with the Standards; and (ii) take any other actions required by the Standards to protect the Electronic Systems and the data stored or communicated via the Electronic Systems. You will pay us all Electronic Systems Fees that are not covered by the ACC. You will comply with any end-user terms related to any of the Electronic Systems. You will use the Electronic Systems only for operating the Hotel under this Agreement. 
+Reservation System.
+ Subject to Section 17.3 and Exhibit F, we will make the Reservation System available to the Hotel. You will cause the Hotel to participate in the Reservation System in accordance with the Standards and the Hotel Agreements. We are not obligated to make the Reservation System available for reservations occurring after Termination.
+Use of Electronic Systems.
+ The terms applicable to your use of Electronic Systems are set out in Exhibit F. 
+Access to Information.
+ We may access the information contained in the Electronic Systems, and you will take all actions reasonably necessary to provide such access to the extent permitted by Laws. Subject to Section 10, Marriott Companies may use any information contained in or obtained through the Electronic Systems to the extent permitted by Laws.
+Technology Audit.
+ At our request, you will cooperate and provide us and our authorized representatives access to any facility or system from which you, or any of your Affiliates or agents, have installed or are accessing the Electronic Systems, and to any data and records relating to the Electronic Systems, for audit purposes to confirm that you comply with this Agreement and the Standards.
+HOTEL OPERATIONS
+Opening & Operating Hotel.
+ Hotel Operator will at all times operate the Hotel as a System Hotel in compliance with the Standards and this Agreement.
+Required and Prohibited Activities. You will: (i) participate in all mandatory programs and offer all guest services required for System Hotels; (ii) provide all food and beverage service in accordance with the Standards and Laws; and (iii) make all Hotel-related payments in accordance with the terms of all contracts and invoices. Except as permitted in the Standards or with our prior consent, you will not (a) knowingly permit adult entertainment activities or gambling or associate the Hotel with any casino or gaming activities; or (b) operate any nightclub at the Hotel.
+Inspection Rights. We may inspect the Hotel during business hours to confirm that you comply with this Agreement and the Standards, and to test the Hotel’s equipment, food products, and supplies. You will pay any costs related to such inspections, including on site costs of third-party inspectors, to the extent not covered by the ACC. 
+Standards & System Noncompliance. If you fail to achieve the Quality Assurance Program threshold scores, Standards audits or to comply with the Standards or other aspects of the System, we may, at your cost: (i) require your and your personnel to attend or conduct training, (ii) provide assistance at the Hotel to remedy such non-compliance, and (iii) conduct additional inspections and audits. 
+System Promotion & No Diversion to Other Businesses.
+ You will refer reservation requests that cannot be fulfilled by the Hotel to other System Hotels or other Marriott Products in accordance with the Standards. You will not (i) use the Hotel for any business except operating a System Hotel, or (ii) use any part of the Hotel or the System to promote or divert business to any business except the Hotel, including the advertising or promotion of hotels, vacation or timeshare facilities, or any similar product sold on a periodic basis (including those which you or your Affiliates operate or have an Ownership Interest in) not operated under a trade name or trademark owned by Marriott Companies. You will not offer complimentary or reduced-price Guestrooms to benefit any business except the Hotel.
+Employees.
+Hotel Staffing and Employment Matters. You will ensure that (i) Hotel employees are suitably qualified and comply with the Standards, including completing all required trainings; and (ii) the Hotel is sufficiently staffed. The Hotel’s general manager will devote full time to the management of the Hotel and supervision of employees. All employment decisions at the Hotel are made solely by the Hotel Operator. We do not direct or control the employment policies or decisions for the Hotel. All employees at the Hotel are solely Hotel Operator’s and not our employees. The Hotel Operator is not our agent for any purpose regarding Hotel employees. 
+Communication. We may communicate directly with the Hotel’s managers and Hotel Operator about the Hotel’s day-to-day operations and rely on their statements. We will under no circumstances direct or control the Hotel operations.
+Operator of Hotel.
+Franchisor Consent Required. The Hotel will only be operated by a Person consented to in advance by us. Such Person can either be you or a management company (in each case the “Hotel Operator”). If you retain a management company, you remain responsible for complying with the obligations of this Agreement and in case of any conflict between this Agreement and your agreement with the management company, this Agreement will control. 
+Consent and Conditions. We may withhold our consent to a Hotel Operator that we determine (i) is not financially capable, does not have the managerial skills or operational capacity required to operate the Hotel in accordance with the Standards and this Agreement; (ii) is not a Qualified Person; or (iii) does not provide us with all information we reasonably request. We may condition our consent to any proposed Hotel Operator, including requiring participation in one or more programs. You will execute such documents as we require to effectuate participation in such programs and pay the cost of any such programs. 
+Change in Circumstances. You will promptly notify us if you become aware (i) of a change in Control of the Hotel Operator; or (ii) if any of the requirements in Section 9.4 B, the Hotel Operator Consent, or the Standards are no longer met by the approved Hotel Operator. In such case we may withdraw our consent at any time. We may require you to (a) terminate your agreement with the management company, if applicable, and (b) provide a replacement Hotel Operator, which is subject to our consent. If any amendment to this Agreement is required in connection with a Hotel Operator change, you will pay our outside counsel costs related to such amendment. 
+DATA PROTECTION
+Controllership.
+ The Parties agree that Franchisee, Marriott International, Inc., and Franchisor are each independent controllers of Guest Personal Data and may share Guest Personal Data during the Term to the extent permitted by Laws and the Standards. Your use of Guest Personal Data is subject to Section 12.5, and such Guest Personal Data is collected, used and shared by you only for the benefit of the Hotel and in accordance with this Agreement, the Standards and Laws.
+Signing of Documents. 
+ The Parties will take such actions and sign such documents that we determine are necessary to enable each Party to comply with Laws applicable to Guest Personal Data related to the Hotel, such as data transfer agreements. 
+Notification Requirements.
+ You will promptly inform us if you: (i) discover or reasonably suspect a Security Incident; (ii) have been contacted by any Person seeking to exercise any individual rights under Laws regarding Guest Personal Data; or (iii) have been contacted by a data protection authority about processing of Guest Personal Data (in which case we may control any proceedings with such authority). The Parties will cooperate with the other as is reasonably necessary (a) to respond to data access requests related to Guest Personal Data; and (b) in the resolution of Security Incidents at the Hotel or by you. 
+STANDARDS & SYSTEM
+You agree that conformity with the Standards and System is essential to maintain the uniformity and quality of guest service of System Hotels. You will comply with the then-current Standards and operate the Hotel in compliance with the System and the Hotel Agreements. Marriott Companies may modify the Standards and System, including changing, adding, or deleting elements of the Standards or System. Modifications to the System may be made for all System Hotels or for any Category of System Hotels on a fair and consistent basis. We may allocate the costs of System modifications among System Hotels or any Category of System Hotels on a fair and consistent basis. 
+PROPRIETARY MARKS & INTELLECTUAL PROPERTY 
+Franchisor’s Representations Concerning Licensed Marks.
+ 
+A.	Representations and Acknowledgments. 
+1.	Franchisor represents that Marriott Companies have caused the applications set out in Exhibit E to be filed before the relevant trademark office in the Jurisdiction and will diligently prosecute the applications for registration of the Licensed Marks and thereafter take all steps reasonably necessary to preserve and protect the ownership and validity of the Licensed Marks. Marriott Companies will not be required to maintain any registration for any Licensed Marks that they determine, in their sole discretion, cannot or should not be maintained.
+2.	You acknowledge that the applications set forth in Exhibit E are still pending before the relevant trademark office in the Jurisdiction and as of the Effective Date, the Licensed Marks are not registered as trademarks in the Jurisdiction. Subject to Section 12.1.B, you hereby agree to waive, release and forever discharge, each of the Marriott Companies and their Representatives against all Claims and Damages, known or unknown, arising out of and/or related to the use of the Licensed Marks at the Approved Location and/or in relation to the Hotel. If: (i) the registration of the Licensed Marks with the relevant trademark office is rejected or challenged by a third party; or (ii) as a result of a court order, arbitration order, injunction or similar order or ruling Franchisor (or its Affiliate) is unable to continue with the above applications for registration of the Licensed Marks or Franchisor (or its Affiliate) or Franchisee is required to cease using the Licensed Marks, Franchisor has the sole right to determine whether all or any of your use of the Licensed Marks will immediately stop (including signage, collateral, and any and all marketing). Upon our notification to you that all use of the Licensed Marks will immediately stop, the Parties will discuss and consult with each other to consider other options or alternatives in relation to the continuation of this Agreement (including using a different brand available to Marriott Companies (the “Replacement Brand”). If the Parties do not reach an agreement within six months after the start of such discussions and consultation, either Party may terminate this Agreement as its sole and exclusive remedy by giving the other Party 30 days’ prior written notice. Such termination will not be a default by either Party, and neither Party will be entitled to any Damages as a result of such termination (including liquidated damages under Section 17.4, or any other Damages incurred or recovery of any costs incurred by you or your Affiliates in the construction, conversion, renovation, equipping or furnishing of the Hotel, in implementing the Replacement Brand or the rebranding of the Hotel to any other brand).
+B.	Indemnification for Infringement Claims. We will indemnify and hold you harmless against Claims arising from and after the date on which a registration issues for that Licensed Mark that your use of the Licensed Marks in accordance with this Agreement infringes on the rights of any third party unrelated to you, if you: (i) are in compliance with this Agreement; (ii) give us prompt notice of any such Claim; (iii) do not interfere with our right to have sole control over the defense and settlement of the Claim; and (iv) cooperate fully with us in defending or settling the Claim. Marriott Companies have the right in their sole discretion to have exclusive control over the defense and any settlement of all Claims related to or involving the Proprietary Marks.
+Franchisee’s Use of the System.
+Use of the System. Franchisee agrees that Franchisee:
+will use the System only for Hotel operations and only as provided in the Standards or consented to by us. You will offer or sell only goods and services under the Proprietary Marks that are of a nature and quality that comply with the Standards. Any use of the System not authorized by us will constitute an infringement of our rights;
+will use the Proprietary Marks only in substantially the same places, combination, arrangement, and manner as provided in the Standards or approved by us;
+ will identify yourself as a franchisee or licensee of Franchisor and the owner or operator of the Hotel only as we authorize or as provided in the Standards. You will not use the Proprietary Marks in any manner that could imply that you have an Ownership Interest in the Proprietary Marks;
+have no right to, and will not, Transfer, sublicense, or allow any Person to use the Intellectual Property or any other part of the System, unless permitted in this Agreement;
+will not use any part of the System to incur any obligation or indebtedness on behalf of Marriott Companies;
+will not use any of the Proprietary Marks or any names or marks that contain or are similar to, or an abbreviation of, any of the Proprietary Marks, as we determine in our sole discretion (“Similar Marks”), as part of your corporate or legal name, in connection with any business activity except the Hotel, or as a road name or address, whether alone or in combination with Other Marks;
+will not register or apply to register any of the Proprietary Marks or any Similar Marks;
+will notify us of any required business, trade, assumed, or similar name registration, and indicate in the registration that you may use such name only in accordance with this Agreement; 
+if litigation involving the Intellectual Property is instituted or threatened against you, or a claim of infringement involving the Intellectual Property is made against you, or you become aware of any infringement of the Intellectual Property, you will promptly notify us  and will cooperate fully in any action, defense, or settlement of such matters. You will not make any demand, serve any notice, institute any legal action, or negotiate, litigate, compromise or settle any controversy about any such matter without first obtaining our prior consent, which may be withheld in our sole discretion. We have the right to bring any action and to join Franchisee as a party to any action involving the Intellectual Property. You will not without our prior consent make any admissions or take any action which may prejudice the defense or settlement of any third-party complaint regarding Intellectual Property, or any investigation by a public authority;
+if we believe, in our sole discretion, that your use of the Intellectual Property does not conform with the Hotel Agreements or Standards, then you will immediately stop the non-conforming use on our notice; and
+will not (and will ensure that your Representatives do not) take any action or engage in any conduct that is likely to adversely affect the reputation, goodwill or business of the Hotel, the System or Marriott Companies. You will comply with the Standards regarding protection of the reputation of the System, and promptly notify us of any event that has occurred that is likely to receive or is receiving significant negative public attention. You will cooperate with us in the resolution of, and public response to, such matters.
+Ownership of the System. Franchisee agrees that:
+Marriott Companies are the owners or licensees of all right, title, and interest in and to the System (except certain Electronic Systems provided by third parties) and the goodwill associated with the System and Proprietary Marks and any infringement of the Proprietary Marks will result in irreparable injury to Marriott Companies;
+the Proprietary Marks are valid and serve to identify the System and System Hotels. All goodwill arising from your use of the System, including the Proprietary Marks, will inure solely and exclusively to the benefit of Marriott Companies, and on Termination, no monetary amount is attributable to any goodwill associated with your use of the System;
+the Proprietary Marks may be deleted, replaced or modified by Marriott Companies in their sole discretion and Marriott Companies may develop additional or substitute Proprietary Marks. We may require you, at your cost, to discontinue or modify your use of any of the Proprietary Marks or to use one or more additional or substitute marks. If the Proprietary Marks (including the trade name(s) identified in Exhibit A Item 1) identifying the System Hotels are changed on a systemwide, regional or country-specific basis, we may change the name of the Hotel to conform to the new Proprietary Marks. You will not be entitled to Damages for any costs incurred to implement such discontinuation, modification or use of one or more additional or substitute marks;
+you will not directly or indirectly, (i) attack the ownership, title or rights of Marriott Companies in the System; (ii) contest the validity of the System, or our right to grant to you the right to use the System in accordance with this Agreement; (iii) take any action that could impair, jeopardize, violate, or infringe any part of the System; (iv) claim any right, title, or interest in the System except rights granted under this Agreement; or (v) misuse or harm or bring into disrepute the System;
+you do not have, and will not obtain any, Ownership Interest in any part of the System (including any modifications, derivatives or additions made by you or on your behalf or your Affiliates). You assign and will cause each of your employees or independent contractors who contributed to System modifications to assign, to Franchisor or another Marriott Company, in perpetuity throughout the world, all rights, title and interest (including the entire copyright and all renewals, reversions and extensions of such copyright) in and to such System modifications. Except to the extent prohibited by Laws, you waive, and will cause each of your employees or independent contractors who contributed to System modifications to waive, all rights of “droit moral” or “moral rights of authors” or any similar rights in such System modifications; and
+you will sign, or cause to be signed and deliver to us any documents, and take any actions, that we require to protect the Proprietary Marks and the title in any System modifications.
+Franchisee’s Use of Other Marks.
+ Subject to Exhibit G, if applicable, Franchisee will not use any trademark, trade name, symbol, slogan, design, insignia, emblem, device, or service mark that is not a Proprietary Mark (including the names of restaurants or other outlets at the Hotel) (“Other Marks”) in connection with the Hotel or the System or in Marketing Materials without our prior approval. You will not use any Other Mark in connection with the Hotel or the System or in Marketing Materials that may infringe or be confused with a third-party’s trade name, trademark, or other intellectual property rights. You consent to the use of the Other Marks by Marriott Companies during the Term in connection with the affiliation of the Hotel as a System Hotel. You represent and warrant that there are no Claims or proceedings that would materially affect our use of the Other Marks. Within 30 days after Termination, we will cease using the Other Marks.
+Websites & Domain Names.
+ Except as permitted in the Standards or consented to by us, you will not display any of the Proprietary Marks on, or associate the System with (through a link or otherwise), any website, electronic Marketing Materials, application or software for mobile devices or other technology or media, domain name, address, designation, or listing on the internet or other communication system or medium.  You will not register or use any internet domain name, address, mobile application or other designation that contains any Proprietary Mark or Similar Mark. At our request, you will promptly cancel or transfer to Franchisor or another Marriott Company any such domain name, address, mobile application or other designation under your control.   
+Confidentiality Obligations.
+ You will: (i) use Confidential Information only for the benefit of the Hotel and in conformity with Laws, the Hotel Agreement and the Standards; (ii) protect the Confidential Information; and (iii) immediately on becoming aware, report to us any theft, loss or unauthorized disclosure of Confidential Information. You may disclose Confidential Information only to your employees or agents who require it to operate the Hotel, and only after they are advised that such information is confidential and that they are bound by your confidentiality obligations under this Agreement. Without our prior consent, you will not copy, reproduce, or make Confidential Information available to any Person not authorized to receive it. The Confidential Information has commercial value, is proprietary and a trade secret of Marriott Companies. You are liable for any breaches of such confidentiality obligations by your employees or agents.
+Confidentiality of Terms.
+ Without our prior consent, you will not disclose to any Person the terms of any Hotel Agreement, except as required: (i) by Laws; (ii) in any judicial, administrative or arbitral proceedings; and (iii) to your Representatives or lenders to the extent necessary for the operation or financing of the Hotel.
+Press Releases & Public Statements.
+ You will obtain our consent before issuing any press releases, interviews or public statements about events that may receive significant negative public attention related to us, the System or the Hotel. 
+No Liability for Loss in Brand Value.
+Franchisor and its Affiliates will not be liable for any loss or damages suffered by Franchisee or its Affiliates that directly or indirectly arise out of or in connection with any loss in value to, or damage to the reputation of, the Licensed Marks and/or the System (“Loss in Brand Value”).
+Notwithstanding the provisions of Section 12.8.A, in the event that the Loss in Brand Value is solely and directly a result of any act by Franchisor or its directors in violation of the legal requirements of South Korea (except for any data protection or privacy laws) or the contravention of social norms in South Korea, then Franchisor will be liable to Franchisee for any direct, actual and material loss or damages that Franchisee suffers in the operation of the Hotel as a direct result of the Loss in Brand Value up to a maximum of the aggregate amount of Franchise Fees received by Franchisor as of the date that the Loss in Brand Value occurred.
+ACCOUNTING & REPORTS; TAXES & CURRENCY
+Accounting.
+ You will account for Gross Room Sales on an accrual basis and in compliance with this Agreement. 
+Books, Records & Accounts.
+ You will maintain complete and accurate books, records, and accounts for the Hotel in accordance with generally accepted accounting principles of the Jurisdiction, Laws and the Standards. You will (i) report all Hotel revenues to Franchisor in accordance with the Uniform System and the Standards, and (ii) preserve each book, record or account for at least five years from the date of its preparation. 
+Statements & Reports.
+Monthly Statements. For each full or partial month after the Opening Date, you will deliver to us a financial statement in accordance with the Standards in English containing information required by us, including the Gross Room Sales for such month. The report is due by the third day of each month for the preceding month. 
+Other Statements and Reports. You will provide a complete statement in English of income and expense from Hotel operations for the preceding year within 120 days after your fiscal year. This statement is prepared in accordance with generally accepted accounting principles of the Jurisdiction, Laws, the Standards and the Uniform System “Income Statement” with standard line items specified by us. You will promptly deliver to us such other financial information (including actual and estimated operating results of the Hotel) and other reports relating to the Hotel and you as: (i) provided in the Standards; (ii) required by Laws; or (iii) as we may reasonably request. 
+Franchisor Examination & Audit of Hotel Records.
+Examination and Audit. We and our authorized representatives may on reasonable notice to you examine and copy your books, records, accounts, and tax returns related to the Hotel during the five years preceding such examination. We may, at our cost (subject to Section 13.4.B), have an independent audit made of any such books, records, accounts, and tax returns, and you will reasonably cooperate. 
+Underreporting. If an examination or audit reveals that you made underpayments, you will promptly pay us the amount underpaid, plus interest under Section 3.7. If (a) you understated payments by 5% or more for the relevant period, or (b) the accounting procedures are found to be insufficient to determine the accuracy of the calculation of payments due, you will reimburse us for our costs for the examination or audit, including reasonable accounting and legal fees. If a pattern of underreporting is established, we may require that the annual financial reports due under Section 13.3.B be audited at your cost by a recognized independent accounting firm acceptable to us. 
+Overpayments. If an examination or audit reveals that you made overpayments to us, the amount of such overpayment, without interest, will be promptly credited against future payments due to us.
+Taxes. 
+Payment of Taxes. You will bear and pay when due all Taxes relating to the Hotel and its operations, Franchisee and the Hotel Agreements. Amounts payable to Marriott Companies will not be reduced by any deduction or withholding for any Taxes. Notwithstanding the foregoing, you will not bear:(i) income or franchise taxes imposed on us by any competent governmental authority in the country where we are incorporated or tax resident and (ii) income taxes imposed on us (including by withholding or other means) by any competent governmental authority in the Jurisdiction on the Franchise Fees (collectively, the “Income Withholding Taxes”). 
+Withholding Taxes. If Laws: (1) require you to deduct or withhold Taxes directly from amounts paid to Marriott Companies, you will: (i) timely pay the required Taxes directly to the relevant governmental authority in accordance with Laws and promptly provide us with receipts or other proof of such payment; and (ii) increase the amount paid to Marriott Companies so that the net amount actually received by Marriott Companies will equal the full amount originally invoiced or otherwise payable if no Taxes were imposed; or (2) do not require you to deduct or withhold Taxes directly from amounts paid to Marriott Companies but otherwise impose Taxes on such amounts, you will pay Marriott Companies, within 15 days after request, the full amount of such Taxes so that the net amount actually received by Marriott Companies after payment of Taxes will equal the full amount originally invoiced or otherwise payable. For the avoidance of doubt, Taxes shall exclude Income Withholding Taxes on the Franchise Fees.
+Value Added Tax & Similar Taxes. You will: (i) pay Marriott Companies the VAT or similar tax amount due with respect to any payment under this Agreement; or (ii) if required or permitted by Laws, pay these taxes directly to the relevant taxing authority. If a reverse charge mechanism is available to you, you will promptly account for and pay these taxes in accordance with Laws. 
+Stamp Duties. You will pay any stamp duty applicable to the Hotel Agreements.
+Tax Disputes. If you have a dispute as to any Tax liability related to payments under the Hotel Agreements (a “Tax Dispute”), you may contest the Tax liability in accordance with Laws. You will notify us before taking action concerning a Tax Dispute with the tax authority and, upon our request, cooperate with us in preparing your response. On our request, you will pay such Taxes and seek reimbursement from the governmental authority, and you are responsible for any interest or penalties assessed. This Section will apply regardless of whether you or Marriott Companies is responsible for payment of any Taxes.
+Restrictions on Transfers of Funds.
+ If there is any restriction on the transfer of funds outside the Jurisdiction, the Parties will cooperate to ensure full and timely payment. We may instruct you to deposit all payments in local accounts designated by us and take such other action as we may request to pay the outstanding amounts to Marriott Companies after the restriction ends. If Marriott Companies do not receive payment within 60 days, Marriott Companies may: (i) curtail performance of some or all of its obligations under the applicable Hotel Agreement (including access to the Reservation System); and (ii) terminate any Hotel Agreement. Marriott Companies’ exercise of their remedies under this Section will not be a default under this Agreement and no liquidated damages under Section 17.4 will be due. 
+Currency.
+Exchange Rate. All amounts payable to Marriott Companies under the Hotel Agreements are paid in USD, unless Marriott Companies agree to an alternative currency. The exchange rate used for each payment is the exchange rate for the applicable currency, as quoted in the Published Source for the day designated by us for all or substantially all similarly situated System Hotels.  
+Late Payments and Payments in Other Currencies. In the case of a late payment, the exchange rate is determined under Section 13.7.A or on the date on which payment is made, whichever results in the higher amount payable to us. If an amount is received in a currency other than USD without Marriott Companies’ consent, your obligation under this Agreement is discharged only if Marriott Companies can purchase USD with the other currency under normal banking procedures. If the amount in USD that may be purchased, after deducting any costs, is less than the amount owed under this Agreement, you will immediately pay the shortfall to Marriott Companies.
+INDEMNIFICATION & INSURANCE
+Indemnification.
+ You will indemnify, defend and hold harmless Franchisor and our Representatives against all Claims and Damages, including allegations of negligence by such Persons, to the fullest extent permitted by Laws, arising from (i) the unauthorized use of Intellectual Property; (ii) the violation of Laws; (iii) the construction, conversion and renovation, repair, operation, ownership or use of the Hotel and any other business related to the Hotel; (iv) if applicable, any Common Areas and Non-Hotel Facilities; and (v) the use of Other Marks and if applicable, any Franchisee Marks. We may, at your cost, control the defense of any Claim (including selecting our own counsel or defending or settling any Claim against us or any indemnified Person) if we determine that any Claim could adversely affect our interests or those of any of our Representatives. Without affecting your indemnity obligations, the Parties will cooperate with each other and any insurer accepting responsibility for such Claim. Except to the extent required by Laws, neither we nor any indemnified Person are required to seek recovery from third parties or mitigate its losses to maintain its right to receive indemnification from you. 
+Insurance.
+ You will obtain and maintain (or cause to be obtained and maintained) the insurance described in Exhibit C.
+TRANSFERS 
+Franchisee’s Transfer Rights.
+ 
+Transfer of this Agreement. This Agreement is personal to you and may not be Transferred without our prior consent. 
+Transfer of the Hotel or Ownership Interest in Franchisee. A Transfer of Control or at least 10% (in a single transaction or in aggregate) of the Ownership Interest in Franchisee, or a Transfer in Franchisee’s or its Affiliates’ Ownership Interest in the Hotel may only be made with our prior consent, subject to below conditions: 
+at least 30 days before the proposed Transfer, you provide notice to us including the identity of the proposed transferee and its Interestholders and all other documents and information we reasonably request; 
+you pay the then-current initial fee for System Hotels;
+if required, transferee will execute a property improvement plan for any renovations required to comply with Standards and pay the property improvement plan fee; 
+you (i) sign a general release of all Claims against Marriott Companies; (ii) on our request, sign an amendment to this Agreement to update the ownership information in Attachment One to Exhibit A; (iii) pay all amounts due to Marriott Companies and our outside counsel costs related to the Transfer; and (iv) are not in breach or default under any Hotel Agreements;
+transferee and any new Interestholder is a Qualified Person, and we determine that transferee has sufficient financial resources to fulfil its obligations under the then-current Hotel Agreements;
+a Hotel Operator consented to by us under Section 9.4 operates the Hotel; 
+in case of a Transfer of Franchisee’s or its Affiliates’ Ownership Interest in the Hotel, transferee and, if applicable, any guarantors, execute an assignment and assumption agreement acceptable to us, obligating transferee and any guarantors to fulfill the obligations under the Hotel Agreements; 
+the Hotel is in good standing under the Quality Assurance Program; 
+if applicable, Guarantor confirms its continued obligations under the Guaranty.  
+No Consent Required. No notification and consent are required in case of a Transfer of (i) less than 10% of Ownership Interest in Franchisee, or (ii) publicly traded securities listed on an approved exchange, in each case if such Transfer does not result in a change of Control of Franchisee. 
+Proposed Transfer to Restricted Persons or Competitor.
+ You will ensure that no Transfer of any Ownership Interest in you or, if applicable, in any Guarantor, the Hotel or any Hotel Agreement is made to: (i) a Restricted Person; or (ii) a Competitor.
+Franchisor Transfers.
+ We may Transfer this Agreement, without prior notice to you or your consent, to: (i) our Affiliate; or (ii) any Person that acquires substantially all our rights in System Hotels; provided that such Affiliate or Person assumes our obligations to you and is reasonably capable of performing our obligations. This Agreement is binding on and inures to the benefit of us and our permitted successors and assigns. Any such Transfer will constitute our release and a novation of this Agreement, and you will sign any documents we reasonably request to effect such Transfer.
+Prospectus review
+You and your Affiliates may only use any Proprietary Marks in a Prospectus if such Prospectus (i) uses the Proprietary Marks only to identify the Hotel and only in block letters; (ii) provides a clear statement that the Hotel is operated under a license from us; and (iii) provides that we have not reviewed, endorsed or ratified the proposed offering or Prospectus. You will indemnify, defend and hold harmless us and our Representatives in connection with such Prospectus and the offering. You will deliver a copy of such Prospectus to us for our review solely to confirm compliance with this Section at least 30 days before the earlier of the date such Prospectus is delivered to a potential purchaser or filed with any securities commission, stock exchange or other governmental authority. You will pay our outside counsel costs for the review of such Prospectus. 
+DEFAULT & TERMINATION
+Default with Opportunity to Cure.
+ You will be in default and we may terminate this Agreement for the events listed below, if after two months’ notice (or such longer period required by legal requirements or provided by us and without judicial or arbitral determination or prejudice to any other Claims by us), during which time we will send no less than two notices of default, you fail to cure the default as specified in the notices:
+you fail to (i) Design and Complete the Hotel in accordance with Section 5.2; (ii) renovate the Hotel in accordance with Section 5.4; (iii) pay any amounts due under the Hotel Agreements; or (iv) comply with the Standards, including achieving the performance thresholds under the Quality Assurance Program.
+you, your officers, directors, employees or Interestholders, are convicted of a Serious Crime or are engaged in conduct that may adversely affect the Hotel, the System, or Marriott Companies, and such Person is not terminated from its relationship with you;
+you use or disclose Intellectual Property in breach of this Agreement; or
+you or your Affiliates (or, if applicable, any Guarantor or any Owner or their respective Affiliates) breaches any Hotel Agreement.
+Termination on Notice.
+ You will be in default and to the extent permitted by legal requirements and governing law under Section 23.1, Franchisor may terminate this Agreement without providing you any opportunity to cure the default, effective on notice to you (or on the expiration of any notice or cure period given by Franchisor or required by legal requirements and without judicial or arbitral determination and without prejudice to any other Claims of Franchisor), upon the occurrence of any of the following events and any other grounds stipulated under legal requirements (including Article 15 of the Enforcement Decree of the Korean Fair Transactions in Franchise Business Act, as amended from time to time, or any successor legislation) (each of which will be a default by you of this Agreement):
+You, or if applicable, any Guarantor or Owner, is subject to an Insolvency Event; 
+You receive a court judgment for violation of legal requirements related to the operation of the Hotel or receive an administrative disposition for violating legal requirements that clearly damages the reputation and credit of Franchisor and Franchisor has suffered significant harm, including: (i) an administrative order requiring you to remedy such violation; (ii) an administrative order imposing a penalty surcharge or fine on you for such violation; or (iii) an administrative order mandating suspension of the operation of the Hotel;
+You dissolves or liquidates; 
+You suspend the operation of the Hotel for seven or more consecutive days without justifiable reason (as determined by Franchisor acting in good faith); 
+You, after complying with Franchisor’s request for remedy of a breach of this Agreement, repeats the same breach within 12 months from the date that the breach was remedied (provided that the foregoing does not apply where Franchisor, in its original written request for remedy, fails to state that this Agreement may be terminated without adopting the procedure under Article 14(1) of the Korean Fair Transactions in Franchise Business Act in the event you repeat the same breach within such 12-month period); or 
+Your acts, errors or omissions clearly and imminently threatens public health or safety while operating the Hotel, and it is difficult for Franchisor to await an administrative order. If within six months after termination under this Section the clear and imminent threat to public health or safety is eliminated, you may request reinstatement of this Agreement and Franchisor will reinstate this Agreement if Franchisor determines that such reinstatement will not cause substantial liability or loss of goodwill associated with the Proprietary Marks or your use of the System. 
+Suspension of Reservation System.
+ If you are in default under this Agreement beyond the applicable cure period (if any), we may, in addition to any other remedies, suspend the Hotel from the Reservation System while such default remains uncured. Once the default is cured, we will promptly connect the Hotel to the Reservation System. Our exercise of our remedies in this Section will not constitute actual or constructive termination or abandonment of this Agreement. You waive all Claims against Marriott Companies arising from such suspension from the Reservation System in accordance with this Section.
+Damages & Costs.
+Damages. If you fail to operate the Hotel as a System Hotel for the Term, we will incur damages, including loss of future Franchise Fees, IMF Contributions and loss of opportunities for Development Activities (“Contract Losses”) and replacement of the Hotel will take significant time and effort. 
+Payment of Liquidated Damages. The Parties agree that it is difficult to calculate such damages and that the liquidated damages as per Section 17.4.B are not a penalty and represent a reasonable estimate of the minimum fair compensation solely for the Contract Losses (without affecting any other remedies available to us for losses unrelated to Contract Losses). If Franchisor terminates this Agreement due to your default, you will promptly pay us as liquidated damages an amount equal to the Average Monthly Fees multiplied by the lesser of (x) 36 or (y) the number of months remaining in the Term (the “LD Amount”). If this Agreement is terminated with Special Circumstances, we and the System will suffer greater damages and material loss of goodwill due to the increased difficulty in replacing multiple hotels and loss of competitive advantage and customer confidence due to the Special Circumstances and you will thus pay 150% of the LD Amount as liquidated damages. Payment of liquidated damages will not affect your obligation to comply with Section 18. You will reimburse us for our reasonable outside counsel costs incurred in connection with your default under Section 17.1 or Section 17.2.
+POST-TERMINATION
+Franchisee Obligations.
+De-Identification. Promptly on Termination, you will:
+cease to operate the Hotel as a System Hotel and not represent or create the impression that you are a present or former franchisee or licensee of us or that the Hotel is or was previously part of the System, unless required under Section 18.1.A.7 or Section 18.1.A.8; 
+cease to use and remove from the Hotel and any other place of business any Intellectual Property and any other identifying characteristics of the System, including any Electronic Systems, signs, advertising, or any articles that display any of the Proprietary Marks or any trade dress or distinctive features or designs associated with the System or other Marriott Products; 
+remove from any internet sites all content under its control related to the System or us and take all actions necessary to disassociate itself from us on the internet. You will, at our option, cancel or assign to us or our designee, any domain name under your or your Affiliates’ control that contains any Proprietary Mark, or any Similar Mark, including misspellings and acronyms;
+cancel any fictitious, trade, or assumed name or equivalent registration that contains any Proprietary Mark or any variations, and provide us satisfactory evidence of your compliance within 30 days after Termination;
+deliver to us the originals and all copies of any Intellectual Property and all other materials relating to the operation of the Hotel under the System. You will not retain a copy of any Intellectual Property or other System materials, except for any documents you reasonably need for compliance with Laws or for purposes of Section 18.2.B. You may retain and use such Guest Personal Data (other than Guest Preferences) to the extent necessary for you to comply with Laws and to process existing reservations after Termination. If we explicitly permit you to use any Intellectual Property after the termination or expiration date, such use by you will be in accordance with this Agreement and Laws;
+subject to Section 18.1.A.5, not use or retain any of the Confidential Information or the System, or disclose it to anyone not authorized by us to receive it;
+make such necessary alterations to the Hotel so that the public will not confuse it with a System Hotel. Until such alterations are completed, you will place a conspicuous sign at the registration desk, stating that the Hotel is no longer a System Hotel; and 
+advise all customers that the Hotel is no longer a System Hotel in accordance with the Standards. 
+Termination Costs. On Termination, you will promptly pay (i) all amounts owing to us; (ii) all of our costs or fees charged for removing the Hotel from the System (including any costs resulting from cancellation of reservations or early departures by customers); and (iii) a reasonable estimate of costs and fees that are due but have not yet been billed or invoiced (if the estimated payment exceeds actual amounts due, we will refund you the difference). e may recover reasonable legal fees and court costs incurred in collecting such amounts. 
+Franchisor’s Rights & Obligations on Termination.
+Franchisor’s Rights. Before or on Termination, we may give notice that the Hotel is leaving the System and take any other action related to customers, Travel Management Companies, suppliers, and other Persons affected by such expiration or termination.
+Guest Personal Data. For purposes of Section 18.1.A.5, we will provide you access to such Guest Personal Data within our control necessary for you to process existing reservations after Termination to the extent we are permitted to do so under Laws.
+CONDEMNATION & CASUALTY
+Notification and Termination. You will promptly notify us if (i) you become aware of any proposed taking by expropriation, condemnation, compulsory acquisition, or similar proceeding by any governmental authority (“Condemnation”), or (ii) the Hotel is damaged by any casualty. If operation as a System Hotel is no longer possible, because such Condemnation or casualty materially and permanently affects the Hotel’s operation, the Parties may terminate this Agreement after 180 days and sign a termination and release agreement on our then current form providing for the orderly removal of the Hotel from the System. Otherwise, you will timely restore or cause the Hotel to be restored to its previous condition and operate it as a System Hotel for the remaining Term. 
+Liquidated Damages. A termination under this Section will not be a default under this Agreement and you will not be required to pay liquidated damages under Section 17.4.B, unless you fail to comply with your obligation in this Section. If within five years after a termination under this Section, you or any of your Representatives intends to rebuild or reuse any part of the Approved Location as a hotel or other lodging product, you will promptly notify us. We may reinstate the Hotel Agreements by providing notice to you within 90 days after receipt of your notice. If you do not give such notice, we may reinstate the Hotel Agreements by providing notice to you within 90 days after we become aware of the repair, rebuilding or reopening. If we reinstate the Hotel Agreements, (i) you or your Representatives will complete the repair or rebuilding of the Hotel to its previous condition (or otherwise to the then-current Standards) and (ii) the expiration date of the Term will be extended by the number of days from this Agreement’s earlier termination to the reopening of the Hotel.
+OWNERSHIP & FINANCING OF THE HOTEL
+Ownership of Franchisee.
+ You represent and warrant that the information in Exhibit A Attachment One is complete and accurate. On any Transfer by you under Section 15, you will provide an updated list of names and addresses of Interestholders and documents necessary to confirm such information and update Exhibit A Attachment One.
+Ownership of the Hotel.
+ Unless otherwise stated in Exhibit A Item 14.B, you represent that you own the Hotel, or if the Hotel is not yet completed, own the Approved Location, and on completion of the Hotel Improvements, will own the Hotel. 
+Financing & Security Interest.
+ You and each of your Interestholder may incur or replace any indebtedness from a lender that is secured by the Hotel, the revenues of the Hotel or the Ownership Interests in you. You and each of your Interestholders may grant to a lender a lien or other security interest in the Hotel or the revenues of the Hotel, or pledge Ownership Interests in you or a Control Affiliate as collateral for the financing of the Hotel. You will not pledge this Agreement as collateral or grant a security interest in this Agreement, without our consent. If any Person exercises its rights under such lien, security interest or pledge, we will have the rights under Section 17.2. If your lender requests a comfort letter or any other documentation from us related to any financing, you will pay our reasonable outside counsel costs for the processing and negotiation of any such documents.
+COMPLIANCE WITH LAWS; LEGAL ACTIONS
+Compliance with Laws.
+Licenses and Permits. You will comply with all Laws, and obtain all permits, certificates, and licenses necessary to Design and Complete and operate the Hotel and to comply with the Hotel Agreements. 
+Registration of Agreement. If required by Laws, you will (i) cooperate with our registration of the Hotel Agreements; (ii) sign a licensed user agreement or other confirmatory documents for recording you as a licensed user of the Licensed Marks in the Jurisdiction; and (iii) report the payments due under this Agreement to the appropriate governmental authorities. You will pay all costs to register this Agreement, including translation costs (if applicable). You will deliver all translations, reports and other materials for our consent before they are filed with any governmental authority.
+Anti-Bribery Laws. You represent and covenant that (i) you will comply with all Laws relating to anti-bribery and anti-corruption applicable to you and the Hotel; (ii) you have or will have, and will maintain throughout the Term, your own policies and procedures to comply with such Laws; and (iii) you and your Affiliates will comply fully with such policies and procedures.
+Notice of Legal Actions.
+ Within seven days of receipt, you will notify us and provide copies of: (i) any Claim involving Marriott Companies; (ii) any material Claim, judgment, order, or other decree related to the Hotel or Franchisee; or (iii) any inspection reports and warnings about a material failure to meet health or life safety requirements or any other material violation of Laws related to the Hotel or Franchisee. 
+Suspension of Systems and Standards Due to Sanctions and Other Laws. 
+ If Laws materially restrict (i) us from making available any aspect of the System to you, or (ii) you from operating the Hotel in accordance with Standards, or (iii) either Party from making or receiving payments related to any aspect of the System, we may suspend access to such aspect of the System or Standards as necessary to comply with such Laws until we determine that such restriction no longer applies. The Parties will cooperate to the extent permitted under such Laws to facilitate the operation of the Hotel under the aspects of the System that are permissible under Laws and to make or receive related payments. If we determine that such Laws necessitate the termination of the Hotel Agreements, we may terminate the Hotel Agreements on 30 days’ notice to you (or such shorter period required by Laws), and such termination will not be a default by either Party and no Damages are due. 
+RELATIONSHIP OF PARTIES
+The Hotel Agreements do not create a fiduciary relationship between Marriott Companies and you. You are an independent contractor. Neither Party is an agent, legal representative, joint venturer, partner, joint employer or employee of the other for any purpose, and neither Party will make any representation or claim to the contrary. You will not make any agreement, representation or incur any obligation on behalf of or in the name of any Marriott Companies. 
+GOVERNING LAW; ARBITRATION & RELATED ISSUES
+Governing Law.
+ This Agreement, and all non-contractual rights related to this Agreement, are construed under the laws of the Republic of Korea.
+Interim Relief.
+ Either Party may seek interim relief (or if available under Laws, equitable relief), including restraining orders and injunctions, in any court of competent jurisdiction, and either Party may request that a court refer the proceedings to arbitration under Section 23.4 without prejudice to injunctive relief granted by such court. All disputes related to this Agreement must otherwise be resolved exclusively under Section 23.4. 
+Costs of Enforcement.
+ If either Party initiates any legal or equitable action to protect its rights under this Agreement, the prevailing Party is entitled to recover its costs, including reasonable legal fees.
+Arbitration.
+ 
+Arbitration Proceedings. Except as provided in Section 23.2, any dispute between the Parties and their Affiliates arising out of or relating to this Agreement, including its existence, validity, interpretation, performance, default or termination, and/or any dispute regarding non-contractual obligations  arising out of or relating to it, are referred to and finally resolved by arbitration administered by the Singapore International Arbitration Centre (“SIAC”) in accordance with the Arbitration Rules of the SIAC (the “Rules”), which rules are deemed to be incorporated by reference into this Section 23.4. The language to be used in the proceedings is English. The seat of arbitration is Singapore. This Section 23.4 is governed by the laws of Singapore. The decision of the arbitrators is conclusive and binding on the Parties. Except as provided in Section 23.2, arbitration is the Parties’ exclusive remedy for such disputes. The Parties will keep the award and decision of the arbitrators confidential, except: (i) as required by Laws or financial reporting requirements; (ii) to protect a legal right; or (iii) to enforce or challenge an award in litigation, in which case the Party seeking to enforce or challenge an award must seek an order to preserve confidentiality.
+Appointment of Arbitrators. The arbitral tribunal will consist of one arbitrator, but if either Party objects, the arbitral tribunal will consist of three arbitrators. If the Claim is related solely to fees, cost or charges required to be paid under the Hotel Agreements that are equal to or below the higher of: (i) US$5,000,000; or (ii) the threshold amount for expedited procedure provisions under the Rules, then the dispute will be resolved under such expedited procedure provisions.
+Consolidation & Joinder; No Class-Wide Arbitration. The Parties and their Affiliates will consent: (i) to be joined to any arbitration started under any Hotel Agreement; (ii) to consolidating into a single arbitration any two or more arbitrations started under any Hotel Agreement; and (iii) to bringing a single arbitration for Claims arising under any Hotel Agreement. Except as provided in this Section, any arbitration proceeding is conducted on an individual (not a class-wide) basis and will not be consolidated with any other arbitration proceedings to which we are a party.
+Waiver of Exemplary, Punitive and Indirect Damages.
+ Each Party absolutely, irrevocably and unconditionally waives the right to claim or receive exemplary, punitive and indirect damages in any dispute arising out of or in connection with the Hotel, the Hotel Agreements, the relationship of the Parties, or any actions or omissions in connection with any of the above, except our rights and remedies related to its Intellectual Property. Notwithstanding anything to the contrary in the Hotel Agreements or under Laws, the aggregate liability of Marriott Companies under or in connection with the provision of the services under Exhibit D, whether arising from contract, negligence or otherwise, will be limited to the amounts paid by you to MIDCS.
+Waiver of Jury Trial.
+ Each Party absolutely, irrevocably and unconditionally waives trial by jury for any Claims related to the Hotel Agreements.
+NOTICES
+All notices and other communications under this Agreement will be: (i) in writing and in English; (ii) delivered by hand with receipt, or by courier service with tracking capability; and (iii) (a) addressed to the relevant address stated in Exhibit A Item 13, or at any other address designated in writing by the Party receiving the notice, or (b) for notices to you, addressed to your registered address. Any notice is deemed received when delivery is received or first refused at the address identified in subsection (iii). Marriott Companies may provide you with electronic delivery of routine information, invoices, the Standards and other Systems requirements and programs.
+REPRESENTATIONS & WARRANTIES
+Existence; Authorization; Prior Representations; Restricted Person.
+Existence. Each of the Parties represents and warrants that it: (i) is duly formed, validly existing, and in good standing under the laws of the jurisdiction of its formation; and (ii) has and will continue to have the ability to perform its obligations under this Agreement.
+Authorization. Each of the Parties represents and warrants that the transactions contemplated by this Agreement and the signing of this Agreement: (i) have been duly authorized; (ii) do not violate, contravene or result in a default of: (a) any Laws; (b) its governing documents; or (c) any agreement, commitment or restriction binding on the relevant party; and (iii) do not require any consent that has not been properly obtained by the relevant party.
+Prior Representations. You represent and warrant that all information you or your Affiliates provided in connection with this Agreement, was true as of the time made and is true as of the Effective Date, regardless if provided by you or another Person on your behalf.
+Restricted Person. You represent, warrant and will ensure throughout the Term, that neither you nor any Control Affiliate (nor, if applicable, any Guarantor, Owner, or third-party Hotel Operator) is a Restricted Person. 
+Additional Franchisee Acknowledgments & Representations.
+No Reliance. In entering into this Agreement, you represent and warrant that you did not rely on, and Marriott Companies have not made, any promises, representations, warranties or agreements relating to the franchise, the Hotel or the Approved Location, or the System, unless contained in this Agreement.
+Business Risk. You agree that the business venture contemplated by this Agreement involves substantial business risk, is a venture with which you have relevant experience, and your success is largely dependent on your ability as an independent business. We disclaim the making of, and you agree you have not received, any information, warranty or guarantee, express or implied, as to the potential revenues, profits, or success of such business venture. Without limitation on the generality of the foregoing, you acknowledge and agree that the projection of sales revenue provided by Franchisor pursuant to Article 9(5) of the Korean Fair Transactions in Franchise Business Act does not constitute a warranty or representation of any kind, express or implied, as to the potential revenues, profits or success of the Hotel. The sales generated by you will depend on a myriad of factors, including economic, health, and regional and geopolitical impacts. Accordingly, Franchisor and its Affiliates will not have any liability whatsoever to you or any other Person for any divergence between any statements or projections of revenue, sales, expenses, income, rates, average daily rate, occupancy, revenue per available room, reservation system contribution, profitability or similar information and actual operating results achieved. You are solely responsible for the financing, design, construction, renovation and operation of the Hotel. 
+Disclosure and Negotiation. You acknowledge that you have read and understood the Disclosure Document and the Hotel Agreements at least fourteen (14) days prior to signing this Agreement (or seven (7) days if you retained counsel or a franchise broker to review the Disclosure Document). You have had sufficient time and opportunity to consult with its advisors about the potential benefits and risks of entering into this Agreement. You have had an opportunity to negotiate this Agreement.
+Prior Contracts. You represent and warrant that (i) there are no contracts, agreements or other arrangements with any other party that would prohibit, limit or otherwise conflict with your ability to enter into the Hotel Agreements and conclude any transactions contemplated by the Hotel Agreements; and (ii) all contracts, agreements or arrangements that existed or may have existed previously regarding management, franchising and branding of the Hotel (“Prior Contracts”) have been properly terminated without liability to you, us or the respective Affiliates, and such termination occurred before, and is unrelated to, this Agreement. You acknowledge that the Marriott Companies have not sought or induced the termination or breach of any Prior Contracts. The contracts, agreements and other arrangements described in (i) and any Prior Contracts are collectively referred to as the “Existing Arrangements”. The indemnification obligation under Section 14.1 will extend to any Existing Arrangements.
+MISCELLANEOUS
+Translations.
+ Most written materials relating to the Hotel and the System, including the Hotel Agreements, the Standards, the Software, and advertising materials we provided are in English. You may, at your cost, translate such materials into another language. We will own all translated materials, and any related copyrights are assigned to us on our request. You will obtain any agreements necessary from third parties to convey such rights. The English version of all translated materials will control.
+Counterparts.
+ This Agreement may be executed in any number of counterparts, each to be deemed an original and all of which constitute one and the same instrument. Delivery of a signed signature page by electronic transmission is as effective as delivery of a manually signed counterpart.
+Construction & Interpretation.
+Partial Invalidity. If any term of this Agreement, or its application to any Person or circumstance, is invalid or unenforceable at any time or to any extent, then: (i) the remainder of this Agreement, or the application of such term to Persons or circumstances except those as to which it is held invalid or unenforceable, will not be affected and each term of this Agreement will be valid and enforced to the fullest extent permitted by Laws; and (ii) the Parties will negotiate in good faith to modify this Agreement to implement their original intent as closely as possible in a mutually acceptable manner. 
+Non-Exclusive Rights & Remedies. No right or remedy of the Parties under this Agreement or the Standards is intended to be exclusive of any other right or remedy under this Agreement or under Laws. 
+No Third-party Beneficiary. This Agreement does not give any rights or benefits to any Person that is not a party to this Agreement, except as provided in this Agreement. To the extent that any of our Affiliates or other Person is expressly identified as having particular rights and benefits under this Agreement, such Person may enforce those rights and enjoy those benefits in accordance with this Agreement. The Parties may terminate or amend this Agreement (including this Section) without the consent of or notice to any other Person.
+Actions from Time to Time. When this Agreement permits us to take any action, exercise discretion or modify the System, we may do so from time to time.
+Interpretation of Agreement. This Agreement excludes all implied terms to the maximum extent permitted by Laws. Headings of Sections are for convenience and are not to be used to interpret the Sections to which they refer. Any Recitals, Sections, and Exhibits to this Agreement are incorporated by reference and are part of this Agreement, including all Items of Exhibit A even if such Items are not specifically referred to in this Agreement. Words indicating the singular include the plural and vice versa as the context may require. References to days, months and years are all calendar references, unless otherwise specifically provided. References that a Person “will” or “shall” do something or that something “will” or “shall” be done by that Person mean that the Person has an obligation to do that thing. References that a Person “may” do something or that something “may” be done by that Person mean that the Person has the right, but not the obligation, to do that thing. References that a Person “will not”, “shall not” or “may not” do something or that something “will not”, “shall not” or “may not” be done by that Person mean that the Person is prohibited from doing that thing. Examples used in this Agreement and references to “includes” and “including” are illustrative and not exhaustive.
+Definitions. All capitalized terms in this Agreement have the meaning stated in Exhibit B.
+Liability. Nothing in this Agreement limits or excludes any Party’s liability for fraud or fraudulent misrepresentation.
+Reasonable Business Judgment.
+ Except when we or our Affiliates have reserved sole discretion, Marriott Companies will use Reasonable Business Judgment when performing their obligations or exercising their rights under this Agreement, including for any consents and approvals and the administration of any Marriott Company’s relationship with you. The fact that any Marriott Company benefited from any action or decision, or that another reasonable alternative was available, does not mean that Marriott Companies failed to exercise Reasonable Business Judgment. If this Agreement is subject to any implied covenant or duty of good faith and Marriott Companies exercise Reasonable Business Judgment, you agree that Marriott Companies will not have violated such covenant or duty.
+Consents & Approvals.
+ Any Party’s consent or approval will (i) be in writing; and (ii) be signed by a duly authorized representative of the Party granting the consent or approval. If we consent or approve your requests, we will not be liable for any consequences of the actions taken by you and such consent or approval is not indicative of the likelihood of success of such action or activity undertaken by you.
+Waiver.
+ The failure or delay of either Party to insist on strict performance of any of the terms of this Agreement, or to exercise any right or remedy, will not be a waiver for the future. 
+Entire Agreement.
+ This Agreement and the other Hotel Agreements are fully integrated and contain the entire agreement between the Parties as it relates to the Hotel and supersede all previous oral or written understandings between Marriott Companies and you and your Affiliates relating to their subject matter. Neither Party will have any remedy for any untrue statement made by the other on which that Party relied in entering this Agreement (unless such untrue statement was made fraudulently). The only remedy available to a Party for a breach of any representation, assurance or warranty that is incorporated into this Agreement is for breach of contract. 
+Amendments.
+ This Agreement may only be amended by a document that has been provided to the Parties for review, discussed between the Parties (if requested by a party) and then subsequently agreed and duly signed by the Parties meeting the requirements of Section 26.2. 
+Survival.
+ The duties and obligations of the Parties that by their nature or express language survive Termination will survive Termination, including the terms of this Section 26 (Miscellaneous), Section 10 (Data Protection), Section 12 (Proprietary Marks & Intellectual Property), Section 13.2 (Books, Records & Accounts), Section 13.4 (Franchisor Examination & Audit of Hotel Records), Section 13.5 (Taxes), Section 14.1 (Indemnification), Section 16 (Prospectus Review), Section 17.4 (Damages & Costs), Section 18 (Post-Termination), Section 19 (Condemnation & Casualty), clause (i) of Section 21.2 (Notice of Legal Action), Section 23 (Governing Law; Arbitration & Related Issues), Section 24 (Notices). 
+
+SIGNATURES FOLLOW ON NEXT PAGE
+
+
+IN WITNESS WHEREOF, the Parties execute this Agreement on the Effective Date.
+
+ - KEY TERMS
+
+
+
+EXHIBIT A - ATTACHMENT ONE
+
+OWNERSHIP INTEREST IN FRANCHISEE
+
+
+EXHIBIT A - ATTACHMENT TWO
+
+RESTRICTED AREA
+Marriott Companies will not, and will not authorize any other Person to, open a System Hotel within the Restricted Area from the Effective Date until Termination. 
+This restriction will: 
+not apply to: (i) a Chain Acquisition; (ii) any other Marriott Product that is not a System Hotel; (iii) any System Hotel existing or under development as of the Effective Date in the Restricted Area, and if such System Hotel ceases to operate as a System Hotel or does not open as a System Hotel, then for each such hotel, an additional hotel may operate as a System Hotel in the Restricted Area; or (iv) any all-inclusive hotel, even if branded as a System Hotel 
+Franchisee acknowledges and agrees that the provisions of this Exhibit fulfill Franchisor’s obligation pursuant to Articles 5(6) and 12-4(3) of the Fair Transactions in Franchise Business Act of Korea (as amended from time to time, or any successor legislation).
+“Restricted Area” means the area within a 500-meters radius measured from the Hotel’s front door.
+
+
+
+EXHIBIT A - ATTACHMENT THREE 
+SCOPE OF WORK
+[SCOPE OF WORK TO BE INSERTED]
+
+
+
+
+- DEFINITIONS
+The following terms used in this Agreement have below meanings:
+“Additional Sales and Marketing Programs” means advertising, marketing, promotional, public relations, and sales programs and activities that are not included in Programs and Services or IMF Activities, each of which may vary in duration, apply on a local, country, regional, continental, or Category basis, or include other Marriott Products. Examples include email marketing, internet search engine marketing, transaction based paid internet searches, sales lead referrals and bookings, cooperative advertising programs, Travel Management Companies programs, incentive awards, gift cards, guest satisfaction programs, complaint resolution programs and Loyalty Programs. 
+“Additional Work” is defined in Exhibit D Section 2.2.
+“Affiliate” means, for any Person, a Person that is directly or indirectly Controlling, Controlled by, or under common Control with such Person.
+“Affiliation Cost Contribution” or “ACC” means the amount charged and collected by us for Programs and Services. 
+“Agreement” means this Franchise Agreement, including any exhibits and attachments, as may be amended.
+“Approved Location” means the site described in Exhibit A Item 2.
+“Assignable Software” is defined in Exhibit F Section F. 
+“Average Monthly Fees” means: (x) if the Hotel has been operating as an authorized System Hotel for at least 24 full months before Termination, the average monthly Franchise Fees and IMF Contribution payable during the preceding 24 full months; and (y) if the Hotel has not yet been opened or has not been operating as an authorized System Hotel for at least 24 full months, an amount equal to the greater of: (a) the average monthly Franchise Fees and IMF Contribution payable for the previous 24 full months for all franchised System Hotels on a per room basis multiplied by the number of Guestrooms; or (b) the average monthly Franchise Fees and IMF Contribution payable for the Hotel during the period the Hotel was operating as an authorized System Hotel. For the purpose of determining the Average Monthly Fees, (i) the average monthly Franchise Fees for the Hotel will be calculated at the highest percentage(s) stated in Exhibit A Item 10; and (ii) any month for which the Hotel is not fully open to the public for the entire month or for which there is a disruption to the operation or performance or closure of the Hotel (due to condemnation, casualty, a force majeure event or otherwise) is excluded.
+“Balance Design Review Payment” means the amount stated in Exhibit A Item 9.
+“Brand” means a hotel brand, trade name, trademark, system, collection, or chain of hotels or other lodging facilities.
+“Case Goods” means furniture and fixtures used in the Hotel, including cabinets, shelves, chests, armoires, chairs, beds, headboards, desks, tables, mirrors, lighting fixtures, and similar items. 
+“Category” means a group of hotels designated by Marriott Companies based on criteria such as geographic (for example, local, country, regional, continental, or international) or other attributes (for example, resorts, urban, suburban, or size or age of the hotel). A Category may have specific Standards or be a descriptive classification. 
+“Chain Acquisition” means: (i) any hotel or hotels that are members of a chain or group of hotels with a minimum of four hotels in operation, if: (a) all or substantially all are (in a single transaction or combination of related transactions) acquired by, merged with, franchised by or joined through a marketing agreement with a Marriott Company; or (b) the operation of all or substantially all of such hotels is transferred to a Marriott Company; or (ii) a single transaction or combination of related transactions, as a result of which four or more hotels are to be opened or rebranded as System Hotels under management agreement, franchise agreement or other relevant agreements, in all cases even if such hotel(s) is re-branded. 
+“Claim” means any demand, inquiry, investigation, action, claim or charge asserted, including in any judicial, arbitration, administrative, debtor or creditor proceeding, bankruptcy, insolvency, or similar proceeding.
+“Common Areas” means those portions of the Approved Location which are shared by any of the Non-Hotel Facilities and the Hotel.
+“Competitor” means any Person that has an Ownership Interest in a Brand or is an Affiliate of such a Person, or any Person that is a Master Franchisee of a Brand, or any officer or director of such Persons, if such Person competes with Marriott Companies or such Brand competes with any of the Marriott Products for hotels or other lodging facilities. 
+“Confidential Information” means: (i) the Standards; (ii) documents or trade secrets approved for the System or used in the design, construction, conversion, renovation or operation of the Hotel; (iii) any Electronic Systems and related documentation; (iv) Guest Personal Data; and (v) any other knowledge, trade secrets, business information or know-how obtained or generated: (a) through the use of the System by you or the operation of the Hotel that we deems confidential; or (b) under any Hotel Agreements. 
+“Contract Losses” is defined in Section 17.4.A.
+“Control” (in any form, including “Controlling” or “Controlled”) means, for any Person: (i) the possession, directly or indirectly, of the power to direct or cause the direction of the management or policies of such Person; or (ii) the right to vote more than 50% of the voting interests of a Person, in each case whether through ownership of voting interests, by contract or otherwise. No Person (or Persons acting together) are considered to have Control of a publicly traded company merely due to ownership of voting stock of such company if such Persons collectively beneficially own less than 25% of the voting stock of such company.
+“Control Affiliate” means your Affiliate that Controls you.
+“Construction Start” is defined in Section 5.2.
+“Construction Start Deadline” means the date stated in Exhibit A Item 12.
+“Damages” means losses, costs (including legal fees, litigation costs and costs of settlement), liabilities, penalties, interest, and damages of every kind and description.
+“Design” means the interior design theme or style reflected in the FF&E, fabrics, colors, and decorations that give the interior spaces an identifiable style or theme, or a style or theme that is distinctive to the Hotel.
+“Design and Complete” (in any form, including “Designed and Completed”) is defined in Section 5.2.
+“Design Criteria” means the then-current Standards, the accepted Plans, the Facilities Criteria, Laws, the Design, and the Scope of Work.
+“Design Review Payment” means the amount stated in Exhibit A Item 9.
+“Designee” is defined in Exhibit D Section 1.4 and identified in Exhibit A Item 13.
+“Development Activities” means the development, promotion, construction, ownership, lease, acquisition, management or operation of Marriott Products (including other System Hotels) and other business operations by Marriott Companies, or the authorization, licensing or franchising to other Persons to conduct similar activities. 
+“Disclosure Document” means the document entitled “Disclosure Document” that we provide to prospective franchisees of System Hotels.
+“Effective Date” means the date stated in Exhibit A Item 3.
+“Electronic Systems” means all Software, Hardware and all electronic access to our systems and data (including telephone and internet access), licensed or made available to you relating to the System, including the Reservation System, the Property Management System, the Yield Management System and any other system established under Section 8, Section 9 and Exhibit F.
+“Electronic Systems Fees” means the fees we charge for the Hotel’s use of the Electronic Systems, which include the development and incremental operating costs, ongoing maintenance, field support costs and the reimbursement of capital invested in the development of such Electronic Systems, and costs we incurred to finance such capital.
+“Existing Arrangements” is defined in Section 25.2.D.
+“FF&E” means Case Goods, Soft Goods, signage and equipment (including telephone systems, printers, vending machines, and Hardware), but excludes any item included in Fixed Asset Supplies.
+“Facilities Criteria” means the required facilities for the Hotel to be a System Hotel, as agreed between the Parties as of the Effective Date. 
+“Fixed Asset Supplies” means items such as linen, glassware, tableware, uniforms and similar items that are included in “Operating Equipment” under the Uniform System.
+“Franchise Fees” is defined in Exhibit A Item 10.
+“Franchisee” means the Person identified in Exhibit A Item 6. References in this Agreement to “you” or “your” will be interpreted as references to “Franchisee” or “Franchisee’s”, as applicable.
+“Franchisee Marks” means, if applicable, the names and marks listed in Exhibit G.
+“Franchisor” means the Person identified in Exhibit A Item 5, and its successors and assigns. References in this Agreement to “us”, “we” or “our” will be interpreted as references to “Franchisor” or “Franchisor’s”, as applicable.
+“Gross Room Sales” means all revenues and receipts of every kind that accrue from the rental of Guestrooms (with no reduction for charge backs, credit card service charges, or uncollectible amounts). Gross Room Sales includes: (i) no-show revenue, early departure fees, late check-out fees, service charges  and other revenues allocable to rooms revenue under the Uniform System; (ii) resort fees, destination fees and mandatory surcharges for facilities (although inclusion of such fees or surcharges does not constitute our approval of such fees and surcharges, which may be limited or prohibited); (iii) attrition or cancellation fees collected from unfulfilled reservations for Guestrooms; (iv) the amount of all lost revenues and receipts due to the non-availability of Guestrooms, on which business interruption, loss of income, or other similar insurance claims are calculated; and (v) any awards, judgments or settlements representing payment for loss of room sales. Gross Room Sales excludes Use Taxes and any refunds and credits of a similar nature, paid or returned to customers in the course of obtaining Gross Room Sales.
+“Guarantor” means any Person or Persons who guarantees the performance of any of your obligations under the Hotel Agreements.
+“Guaranty” means any guaranty signed by a Guarantor for our benefit.
+“Guest Personal Data” means any information relating to identified or identifiable actual or potential guests or customers of the Hotel and other Marriott Products, including contact information (such as addresses, phone numbers, facsimile numbers, email and SMS addresses), Guest Preferences, and any other information collected from or about actual or potential guests or customers of the Hotel and other Marriott Products.
+“Guest Preferences” means guest histories, preferences, loyalty program activity and any other related information collected from or about actual or potential guests or customers of the Hotel and other Marriott Products through the Loyalty Programs or other means, which is our and our Affiliates’ proprietary information.
+“Guestroom” means each rentable unit in the Hotel consisting of a room, studio, suite or suite of rooms used for overnight guest accommodation, entrance to which is controlled by the same key; however, adjacent rooms with connecting doors that can be locked and rented as separate units are considered separate Guestrooms.
+“Hardware” means all computer hardware and other equipment (including all upgrades and replacements) required for the operation of any Electronic System.
+“Hotel” means: (i) the Approved Location; (ii) Hotel Improvements; and (iii) all FF&E, Fixed Asset Supplies, and Inventories.
+“Hotel Agreements” means this Agreement and any other agreements regarding the Hotel between the Parties or their Affiliates, as such may be amended.
+“Hotel Improvements” means the building(s) containing Guestrooms and Public Facilities, consistent with the Facilities Criteria.
+“Hotel Operator” is defined in Section 9.4.A.
+“Hotel Operator Consent” means Franchisor’s approval regarding the operation of the Hotel by the Hotel Operator, in the then-current form for System Hotels.
+“Hotel Outsourced Areas” means any facilities or areas which are part of the Hotel Improvements but are operated by a third party under a lease or operating agreement with you or your Affiliate. 
+“IMF Activities” is defined in Section 7.2.
+“IMF Contribution” is defined in Section 4.1.
+“Income Withholding Tax” is defined in Section 13.5.A.
+“Independent Hotel Brand” means the identifiable brand concept and ongoing brand activation that consists of the Hotel’s competitive and consumer positioning, illustrates the Hotel’s unique personality and memorable characteristics, and describes the Hotel’s service culture and guest experience.
+“Initial Term” is defined in Exhibit A Item 4.
+“Insolvency Event” means, in relation to a Person, any of the following: (i) it files a petition for reorganization or dissolution under any bankruptcy, insolvency or similar law; (ii) it consents to, or has instituted against it, a petition under any bankruptcy, insolvency or similar law; (iii) it is adjudicated to be bankrupt, insolvent or of similar status by a court of competent jurisdiction, or has a resolution passed for its winding-up, compulsory management or liquidation; (iv) it has a receiver, trustee, liquidator or similar authority appointed over the Hotel or all or a substantial part of its assets; (v) it makes a general assignment, arrangement, composition or compromise with or for the benefit of its creditors for the Hotel or its material assets; or (vi) execution or attachment is enforced, or a suit to foreclose any mortgage or security interest is filed, against the Hotel or its material assets.
+“Intellectual Property” means the following items, regardless of the form or medium (for example, paper, electronic, tangible or intangible): (i) all Software, including the data and information processed or stored by such Software; (ii) all Proprietary Marks; (iii) all Confidential Information; and (iv) all other information, materials, and subject matter that are copyrightable, patentable or can be protected under applicable intellectual property laws, and owned, developed, acquired, licensed, or used by Marriott Companies for the System.
+“Interestholder” means any Person that directly or indirectly holds an Ownership Interest.
+“Interest Rate” means the lesser of: (i) the annual rate equal to the Prime Rate plus three percentage points compounded monthly; or (ii) the maximum rate permitted by Laws. 
+“International Marketing Fund” means money we collect for IMF Activities.
+“Inventories” means “Inventories” as defined in the Uniform System, including provisions in storerooms, refrigerators, pantries and kitchens; beverages; other merchandise intended for sale; fuel; mechanical supplies; stationery; and other expensed supplies and similar items.
+“Inventory Management” means those inventory management services we make available to you under revenue management or consulting arrangements.
+“Jurisdiction” means the Republic of Korea.
+“Korean Won” and “KRW” means the lawful currency of the Republic of Korea.
+“Laws” means: (i) applicable law, code, rule, ordinance, regulation, or other enactments, order or judgment of any governmental, quasi-governmental or judicial authority, or administrative agency having jurisdiction over the Hotel or any Hotel Agreement, any Party to a Hotel Agreement, or the matters that are the subject of this Agreement, including any of the above that prohibit unfair, fraudulent, or corrupt business practices and related activities, including any such actions or inactions that would constitute a violation of money laundering, tax evasion or terrorist financing laws and regulations; (ii) any laws that prohibit any Person from offering, making or receiving bribes, or other inappropriate payments or gifts, including, if applicable, (a) the Foreign Corrupt Practices Act of 1977 of the United States of America; and (b) the Bribery Act 2010 of the United Kingdom of Great Britain and Northern Ireland; each as may be amended; and (iii) any applicable data protection or privacy law.
+“LD Amount” is defined in Section 17.4.B. 
+“Licensed Marks” means: (i) the marks identified by the registrations and applications listed in Exhibit E; and (ii) any other Proprietary Marks designated by us in writing as a Licensed Mark, as such may be deleted, added or modified by us in our sole discretion.
+“Loyalty Programs” means all loyalty, recognition, affinity, and other programs designed to promote stays at, or usage of, the Hotel, System Hotels and such other Marriott Products designated by Marriott Companies, or any similar, complementary, or successor programs or combination thereof including programs sponsored by airlines, credit card and other companies, including “Marriott Bonvoy”. 
+“Marketing Materials” means all advertising, marketing, promotional, sales and public relations concepts, press releases, materials, concepts, plans, programs, brochures, or other information to be released to the public, whether in paper, digital, electronic, or other forms of media.
+“Marks” means: (i) any trademarks, trade names, trade dress, words, symbols, logos, slogans, designs, insignia, emblems, devices, service marks, and indicia of origin (including taglines, program names, and restaurant, spa or other outlet names); and (ii) any combinations of the above; in each case, whether registered or unregistered.
+“Marriott Companies” means Franchisor and/or its Affiliates.
+“Marriott Products” means any hotels or other lodging products, Vacation Club Products, residential products (such as single family homes or multi-unit apartment buildings or individual units within such buildings), restaurants, and other products, services, activities and businesses of any type, that are managed, licensed, owned, leased, developed, promoted or provided by or associated with Marriott Companies, in whole or in part, using any brand name available to Marriott Companies (including any brand listed in Exhibit H and future brands or concepts developed or used by Marriott Companies for hotels and other lodging products, Vacation Club Products, residential products, whole ownership facilities, home sharing facilities, and other similar Companies) or not using any brand name.
+“Master Franchisee” means a Person that has the exclusive rights to develop, operate or sub-license a Brand owned or Controlled by a Competitor.
+“MIDCS” means Marriott International Design & Construction Services, Inc., a corporation organized and existing under the laws of the State of Delaware, United States of America and its successors and assigns.
+“Non-Assignable Software” is defined in Exhibit F Section F.
+“Non-Hotel Facilities” means such facilities or areas which are part of the project in which the Hotel is located but are presented to the public as offerings that are separate from the Hotel. 
+“Non-Permitted Uses” means any use that competes with the Hotel, is not consistent with the quality, character and reputation of the Hotel, or is prohibited under Section 9.1A. 
+“Opening Date” means the date identified as the Hotel opening date in the letter agreement issued by us described in Exhibit D.
+“Opening Deadline” means the date stated in Exhibit A Item 12.
+“Other Marks” is defined in Section 12.3. 
+“Owner” is defined in Exhibit A Item 14.B, if applicable.
+“Owner Agreement” if applicable, means the agreement between you, Owner, and us, dated the Effective Date for the Hotel.
+“Ownership Interest” means all forms of direct or indirect legal or beneficial ownership or Control of entities or property, including the following: stock, partnership, membership, joint tenancy, leasehold, proprietorship, trust, beneficiary, proxy, power-of-attorney, option, warrant, and any other interest that evidences ownership or Control.
+“Party” or “Parties” is defined in the introduction to this Agreement.
+“Person” means an individual (and the heirs, executors, administrators or other legal representatives of an individual), a partnership, a joint venture, a firm, a company, a corporation, a governmental department or agency, a trustee, a trust, an unincorporated organization or any other legal entity.
+“Personnel Costs” means the salary and other compensation of any individuals providing services to you, including training, inspections, and counseling and advisory services.
+“PIP” is defined in Exhibit A Item 4.
+“Plans” means the construction or renovation documents, including a site plan and architectural, mechanical, electrical, civil engineering, landscaping and interior design drawings and specifications.
+“Prime Rate” means the “Prime Rate” of interest in the United States of America published from time to time by the Bloomberg Press at http://www.bloomberg.com, or another internationally recognized website or publication publishing the prime rate of interest in the United States of America as we may reasonably determine.
+“Prior Contracts” is defined in Section 25.2.D.
+“Product Quality Standards” means our quality requirements for planning and constructing or renovating and refurbishing a System Hotel, including Electronic Systems, fire protection systems and life safety components of the Hotel.
+“Programs and Services” is defined in Section 4.1.
+“Property Management System” means all property management systems (including all Software, Hardware and electronic access) we designate for use in the front office, back-of-the-office or other operations of System Hotels.
+“Proposed Mark” if Exhibit G applies, Proposed Mark is defined in Exhibit G.
+“Proprietary Marks” means: (i) the Licensed Marks, and any other trademarks, trade names (including the trade name(s) identified in Exhibit A Item 1), trade dress, words, symbols, logos, slogans, designs, insignia, emblems, devices, service marks, and indicia of origin (including taglines, program names, and restaurant, spa or other outlet names); (ii) all local language versions of any of the above; and (iii) any combinations of the above; in each case, whether registered or unregistered, and whether owned currently by us or our Affiliates or later developed or acquired, that are used or registered by us or one of our Affiliates, or by usage are associated with one or more System Hotels. The term “Proprietary Marks” excludes the Franchisee Marks.
+“Prospectus” means any registration statement, memorandum, offering document, or similar documentation for the sale or transfer of an Ownership Interest.
+“Public Facilities” means the lobby areas, meeting rooms, convention or banquet facilities, restaurants, bars, lounges, corridors and other similar facilities.
+“Published Source” means the website published and maintained by the Bloomberg Press at http://www.bloomberg.com, or another internationally recognized website or publication quoting exchange rates for the applicable currencies as we may reasonably determine. 
+“Qualified Person” means a Person that meets our then-current owner or management company qualifications, including: that such Person or its Affiliates, or their respective Interestholders, has not been convicted of a Serious Crime; is not a Competitor or a Restricted Person or a Person that receives funding from a Restricted Person; has not engaged in conduct that may adversely affect the Hotel, the System, or us; and has not been a party to any material civil litigation with Marriott Companies.
+“Quality Assurance Program” means the program that we use to monitor guest satisfaction and the operations, facilities and services at System Hotels. 
+“Reasonable Business Judgment” means, for decisions affecting the System, that the rationale for our decision has a reasonable business basis that is intended to: (i) benefit the System or the profitability of the System, including us, regardless of whether some System Hotels may be unfavorably affected; (ii) increase the value of the Proprietary Marks; (iii) enhance guest, franchisee or owner satisfaction; or (iv) minimize potential brand inconsistencies or customer confusion. For decisions unrelated to the System, the rationale for our decision has a reasonable business basis and we have not acted in bad faith.
+“Renewal Term” is defined in Exhibit A Item 4.
+“Replacement Brand” is defined in Section 12.1.A.2.
+“Representatives” means, with respect to a Party, its Affiliates and each of such Party’s and its Affiliates’ predecessors, successors, assigns, current and former directors, officers, Interestholders, employees and agents.
+“Reservation System” means any reservation system we designate for System Hotels (including Software, Hardware and related electronic access).
+“Restricted Area” is defined in Exhibit A Attachment Two.
+“Restricted Person” means a Person who: (a) is identified by any government or legal authority as a Person with whom Marriott Companies are prohibited or restricted from transacting business, including, any Person: (i) on the US Treasury Department’s Office of Foreign Assets Control List of Specially Designated Nationals and Blocked Persons; (ii) on the Consolidated List of Persons, Groups and Entities Subject to EU Financial Sanctions; (iii) on the UK List of Financial Sanctions Targets maintained by His Majesty’s Treasury; (iv) identified under resolutions or sanctions-related lists maintained by the United Nations Security Council; or (v) ordinarily resident, incorporated, or located in any Sanctioned Territory or owned or Controlled by, or acting on behalf of, the government of any Sanctioned Territory; or (b) (i) is directly or indirectly Controlled by; (ii) is 10% or more owned by; (iii) in our judgment, is the designee of or acting on behalf of; or (iv) receives funding related to the ownership, construction, renovation, financing or operation of the Hotel from, any Person identified in subsection (a). For purposes of this definition, “Sanctioned Territory” means any country or territory subject to: (x) a comprehensive export, import, or financial embargo under United Nations sanctions or Laws in the Jurisdiction, the United States of America, the European Union or the United Kingdom; or (y) sanctions that, in our judgment materially and adversely restrict Marriott Companies from providing services under this Agreement in accordance with Standards or you from operating the Hotel in accordance with Standards.
+“Review” is defined in Section 1.1 of Exhibit D. 
+“Rules” is defined in Section 23.4.A. 
+“Sales Agent” means a Person who acts on your behalf for: (i) Inventory Management; (ii) booking reservations at the Hotel or other booking activities, including accessing the Reservation System; or (iii) sales activities, including arranging group sales. 
+“Scope of Work” means a property improvement plan prepared by MIDCS for the conversion and renovation of the Hotel and set out in Exhibit A Attachment Three. If there are any material changes to the Hotel after the Effective Date, MIDCS may re-inspect the Hotel and modify the Scope of Work to address such material changes.
+“Security Incident” means the accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to, Guest Personal Data 
+“Serious Crime” means a crime punishable by either or both: (i) imprisonment of one year or more; or (ii) payment of a fine or penalty of US$10,000 (or the foreign currency equivalent) or more.
+“SIAC” is defined in Section 24.4.A.
+“Similar Marks” is defined in Section 12.2.A.6.
+“Soft Goods” means wall and floor coverings, window treatments, carpeting, bedspreads, lamps, artwork, upholstery, textile, fabric, vinyl and similar items used in the Hotel.
+“Software” means all computer software (including all future upgrades and modifications) and related documentation we or designated suppliers provide for the Electronic Systems.
+“South Korea” and “Korea” means the Republic of Korea.
+“Special Circumstances” means: (i) two or more additional franchise, license, management or operating services agreements between you and us, or our respective Affiliates, are terminated within 12 months of Termination; or (ii) this Agreement is terminated as a result of a Transfer to a Competitor.
+“Standards” means our manuals, standard operating procedures, policies, systems, guides, programs (including the Quality Assurance Program), requirements, directives, specifications, the Design, the Product Quality Standards and such other information, initiatives and controls that are necessary for the development, design, construction, renovation, equipping, and operation of System Hotels.
+“Support Services” is defined in Exhibit F Section A.
+“System” means the Standards, Intellectual Property, the Electronic Systems, the Loyalty Programs, the IMF Activities, Additional Sales and Marketing Programs, Marketing Materials, training programs, and other elements that Marriott Companies have designated for System Hotels.
+“System Hotel” means a hotel operated by a Marriott Company or a franchisee or licensee of a Marriott Company under the trade name(s) identified in Exhibit A Item 1 and as of the Effective Date, that is not located within Canada, any of the 50 states comprising the United States of America or the District of Columbia. 
+“Tax Dispute” is defined in Section 13.5.E.
+“Taxes” means present or future taxes, levies, imposts, value added taxes and similar taxes, duties, fees, charges or liabilities imposed by any governmental authority in the Jurisdiction, including any interest, additions to tax or penalties applicable to any of the foregoing.
+“Term” is defined in Exhibit A Item 4.
+“Termination” means the expiration or termination of this Agreement.
+“Training Costs” means: (i) tuition, supplies, Travel Costs, Personnel Costs, and allocations of internal costs and overhead of Marriott Companies related to training programs; (ii) the annual charge per manager for management training that is based on an allocation among System Hotels of the costs of developing and providing such training; and (iii) the charge for the general manager conference, regardless if your personnel attend. 
+“Transfer” means any direct or indirect, absolute or conditional, sale, conveyance, assignment, novation, exchange, pledge, encumbrance, lease or other disposition. 
+“Travel Costs” means all travel, food and lodging, living, and other out-of-pocket costs (including, the cost of obtaining any required visas, work permits or similar documentation). 
+“Travel Management Companies” means travel agencies, online travel agencies, group intermediaries, wholesalers, concessionaires, and other similar travel companies.
+“Uniform System” means the then-current edition of the Uniform System of Accounts for the Lodging Industry, except any revisions made to the prior edition that have not been, or are not in the process of being, generally implemented at System Hotels.
+“USD” and “US$” means the lawful currency of the United States of America.
+“Use Taxes” means all value added, room, excise, goods and services, sales or use taxes or any other taxes or governmental charges collected directly from guests or other customers or included as part of the sales price of any goods or services.
+“Vacation Club Products” means timeshare, fractional, interval, vacation club, destination club, vacation membership, private membership club, private residence club, and points club products, programs and services and includes other forms of products, programs and services where purchasers acquire an ownership or membership interest, use or other rights to use determinable leisure units on a periodic basis.
+“Yield Management System” means any yield management system (including all Software, Hardware and electronic access) we designate for use by System Hotels.
+
+
+
+ - INSURANCE	
+A.	Insurance Requirements. You will maintain or cause to be maintained the following insurance, for the Hotel (including Hotel Outsourced Areas) and its operations from the Opening Date and during the Term:
+General or public liability insurance for bodily injury including mental harm, death, or third-party property damage for at least US$3,000,000 each occurrence. Such insurance will include: (a) worldwide defense and indemnity; (b) innkeeper’s and safe deposit box liability; and (c) waiver of subrogation in favor of Marriott Companies. The policy will name Marriott Companies as additional insureds;
+Employment related injury and illness coverage that complies with Laws covering all Hotel employees; and
+Cyber liability insurance for at least US$500,000 each occurrence.
+B.	General Insurance Requirements.
+1.	You will provide to us evidence in English of insurance required by this Exhibit during the Term. 
+2.	If you fail to maintain the insurance required by this Exhibit, we may obtain such insurance to protect our interests at your cost, including a reasonable servicing fee.
+3.	We have the right to change the insurance required by this Exhibit in response to insurance market trends, customer demands, technological advances and other factors affecting the hotel industry.
+ 
+
+
+ - DESIGN & COMPLETION OF THE HOTEL 
+Design and Completion. 
+Review. MIDCS will verify that the Hotel is Designed and Completed in compliance with the Design Criteria (the “Review”). 
+Design Review Process. You will submit all Plans requested by MIDCS to Design and Complete the Hotel to MIDCS for Review. MIDCS will review the Plans and provide comments, which you will incorporate and, at MIDCS’ request, re-submit for further Review. You will provide monthly status reports and progress photos. You will prepare sample Guestroom(s) and corridors based on the accepted Plans for MIDCS’ inspection and acceptance. Once accepted, the sample Guestroom(s) and corridors are the reference standard required for the Hotel. 
+Franchisee Performance. You will not proceed with any construction or conversion (as applicable), or purchasing, for the Hotel until the Plans and sample Guestroom(s) have been accepted for such items. You will reject and replace any work performed that fails to meet the Design Criteria and the accepted Plans. You will obtain all assignments required under Section 12.2.B.5 relating to any modifications, derivatives or additions to our Intellectual Property developed as part of the Hotel.
+Designees and Consultants. MIDCS and you will each designate a representative to coordinate its activities under this Exhibit (each, a “Designee”). You will engage qualified consultants to Design and Complete the Hotel. MIDCS may engage consultants to perform its services under this Exhibit and use the Design Review Payment to pay these consultants. If the Design Review Payment are insufficient, MIDCS will pay the balance due out of its own funds. MIDCS’ use of consultants will not diminish MIDCS’ obligations under this Exhibit.
+Compensation. 
+Design Review Payment. You will: (i) pay MIDCS the Design Review Payment; and (ii) compensate MIDCS for further work performed based on the time spent multiplied by the standard hourly rates applicable to the individual performing such work, and any related out-of-pocket costs. Further work include: (a) changes to the agreed Facilities Criteria requested by you; (b) additional Reviews by MIDCS due to incomplete Plans or your changes to accepted Plans; (c) Hotel visits in excess of 2 trips; (d) if (1) the Hotel does not open by the Opening Deadline; or (2) there is Additional Work, and MIDCS continues to provide services; and (e) substantial increase in the cost of MIDCS’ services under this Exhibit caused by events outside of MIDCS’ control. 
+Payment. MIDCS will invoice you for: (i) the Balance Design Review Payment on the Effective Date; and (ii) compensation for further work done under Section 1.5.A(ii) of this Exhibit each month (if any), and you will pay such amounts by wire transfer to an account designated by MIDCS within 30 days from the invoice date. MIDCS will send invoices to your email address in Exhibit A Item 13. You acknowledge and agree that Section 3.6, Section 3.7, Section 13.5, Section 13.6 and Section 13.7 will apply to payments under Section 1 of this Exhibit. You acknowledge and agree that MIDCS will not be obligated to provide services to you unless and until the Design Review Payment is paid in accordance with this Agreement.
+Service Period. MIDCS´ obligations under this Exhibit terminate on the earlier of the Opening Date and Termination. Such termination will not affect MIDCS’ other rights and remedies under Section 1 of this Exhibit. 
+No Warranties. You acknowledge that MIDCS’ Review is solely for verifying that the Hotel is Designed and Completed in compliance with the Design Criteria. MIDCS’ approval of Plans will not imply or be deemed to constitute an opinion of MIDCS regarding, nor impose on MIDCS or its affiliates any responsibility or liability for, the Design and Completion of the Hotel. You are solely responsible for: (a) the Design and Completion of the Hotel, including all costs, adequacy of budgets and cost over-runs; (b) managing and supervising consultants; (c) construction means, methods, techniques, sequences and procedures; (d) safety precautions and programs to Design and Complete the Hotel; (e) any contractor’s failure to carry out the Design and Completion of the Hotel; (f) compliance with Laws; and (g) any errors, omissions or discrepancies in the Plans. Marriott Companies make no representation, warranty or guarantee for any cost estimate provided to you relating to the Scope of Work, if applicable.
+Indemnification and Compliance with Law. You reiterate that your obligations, liabilities, undertakings and warranties under Section 14.1 and Section 21.1 applies to all activities under Section 1 of this Exhibit.
+Default. Your default under Section 1 of this Exhibit constitutes a default under Section 17.1.  
+Survival. The duties and obligations of the Parties that by their nature or express language survive termination of this Exhibit will survive expiration or termination of this Exhibit, including Section 1.5, Section 1.7, Section 1.8 and Section 1.10 of this Exhibit.  
+Opening Date.
+ Without our prior approval, you will not advertise, promote or operate the Hotel as a System Hotel until:
+You have: (i) installed all FF&E, Electronic Systems, Fixed Asset Supplies and Inventories, and all is in working order; (ii) paid all amounts due to Marriott Companies; (iii) complied with the insurance requirements of this Agreement; (iv) registered the Hotel Agreements with governmental authorities (if required); and (v) hired the general manager and department managers who have completed our management training program; and 
+We have: (i) inspected the Hotel and determined in our sole discretion that the Hotel has been Designed and Completed in accordance with the Design Criteria; and (ii) granted approval to open the Hotel as a System Hotel and established the Opening Date in a letter agreement signed by the Parties. If the letter agreement provides for additional construction, upgrading, renovation, training or other items (the “Additional Work”), you are authorized to use the System and identify the Hotel as a System Hotel only for such time as you diligently complete the Additional Work. 
+Opening Advertising.
+ You will conduct an opening advertising and marketing campaign that complies with the Standards.
+
+ - LIST OF LICENSED MARKS
+
+
+- USE OF ELECTRONIC SYSTEMS
+A.	Ownership. The Electronic Systems that are proprietary to us or third-party vendors, as applicable, will remain their sole property, and you will not contest such ownership. You acknowledge that the Electronic Systems may be modified, enhanced, replaced, or become obsolete, and new Electronic Systems may be created to meet the needs of the System or changes in technology. Any license or access to any Electronic System will terminate on the earlier of Termination or when such Electronic System is no longer used as part of the System. We, our Affiliates, or third-party vendors will use reasonable efforts to maintain and support the Electronic Systems (the “Support Services”) during the Term. You will pay the fees and costs for the Support Services. We may suspend your access to any Electronic System for non-compliance with any end-user terms or to protect the Intellectual Property or the intellectual property of third-party vendors, and will use reasonable efforts to resume access once such non-compliance is rectified or threat to such intellectual property is addressed. You waive all claims against the Marriott Companies arising from any such suspension.
+B.	Confidentiality Obligations. Subject to Section 12.5, you will ensure that only authorized Persons have access to the Electronic Systems and use them only for their intended purpose. You will not: (i) without our or any third-party vendor’s consent, copy or provide unauthorized access to, or, unless prohibited by Laws, reverse engineer or modify, the Electronic Systems or any of its components; or (ii) attempt to disregard or circumvent our measures to safeguard the Electronic Systems and the Intellectual Property.
+C.	Third Party and Preferred Vendors. You may be required to enter into agreements with third party vendors and comply with any privacy and security standards to obtain access to certain Electronic Systems. Any third-party vendor will have the right to enforce such terms directly against you. We will have no liability for your use of any Electronic System provided by a third-party vendor. We may designate a third-party vendor of Electronic Systems as a preferred vendor and require you to use Electronic Systems provided by such vendor. 
+D.	No Endorsement or Warranty. We do not make any representation or warranty about any Electronic System. We provide the Electronic Systems and the Support Services on an as-is basis. To the greatest extent permitted by Laws, we disclaim all warranties, express or implied, including the implied warranties of merchantability, fitness for a particular purpose, custom or usage in the trade, related to your use of the Electronic Systems and the Support Services.  
+E.	Limitation of Liabilities. To the greatest extent permitted by Laws, we: (i) are not liable for any damage arising out of the use or failure of any Electronic Systems or Support Services under this Exhibit and Section 8, including corruption of data, and you waive any right to, or Claim of, any exemplary, incidental, indirect, special, consequential, or other similar damages (including loss of profits) related to the use or failure of any Electronic Systems or Support Services, even if we have been advised of the possibility of such damage or failure; and (ii) will use reasonable endeavors to provide any warranties or other similar protections provided by our vendors for the Electronic Systems. 
+F.	Software License Rights on Termination. The Software that you purchase, access or obtain through us is generally not assignable to you on Termination (“Non-Assignable Software”). When this Agreement terminates, you will: (i) not use the Non-Assignable Software and, at your request, we will use reasonable endeavors to facilitate the assignment of any Software that is assignable (“Assignable Software”); and (ii) delete both Assignable Software and Non-Assignable Software obtained through us. You may reinstall Assignable Software using copies that you obtain directly from the vendor.
+G.	Indemnification. The indemnification obligation under Section 14.1 will extend to your use of the Electronic Systems, any failure by you to comply with Section 8 and Exhibit F and any Security Incident.
+
+
+ - FRANCHISEE MARKS 
+[APPLICATIONS/REGISTRATIONS IN THE JURISDICTION]
+
+
+You represent and warrant that: (i) Franchisee owns the registrations and/or applications to register above Franchisee Marks; and (ii) there are no pending or threatened Claims that would affect Marriott Companies’ use of the Franchisee Marks under this Agreement. You have the right, and consent, to Marriott Companies’ use of the Franchisee Marks for the Hotel (including in Marketing Materials and on Marriott Companies’ website) during the Term until 30 days after the earlier of (x) Termination; or (y) the change of the Hotel name to omit the Franchisee Marks.
+B.	You will use the Franchisee Marks with the Proprietary Marks for the Hotel only as authorized by Franchisor and in accordance with the Standards. You will conform all uses of the Franchisee Marks and Proprietary Marks to the content, layout and graphic design of sample materials approved by us, and you will restrict such usage to activities, media or signage approved by us. Any modification to the Franchisee Marks is subject to our prior approval, whether with Proprietary Marks or not. You will not use the Franchisee Marks for any hotel, other lodging product or Vacation Club Product, other than the Hotel. 
+C.	You will not file or pursue any registration containing any of the Franchisee Marks and any Proprietary Marks together, except where required by Laws, and with our approval. You will withdraw, cancel or assign to us (i) any unauthorized registration on our request; and (ii) any authorized registration containing Proprietary Marks on the earlier of the Termination or the Hotel name changes to omit the Franchisee Marks.
+D.	You agree that (i) you will not acquire any right, title or interest in the Proprietary Marks based on your use of the Franchisee Marks and Proprietary Marks; (ii) all goodwill associated with the Proprietary Marks generated by their use with the Franchisee Marks will inure to us; and (iii) you will not assert that the Proprietary Marks and the Franchisee Marks when used together comprise a composite mark. On Termination, you will cease all use of the Proprietary Marks, including together with the Franchisee Marks.
+E.	If a third party challenges the use of the Franchisee Marks, we may require that the Hotel be renamed in compliance with the Standards to omit the Franchisee Marks, whereupon you will (i) cease using the Franchisee Marks in references to the Hotel; (ii) use the new name of the Hotel (including on any Marketing Materials, signage, and on our website); and (iii) modify or destroy any items that refer to the Hotel other than by its new name.
+F.	Before adopting any Mark as a Franchisee Mark (a “Proposed Mark”), you will provide for our approval a proposal, which will include a trademark availability search by a competent counsel showing that the Proposed Mark is available for use and registration as a trademark for hotel, restaurant, and/or the applicable services. You will engage a branding consultant acceptable to us to develop the Proposed Mark if it is to be included in the Hotel name. If we approve a Proposed Mark, you will (i) promptly file an application for registration of the Proposed Mark and provide us with a copy thereof; and (ii) diligently prosecute the application to registration of the Proposed Mark and (iii) execute an amendment to this Exhibit to include the Proposed Mark. The Proposed Mark will be a Franchisee Mark only upon the Parties signing of the amendment. You will not use a Proposed Mark until you have complied with this Section. 
+ - MARRIOTT BRANDS
+
+
+AC Hotels by Marriott
+African Pride Hotels
+Aloft Hotels
+Aloft Residences
+Apartments by Marriott Bonvoy
+Autograph Collection Hotels
+Autograph Collection Residences
+Bulgari Hotels & Resorts
+City Centro by Marriott Hotels
+City Express by Marriott Hotels
+City Express Junior by Marriott Hotels
+City Express Plus by Marriott Hotels
+City Express Suites by Marriott Hotels
+Courtyard by Marriott Hotels
+Delta Hotels by Marriott
+Delta Hotels by Marriott Residences
+Design Hotels
+EDITION Hotels
+EDITION Residences
+Elegant Hotels
+Element Hotels
+Fairfield by Marriott Hotels
+Fairfield Inn by Marriott
+Fairfield Inn & Suites by Marriott
+Four Points by Sheraton Hotels
+Four Points Flex by Sheraton Hotels
+Gaylord Hotels
+Grand Residences by Marriott
+Homes &Villas by Marriott Bonvoy
+JW Marriott Hotels
+JW Marriott Hotels & Resorts
+JW Marriott Marquis Hotels
+JW Marriott Residences
+Le Méridien Hotels & Resorts
+Le Méridien Residences
+Le Royal Méridien Hotels & Resorts
+Marriott Conference Centers
+Marriott Executive Apartments
+Marriott Hotels
+Marriott Hotels & Conference Centers
+Marriott Hotels & Resorts
+Marriott Marquis Hotels
+Marriott Residences
+Marriott Resorts
+Marriott Suites Hotels
+Marriott Vacation Club
+Marriott Vacation Club Pulse
+Moxy Hotels
+Moxy Residences
+Protea Hotel Fire & Ice!
+Protea Hotels by Marriott
+Renaissance ClubSport Hotels
+Renaissance Hotels
+Renaissance Residences
+Residence Inn by Marriott 
+Series by Marriott
+Sheraton Grand Hotels & Resorts
+Sheraton Hotels & Resorts
+Sheraton Residences
+Sheraton Vacation Club
+SpringHill Suites by Marriott Hotels
+St. Regis Hotels, Resorts & Suites
+St. Regis Residence Club
+St. Regis Residences
+StudioRes Hotels
+The Luxury Collection Hotels, Resorts & Suites
+The Luxury Collection Residence Club
+The Luxury Collection Residences
+The Residences at The Ritz-Carlton
+The Ritz-Carlton Club
+The Ritz-Carlton Destination Club
+The Ritz-Carlton Hotels & Resorts
+The Ritz-Carlton Reserve
+The Ritz-Carlton Residences
+The Ritz-Carlton Yacht Collection
+TownePlace Suites by Marriott Hotels
+Tribute Portfolio Hotels & Resorts
+Tribute Portfolio Residences
+W Hotels
+W Residences
+Westin Hotels
+Westin Hotels & Resorts
+Westin Residences
+Westin Vacation Club
+
+franchisor: | GLOBAL HOSPITALITY LICENSING S.à R.L.
+ | (“Franchisor” “us”, “we” or “our”)
+ | 
+Franchisee: | THE HYOOSIK
+ | (“Franchisee”, “you” or “your”)
+
+ | FRANCHISOR: 
+Global Hospitality Licensing S.à r.l.
+ | 
+ | By: ______________________________
+ | Name: […]	
+ | Title:	Attorney in Fact
+ | 
+ | FRANCHISEE: 
+The Hyoosik
+ | By:  ______________________________
+ | Name:	[…]
+ | Title: […]
+1. | Trade Name: | Series by Marriott. | Series by Marriott.
+2. | Approved Location: | [5 Yesul-ro 204beon-gil, Namdong-gu, Incheon, the Republic of Korea]. | [5 Yesul-ro 204beon-gil, Namdong-gu, Incheon, the Republic of Korea].
+3. | Effective Date: | [_], 20[  ]  | [_], 20[  ] 
+4. | Initial Term: | Begins on Effective Date and ends on the 10th anniversary of Opening Date (“Initial Term”).  | Begins on Effective Date and ends on the 10th anniversary of Opening Date (“Initial Term”). 
+ | Renewal: | This Agreement and the rights granted under it are not renewable unless otherwise agreed by the parties in writing. However, this Agreement may be renewed for one successive period of five years (“Renewal Term”), unless we notify you of our election not to renew at least 6 months before the end of the Initial Term, on the condition that you comply with Section 5.4.A and make a voluntary commitment in writing to renovate at your own cost all Guestrooms and Public Facilities (as the case may be) according to a property improvement plan for any renovations required to comply with Standards (“PIP”) as agreed between the parties. If: (i) you fail to fulfill your commitment to renovate according to the PIP, or (ii) the costs in relation to such renovation of the Hotel (or part of the Hotel) are required to be shared between the parties or borne solely by us under Legal Requirements, then such Renewal Term will end immediately upon our notification to you. The Initial Term and the Renewal Term that takes effect are collectively referred to as the “Term”. | This Agreement and the rights granted under it are not renewable unless otherwise agreed by the parties in writing. However, this Agreement may be renewed for one successive period of five years (“Renewal Term”), unless we notify you of our election not to renew at least 6 months before the end of the Initial Term, on the condition that you comply with Section 5.4.A and make a voluntary commitment in writing to renovate at your own cost all Guestrooms and Public Facilities (as the case may be) according to a property improvement plan for any renovations required to comply with Standards (“PIP”) as agreed between the parties. If: (i) you fail to fulfill your commitment to renovate according to the PIP, or (ii) the costs in relation to such renovation of the Hotel (or part of the Hotel) are required to be shared between the parties or borne solely by us under Legal Requirements, then such Renewal Term will end immediately upon our notification to you. The Initial Term and the Renewal Term that takes effect are collectively referred to as the “Term”.
+5. | Franchisor: | Global Hospitality Licensing S.à r.l., a Luxembourg private company with limited liability (société à responsabilité limitée), with its registered office at 33 rue du Puits Romain, L-8070 Bertrange, Luxembourg, and registered with the Luxembourg Trade and Companies Register under number B 139.166 and Luxembourg business license number 10020263 / 2 (“Franchisor” “us”, “we” or “our”). | Global Hospitality Licensing S.à r.l., a Luxembourg private company with limited liability (société à responsabilité limitée), with its registered office at 33 rue du Puits Romain, L-8070 Bertrange, Luxembourg, and registered with the Luxembourg Trade and Companies Register under number B 139.166 and Luxembourg business license number 10020263 / 2 (“Franchisor” “us”, “we” or “our”).
+6. | Franchisee: | The Hyoosik, a company organized and existing under the laws of the Republic of Korea with its registered office at [_] (“Franchisee”, “you” or “your”). | The Hyoosik, a company organized and existing under the laws of the Republic of Korea with its registered office at [_] (“Franchisee”, “you” or “your”).
+7. | Number of Guestrooms: | 100 | 100
+8. | Initial Fee: | Not Applicable. | Not Applicable.
+9. | Design Review Payment: | US$20,000, (“Design Review Payment”) subject to Exhibit D. The amount of US$10,000 that you paid to MIDCS under an interim advisory services agreement is credited against the Design Review Payment; the balance Design Review Payment payable under Exhibit D Section 1.5.B is US$[10,000] (“Balance Design Review Payment”).  | US$20,000, (“Design Review Payment”) subject to Exhibit D. The amount of US$10,000 that you paid to MIDCS under an interim advisory services agreement is credited against the Design Review Payment; the balance Design Review Payment payable under Exhibit D Section 1.5.B is US$[10,000] (“Balance Design Review Payment”). 
+10. | Franchise Fees: | From the Opening Date, a monthly amount equal to the percentage of Gross Room Sales (“Franchise Fees”) as indicated below:
+
+ | From the Opening Date, a monthly amount equal to the percentage of Gross Room Sales (“Franchise Fees”) as indicated below:
+
+
+11. | Affiliation Cost Contribution, including IMF Contribution: | From the Opening Date, a monthly amount equal to 4.2% of Gross Room Sales, including 1.3% allocation of Gross Room Sales to International Marketing Fund. | From the Opening Date, a monthly amount equal to 4.2% of Gross Room Sales, including 1.3% allocation of Gross Room Sales to International Marketing Fund.
+12. | Development Milestones:  | Construction Start Deadline: [   ].
+Opening Deadline: [   ].  | Construction Start Deadline: [   ].
+Opening Deadline: [   ]. 
+13. | Notice Addresses: | Franchisor
+Global Hospitality Licensing S.à r.l.
+33 rue du Puits Romain 
+L-8070 Bertrange
+Luxembourg
+Attn:	Manager
+Tel: 	+352-264-31290
+
+With a copy to:
+
+Global Hospitality Licensing S.à r.l.
+c/o Starwood Asia Pacific Hotels & Resorts Pte. Ltd. 
+2 Harbourfront Place, #06-08
+Bank of America Harbourfront
+Singapore 098499
+Attn: 	Chief Operating Officer
+Tel: 	+65 6333 8878 | 
+ |  | MIDCS
+Marriott International Design & Construction Services, Inc.
+c/o Starwood Asia Pacific Hotels & Resorts Pte. Ltd.
+2 Harbourfront Place, #06-08 
+Bank of America Harbourfront
+Singapore 098499 
+Attn:	Vice President, Global Design, Asia Pacific excluding China
+Tel: 	+65 6335 4852
+
+With a copy to:
+Marriott International Design & Construction Services, Inc.
+c/o Starwood Asia Pacific Hotels & Resorts Pte. Ltd. 
+2 Harbourfront Place, #06-08 
+Bank of America Harbourfront 
+Singapore 098499
+Attn:	Chief Operating Officer
+	Tel:	+65 6333 8878 
+ | Franchisor’s Designee 
+for the Review 
+[			
+			
+Attn: 			
+Email: 			]
+ |  | Franchisee
+The Hyoosik
+[			
+			
+Attn: 			] | Franchisee’s Designee 
+for the Review 
+[			
+			
+Attn: 			
+Email: 			]
+14. | Additional Terms: |  | 
+ | Lease: | You represent and warrant that (i) Owner is the sole owner of the Hotel, (ii) you lease the Hotel under a lease with Owner and (iii) you have all rights and authority relating to the Hotel to perform your obligations under this Agreement. If the lease provides for Owner to perform any of your obligations under this Agreement, you will cause Owner to perform such obligations as required under this Agreement. The existence of the lease and its terms requiring Owner to perform your obligations are not an assignment of such obligations to Owner and do not relieve you of any obligation under this Agreement. The lease will not limit or restrict our rights or remedies under this Agreement in any way. On becoming aware of any proposed or completed Transfer of the Hotel or Controlling Ownership Interest in Owner, you will notify us and confirm that the lease remains in force and, to the extent reasonably available to you, provide the identity of the transferee, including its Interestholders. You agree that we and Owner communicate about any defaults under the lease and potential cures. [NOTE: SUBJECT TO DUE DILIGNCE.]
+“Owner” means [ ]. | You represent and warrant that (i) Owner is the sole owner of the Hotel, (ii) you lease the Hotel under a lease with Owner and (iii) you have all rights and authority relating to the Hotel to perform your obligations under this Agreement. If the lease provides for Owner to perform any of your obligations under this Agreement, you will cause Owner to perform such obligations as required under this Agreement. The existence of the lease and its terms requiring Owner to perform your obligations are not an assignment of such obligations to Owner and do not relieve you of any obligation under this Agreement. The lease will not limit or restrict our rights or remedies under this Agreement in any way. On becoming aware of any proposed or completed Transfer of the Hotel or Controlling Ownership Interest in Owner, you will notify us and confirm that the lease remains in force and, to the extent reasonably available to you, provide the identity of the transferee, including its Interestholders. You agree that we and Owner communicate about any defaults under the lease and potential cures. [NOTE: SUBJECT TO DUE DILIGNCE.]
+“Owner” means [ ].
+ | Restricted Area:  | The terms of Exhibit A Attachment Two apply. | The terms of Exhibit A Attachment Two apply.
+ | Franchisee Marks: | See Exhibit G.  | See Exhibit G. 
+Ownership FRANCHISEE | Ownership FRANCHISEE | Ownership FRANCHISEE
+Name | Address | Percentage of Ownership
+ |  | 
+ |  | 
+Trademark | Country | Application No. | Filing Date | Class(es)
+SERIES BY MARRIOTT
+ | Republic of Korea | 40202510729 | 21-Jan-2025 | 35 Int.
+43 Int.
+SERIES BY MARRIOTT (LOGO) | Republic of Korea | 4020250047246
+ | 24-Mar-2025 | 35 Int.
+43 Int.
+Mark | Class | Application Number | Application Date | Registration Number | Registration Date
+ |  |  |  |  | 
