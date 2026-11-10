@@ -16,6 +16,7 @@ platform/rfis_marketing/ 구글 캘린더 → RFIS 마케팅 캘린더 계획·�
 platform/roadmap/    운용역 업무 표준화·자동화 로드맵 메모(보관만, 착수 지시 전 작업 금지)
 platform/dealflow/   딜플로우: 신규 딜 1건 단계별 자동 처리(1~13단계 누적, 현재 1단계: Teaser·실사 RFP·선정 기안·일정 체크리스트·WGL·메일 이슈로그·협의용 재무모델) — 사용법 README.md, 계획 ROADMAP.md
 shared/              시장자료, 과거 딜 선례, 투자 전략 기준(strategy.md)
+team/                팀 운영 자료(법인카드 사용내역·예산 등, 딜과 무관) — 목록 team/README.md
 ```
 
 ## 에이전트 라우팅 (요청이 오면 아래 담당에게 위임)
